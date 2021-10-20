@@ -18,7 +18,7 @@
             <a class="header__link" href="../templates/invest.html">Инвестиционная деятельность</a>
             <a class="header__link" href="../templates/forBusiness.html">Бизнесу</a>
             <a class="header__link" href="../templates/supportService.html">Поддержка</a>
-            <a class="header__link" href="../templates/contacts.html">Контакты</a>
+            <a class="header__link" href="../templates/contacts.html">Контакты(TEST GIT удалить)</a>
           </div>
         </div>
 
