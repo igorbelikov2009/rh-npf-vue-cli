@@ -3,7 +3,7 @@
     <div class="header__container">
       <div class="header__row">
         <div class="header__left-bloc">
-          <button class="header__button-lines">
+          <button class="header__button-lines" @click="openMenuMobil">
             <div class="header__line"></div>
             <div class="header__line"></div>
             <div class="header__line"></div>
@@ -29,11 +29,11 @@
                 <p class="header__phone-number">8 800 200-47-66</p>
               </a>
 
-              <button class="header__obratnyy-zvonok">Обратный звонок</button>
+              <button class="header__obratnyy-zvonok" @click="openCallBack">Обратный звонок</button>
             </div>
           </div>
 
-          <div class="header__button-switch">
+          <div class="header__button-switch" @click="openLoginForm">
             <button class="header__button-icons">
               <IconUser
                 v-for="(icon, index) in icons"
@@ -48,12 +48,26 @@
         </div>
       </div>
     </div>
+    <transition name="fade">
+      <LoginForm v-show="isHideLoginForm" @closeLoginForm="openLoginForm" />
+    </transition>
+
+    <transition name="slide-fade">
+      <CallBack v-if="isHideCallBack" @closeCallBack="openCallBack" />
+    </transition>
+
+    <transition name="shift-fade">
+      <MenuMobil v-if="isHideMenuMobil" @closeMenuMobil="openMenuMobil" />
+    </transition>
   </header>
 </template>
 
 <script>
 import Logotypes from '../general/Logotypes'
 import IconUser from '../general/IconUser'
+import LoginForm from './LoginForm'
+import CallBack from './CallBack'
+import MenuMobil from './MenuMobil'
 import userColored from '@/assets/icons/generals/user/colored.svg'
 import userLight from '@/assets/icons/generals/user/light.svg'
 import userDark from '@/assets/icons/generals/user/dark.svg'
@@ -66,6 +80,9 @@ export default {
       userColored: userColored,
       userLight: userLight,
       userDark: userDark,
+      isHideLoginForm: false,
+      isHideCallBack: false,
+      isHideMenuMobil: false,
 
       icons: [
         { isIconVisible: false, imgUrl: userColored },
@@ -76,7 +93,22 @@ export default {
   },
   components: {
     Logotypes,
+    LoginForm,
+    CallBack,
+    MenuMobil,
     IconUser,
+  },
+  methods: {
+    openLoginForm() {
+      this.isHideLoginForm = !this.isHideLoginForm
+      console.log(this.isHideLoginForm)
+    },
+    openCallBack() {
+      this.isHideCallBack = !this.isHideCallBack
+    },
+    openMenuMobil() {
+      this.isHideMenuMobil = !this.isHideMenuMobil
+    },
   },
 }
 </script>

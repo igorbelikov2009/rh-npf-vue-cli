@@ -1,22 +1,20 @@
 <template>
   <div class="main-page">
     <Header />
-    <LoginForm />
     <TopBlock />
   </div>
 </template>
 
 <script>
-import Header from '../general/Header'
-import LoginForm from '../general/LoginForm'
+import Header from '../header/Header'
 import TopBlock from '../mainPage/TopBlock'
+
 export default {
   name: 'MainPage',
 
   components: {
     Header,
     TopBlock,
-    LoginForm,
   },
 }
 </script>
