@@ -1,0 +1,123 @@
+.my-form {
+  width: 100%;
+}
+.my-form__label-container {
+  width: 100%;
+}
+.my-form__label {
+  width: 100%;
+  padding-bottom: 20px;
+  position: relative;
+}
+.my-form__title {
+  position: absolute;
+  top: 24px;
+  left: 0px;
+  font-size: 16px;
+  color: #78828c;
+}
+.my-form__title-leave-active,
+.my-form__title-enter-active {
+  transition: all 0.5s;
+}
+.my-form__title-leave-to,
+.my-form__title-enter {
+  top: 0px;
+  font-size: 11px;
+}
+.my-form__title-else {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  font-size: 11px;
+  color: #78828c;
+}
+.my-form__title-else-enter-active {
+  transition: all 0.01s 0.49s;
+}
+.my-form__title-else-enter {
+  opacity: 0;
+}
+.my-form__field {
+  width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 24px 0 8px;
+  color: #28323c;
+  border-bottom: 1px solid #b5bdc8;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.my-form__field:hover {
+  line-height: 23px;
+  border-bottom: 2px solid #50287d;
+}
+.my-form__field:focus {
+  line-height: 23px;
+  border-bottom: 2px solid #50287d;
+}
+.my-form__field_invalid {
+  border-bottom: 1px solid red;
+}
+.my-form__error {
+  display: block;
+  position: absolute;
+  top: 67px;
+  left: 0;
+  font-size: 12px;
+  line-height: 12px;
+  color: red;
+}
+.my-form__error:last-of-type {
+  top: 79px;
+}
+.my-form__button-container {
+  width: 100%;
+  max-width: 184px;
+  margin-bottom: 24px;
+}
+.my-form__button[disabled] {
+  background-color: #d2dce6;
+}
+
+.primary-button {
+  cursor: pointer;
+  width: 100%;
+  padding: 12px 8px;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  font-weight: 400;
+  background-color: #50287d;
+  border-radius: 24px;
+  text-align: center;
+  box-sizing: border-box;
+  opacity: 1;
+}
+.primary-button:hover {
+  opacity: 0.8;
+}
+
+/* Это для браузера Chrome: */
+.tel-number::-webkit-outer-spin-button,
+.tel-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Это для браузера Firefox: */
+.tel-number {
+  -moz-appearance: textfield;
+}
+
+.tel-number:hover,
+.tel-number:focus {
+  -moz-appearance: number-input;
+}
+
+/* Для других */
+.tel-number::-webkit-inner-spin-button,
+.tel-number::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

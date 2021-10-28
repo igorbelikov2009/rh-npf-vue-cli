@@ -1,40 +1,44 @@
 <template>
-  <header class="header">
-    <div class="header__container">
-      <div class="header__row">
-        <div class="header__left-bloc">
-          <button class="header__button-lines" @click="openMenuMobil">
-            <div class="header__line"></div>
-            <div class="header__line"></div>
-            <div class="header__line"></div>
+  <header class="top-menu">
+    <div class="top-menu__container">
+      <div class="top-menu__row">
+        <div class="top-menu__left-block">
+          <button class="top-menu__button-lines" @click="openMenuMobil">
+            <div class="top-menu__line"></div>
+            <div class="top-menu__line"></div>
+            <div class="top-menu__line"></div>
           </button>
 
-          <div class="header__logotype">
+          <div class="top-menu__logotype">
             <Logotypes />
           </div>
 
-          <div class="header__nav">
-            <a class="header__link" href="../templates/aboutFund.html">О фонде</a>
-            <a class="header__link" href="../templates/invest.html">Инвестиционная деятельность</a>
-            <a class="header__link" href="../templates/forBusiness.html">Бизнесу</a>
-            <a class="header__link" href="../templates/supportService.html">Поддержка</a>
-            <a class="header__link" href="../templates/contacts.html">Контакты</a>
+          <div class="top-menu__nav">
+            <a class="top-menu__link" href="../templates/aboutFund.html">О фонде</a>
+            <a class="top-menu__link" href="../templates/invest.html"
+              >Инвестиционная деятельность</a
+            >
+            <a class="top-menu__link" href="../templates/forBusiness.html">Бизнесу</a>
+            <a class="top-menu__link" href="../templates/supportService.html">Поддержка</a>
+            <a class="top-menu__link" href="../templates/contacts.html">Контакты</a>
           </div>
         </div>
 
-        <div class="header__right-bloc">
-          <div class="header__contacts">
-            <div class="header__phone">
-              <a class="header__phone-link" href="tel:+78002004766">
-                <p class="header__phone-number">8 800 200-47-66</p>
+        <div class="top-menu__right-block">
+          <div class="top-menu__contacts">
+            <div class="top-menu__phone">
+              <a class="top-menu__phone-link" href="tel:+78002004766">
+                <p class="top-menu__phone-number">8 800 200-47-66</p>
               </a>
 
-              <button class="header__obratnyy-zvonok" @click="openCallBack">Обратный звонок</button>
+              <button class="top-menu__call-back" @click="openCallBack">
+                Обратный звонок
+              </button>
             </div>
           </div>
 
-          <div class="header__button-switch" @click="openLoginForm">
-            <button class="header__button-icons">
+          <div class="top-menu__button-switch" @click="openLoginForm">
+            <button class="top-menu__button-icons">
               <IconUser
                 v-for="(icon, index) in icons"
                 v-bind:key="index"
@@ -43,20 +47,20 @@
               />
             </button>
 
-            <p class="header__button-title">Личный кабинет</p>
+            <p class="top-menu__button-title">Личный кабинет</p>
           </div>
         </div>
       </div>
     </div>
-    <transition name="fade">
+    <transition name="login-form">
       <LoginForm v-show="isHideLoginForm" @closeLoginForm="openLoginForm" />
     </transition>
 
-    <transition name="slide-fade">
+    <transition name="call-back">
       <CallBack v-if="isHideCallBack" @closeCallBack="openCallBack" />
     </transition>
 
-    <transition name="shift-fade">
+    <transition name="menu-mobil">
       <MenuMobil v-if="isHideMenuMobil" @closeMenuMobil="openMenuMobil" />
     </transition>
   </header>
@@ -68,12 +72,12 @@ import IconUser from '../general/IconUser'
 import LoginForm from './LoginForm'
 import CallBack from './CallBack'
 import MenuMobil from './MenuMobil'
-import userColored from '@/assets/icons/generals/user/colored.svg'
-import userLight from '@/assets/icons/generals/user/light.svg'
-import userDark from '@/assets/icons/generals/user/dark.svg'
+import userColored from '@/assets/icons/triple/user/colored.svg'
+import userLight from '@/assets/icons/triple/user/light.svg'
+import userDark from '@/assets/icons/triple/user/dark.svg'
 
 export default {
-  name: 'Header',
+  name: 'TopMenu',
 
   data() {
     return {
@@ -101,7 +105,6 @@ export default {
   methods: {
     openLoginForm() {
       this.isHideLoginForm = !this.isHideLoginForm
-      console.log(this.isHideLoginForm)
     },
     openCallBack() {
       this.isHideCallBack = !this.isHideCallBack
@@ -114,13 +117,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
+.top-menu {
   width: 100%;
   height: 72px;
   position: absolute;
   top: 0;
 
-  // header_news
+  // top-menu__news
   &_news {
     position: relative;
     border-bottom: 1px solid #e4e4e4;
@@ -144,7 +147,7 @@ export default {
     align-items: flex-end;
   }
 
-  &__left-bloc {
+  &__left-block {
     flex: content;
     display: flex;
     justify-content: flex-start;
@@ -186,7 +189,7 @@ export default {
       background: rgba(255, 255, 255, 0.3);
     }
 
-    // header__line_news
+    // top-menu__line_news
     &_news {
       background: #6f7479;
 
@@ -253,7 +256,7 @@ export default {
     }
   }
 
-  &__right-bloc {
+  &__right-block {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -284,7 +287,7 @@ export default {
     }
   }
 
-  &__obratnyy-zvonok {
+  &__call-back {
     cursor: pointer;
     position: absolute;
     z-index: 2;
@@ -313,7 +316,7 @@ export default {
     position: relative;
     z-index: 3;
 
-    &:hover .header__button-title {
+    &:hover .top-menu__button-title {
       color: #b5bdc8;
     }
 

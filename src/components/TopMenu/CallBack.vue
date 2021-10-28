@@ -5,7 +5,7 @@
         <label class="my-form__label">
           <p class="my-form__title">Как вас зовут?</p>
 
-          <input class="my-form__field" type="text" name="name" tabindex="6" />
+          <input class="my-form__field" type="text" name="name" />
 
           <p class="my-form__error"></p>
         </label>
@@ -15,20 +15,14 @@
         <label class="my-form__label">
           <p class="my-form__title">Телефон</p>
 
-          <input
-            class="my-form__field tel-number"
-            type="number"
-            name="phone"
-            autocomplete="on"
-            tabindex="7"
-          />
+          <input class="my-form__field tel-number" type="number" name="phone" autocomplete="on" />
 
           <p class="my-form__error"></p>
         </label>
       </div>
 
       <div class="call-back__button-container">
-        <button class="my-form__button primary-button" tabindex="7" disabled>
+        <button class="my-form__button primary-button" disabled>
           Отправить
         </button>
       </div>
@@ -88,18 +82,18 @@ export default {
     }
   }
 }
-// call-back
 
-.slide-fade-enter-active,
-.slide-fade-leave-active {
+// transition name="call-back"
+.call-back-enter-active,
+.call-back-leave-active {
   transition: all 0.5s;
 }
 
-.slide-fade-enter,
-.slide-fade-leave-to {
-  // opacity: 0;
-  opacity: 1;
+.call-back-enter,
+.call-back-leave-to {
+  opacity: 0;
   left: 0%;
   top: 0%;
 }
+// call-back
 </style>

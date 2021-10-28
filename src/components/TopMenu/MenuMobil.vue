@@ -73,18 +73,6 @@ export default {
   padding: 20px 24px;
   background: #ffffff;
   box-shadow: 0px 12px 24px rgba(26, 65, 100, 0.24);
-  // transition: right 500ms ease;
-
-  // menu-mobil__right-20
-  &__right-20 {
-    right: 20%;
-    transition: right 500ms ease;
-  }
-
-  // menu-mobil__visible
-  &__not-hide {
-    display: block;
-  }
 
   &__logos {
     height: 24px;
@@ -207,16 +195,17 @@ export default {
     }
   }
 }
-// menu-mobil
 
-.shift-fade-enter-active,
-.shift-fade-leave-active {
+// transition name="menu-mobil"
+.menu-mobil-enter-active,
+.menu-mobil-leave-active {
   transition: all 0.5s;
 }
 
-.shift-fade-enter,
-.shift-fade-leave-to {
+.menu-mobil-enter,
+.menu-mobil-leave-to {
   opacity: 0;
   right: 100%;
 }
+// menu-mobil
 </style>

@@ -1,19 +1,19 @@
 <template>
   <div class="main-page">
-    <Header />
+    <TopMenu />
     <TopBlock />
   </div>
 </template>
 
 <script>
-import Header from '../header/Header'
+import TopMenu from '../TopMenu/TopMenu'
 import TopBlock from '../mainPage/TopBlock'
 
 export default {
   name: 'MainPage',
 
   components: {
-    Header,
+    TopMenu,
     TopBlock,
   },
 }
