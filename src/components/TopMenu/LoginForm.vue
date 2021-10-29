@@ -5,15 +5,15 @@
 
     <div class="login-form__block-of-forms">
       <div class="login-form__input-container">
-        <InputPhone v-model.trim="form.phone" />
+        <PhoneInput v-model.trim="form.phone" />
       </div>
 
       <div class="login-form__input-container">
-        <InpitEmail />
+        <EmailInpit />
       </div>
 
       <div class="login-form__input-container">
-        <InputPassword />
+        <PasswordInput />
       </div>
 
       <div class="login-form__button-container">
@@ -44,9 +44,9 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators'
 
-import InputPhone from '../gui/InputPhone'
-import InpitEmail from '../gui/InpitEmail'
-import InputPassword from '../gui/InputPassword'
+import PhoneInput from '../gui/PhoneInput'
+import EmailInpit from '../gui/EmailInpit'
+import PasswordInput from '../gui/PasswordInput'
 
 export default {
   mixins: [validationMixin],
@@ -83,9 +83,9 @@ export default {
     },
   },
   components: {
-    InputPhone,
-    InpitEmail,
-    InputPassword,
+    PhoneInput,
+    EmailInpit,
+    PasswordInput,
   },
 }
 </script>
