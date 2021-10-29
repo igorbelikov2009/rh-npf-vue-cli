@@ -1,35 +1,35 @@
 <template>
   <section class="call-back">
-    <div class="my-form">
-      <div class="my-form__label-container">
-        <label class="my-form__label">
-          <p class="my-form__title">Как вас зовут?</p>
+    <div class="my-input">
+      <div class="my-input__label-container">
+        <label class="my-input__label">
+          <p class="my-input__title">Как вас зовут?</p>
 
-          <input class="my-form__field" type="text" name="name" />
+          <input class="my-input__field" type="text" name="name" />
 
-          <p class="my-form__error"></p>
+          <p class="my-input__error"></p>
         </label>
       </div>
 
-      <div class="my-form__label-container">
-        <label class="my-form__label">
-          <p class="my-form__title">Телефон</p>
+      <div class="my-input__label-container">
+        <label class="my-input__label">
+          <p class="my-input__title">Телефон</p>
 
-          <input class="my-form__field tel-number" type="number" name="phone" autocomplete="on" />
+          <input class="my-input__field tel-number" type="number" name="phone" autocomplete="on" />
 
-          <p class="my-form__error"></p>
+          <p class="my-input__error"></p>
         </label>
       </div>
 
       <div class="call-back__button-container">
-        <button class="my-form__button primary-button" disabled>
+        <button class="my-button__button primary-button" disabled>
           Отправить
         </button>
       </div>
     </div>
 
-    <button class="call-back__button-hide" @click="closeCallBack">
-      <img src="@/assets/icons/crossSwitch.svg" alt="" />
+    <button class="call-back__cross-switch" @click="closeCallBack">
+      <img class="call-back__cross-image" src="@/assets/icons/triple/Cross/Dark.svg" alt="cross" />
     </button>
   </section>
 </template>
@@ -52,7 +52,6 @@ export default {
   padding: 24px;
   padding-top: 48px;
   background: #f3f5f7;
-  z-index: 3;
   position: fixed;
   top: 0%;
   left: 50%;
@@ -70,7 +69,7 @@ export default {
     width: 80%;
   }
 
-  &__button-hide {
+  &__cross-switch {
     line-height: 12px;
     cursor: pointer;
     position: absolute;
@@ -80,6 +79,11 @@ export default {
     &:hover {
       border: 1px solid #50287d;
     }
+  }
+
+  &__cross-image {
+    width: 24px;
+    height: 24px;
   }
 }
 

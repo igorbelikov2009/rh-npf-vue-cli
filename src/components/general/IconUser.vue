@@ -4,7 +4,7 @@
   <!-- <img
       v-show="isIconVisible"
       class="icon-user__icon"
-      src="@/assets/icons/triple/user/colored.svg"
+      src="@/assets/icons/triple/User/colored.svg"
       alt="user"
     />
 
@@ -16,14 +16,14 @@
     <img
       v-show="isIconVisible"
       class="icon-user__icon"
-      src="@/assets/icons/triple/user/light.svg"
+      src="@/assets/icons/triple/User/light.svg"
       alt="user"
     />
 
     <img
       v-show="isIconVisible"
       class="icon-user__icon"
-      src="@/assets/icons/triple/user/dark.svg"
+      src="@/assets/icons/triple/User/dark.svg"
       alt="user"
     /> -->
 </template>
@@ -38,7 +38,7 @@ export default {
 
     imgUrl: {
       type: String,
-      default: '@/assets/icons/triple/user/light.svg',
+      default: '@/assets/icons/triple/User/light.svg',
     },
   },
 }

@@ -57,7 +57,7 @@
     </transition>
 
     <transition name="call-back">
-      <CallBack v-if="isHideCallBack" @closeCallBack="openCallBack" />
+      <CallBackForm v-if="isHideCallBackForm" @closeCallBack="openCallBack" />
     </transition>
 
     <transition name="menu-mobil">
@@ -70,11 +70,11 @@
 import Logotypes from '../general/Logotypes'
 import IconUser from '../general/IconUser'
 import LoginForm from './LoginForm'
-import CallBack from './CallBack'
+import CallBackForm from './CallBackForm'
 import MenuMobil from './MenuMobil'
-import userColored from '@/assets/icons/triple/user/colored.svg'
-import userLight from '@/assets/icons/triple/user/light.svg'
-import userDark from '@/assets/icons/triple/user/dark.svg'
+import userColored from '@/assets/icons/triple/User/colored.svg'
+import userLight from '@/assets/icons/triple/User/light.svg'
+import userDark from '@/assets/icons/triple/User/dark.svg'
 
 export default {
   name: 'TopMenu',
@@ -85,7 +85,7 @@ export default {
       userLight: userLight,
       userDark: userDark,
       isHideLoginForm: false,
-      isHideCallBack: false,
+      isHideCallBackForm: false,
       isHideMenuMobil: false,
 
       icons: [
@@ -98,7 +98,7 @@ export default {
   components: {
     Logotypes,
     LoginForm,
-    CallBack,
+    CallBackForm,
     MenuMobil,
     IconUser,
   },
@@ -107,7 +107,7 @@ export default {
       this.isHideLoginForm = !this.isHideLoginForm
     },
     openCallBack() {
-      this.isHideCallBack = !this.isHideCallBack
+      this.isHideCallBackForm = !this.isHideCallBackForm
     },
     openMenuMobil() {
       this.isHideMenuMobil = !this.isHideMenuMobil
@@ -165,7 +165,6 @@ export default {
     position: absolute;
     top: 27.5px;
     left: 18px;
-    z-index: 2;
 
     @media screen and (min-width: 576px) {
       left: 36px;
@@ -207,7 +206,6 @@ export default {
     display: block;
 
     margin-left: 36px;
-    z-index: 3;
 
     @media screen and (min-width: 576px) {
       margin-left: 54px;
@@ -221,7 +219,6 @@ export default {
   &__nav {
     display: none;
     justify-content: space-between;
-    z-index: 2;
 
     @media screen and (min-width: 1300px) {
       display: flex;
@@ -290,7 +287,6 @@ export default {
   &__call-back {
     cursor: pointer;
     position: absolute;
-    z-index: 2;
     top: 24px;
     left: 0px;
     font-size: 11px;
@@ -314,7 +310,6 @@ export default {
     display: flex;
     align-items: center;
     position: relative;
-    z-index: 3;
 
     &:hover .top-menu__button-title {
       color: #b5bdc8;

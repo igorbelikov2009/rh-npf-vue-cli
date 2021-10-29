@@ -1,44 +1,42 @@
-.my-form {
+.my-input {
   width: 100%;
 }
-.my-form__label-container {
-  width: 100%;
-}
-.my-form__label {
+/* my-input */
+.my-input__label {
   width: 100%;
   padding-bottom: 20px;
   position: relative;
 }
-.my-form__title {
+.my-input__title {
   position: absolute;
   top: 24px;
   left: 0px;
   font-size: 16px;
   color: #78828c;
 }
-.my-form__title-leave-active,
-.my-form__title-enter-active {
+.my-input__title-leave-active,
+.my-input__title-enter-active {
   transition: all 0.5s;
 }
-.my-form__title-leave-to,
-.my-form__title-enter {
+.my-input__title-leave-to,
+.my-input__title-enter {
   top: 0px;
   font-size: 11px;
 }
-.my-form__title-else {
+.my-input__title-else {
   position: absolute;
   top: 0;
   left: 0px;
   font-size: 11px;
   color: #78828c;
 }
-.my-form__title-else-enter-active {
+.my-input__title-else-enter-active {
   transition: all 0.01s 0.49s;
 }
-.my-form__title-else-enter {
+.my-input__title-else-enter {
   opacity: 0;
 }
-.my-form__field {
+.my-input__field {
   width: 100%;
   font-size: 16px;
   line-height: 24px;
@@ -48,18 +46,18 @@
   box-sizing: border-box;
   cursor: pointer;
 }
-.my-form__field:hover {
+.my-input__field:hover {
   line-height: 23px;
   border-bottom: 2px solid #50287d;
 }
-.my-form__field:focus {
+.my-input__field:focus {
   line-height: 23px;
   border-bottom: 2px solid #50287d;
 }
-.my-form__field_invalid {
+.my-input__field_invalid {
   border-bottom: 1px solid red;
 }
-.my-form__error {
+.my-input__error {
   display: block;
   position: absolute;
   top: 67px;
@@ -68,15 +66,15 @@
   line-height: 12px;
   color: red;
 }
-.my-form__error:last-of-type {
+.my-input__error:last-of-type {
   top: 79px;
 }
-.my-form__button-container {
+/* .my-input__button-container {
   width: 100%;
   max-width: 184px;
   margin-bottom: 24px;
-}
-.my-form__button[disabled] {
+} */
+.my-button__button[disabled] {
   background-color: #d2dce6;
 }
 

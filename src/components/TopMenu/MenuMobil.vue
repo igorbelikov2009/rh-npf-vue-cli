@@ -33,8 +33,6 @@
         <a class="menu-mobil__phone-link" href="tel:+78002004766">
           <p class="menu-mobil__phone-number">8 800 200-47-66</p>
         </a>
-
-        <button class="menu-mobil__obratnyy-zvonok">Обратный звонок</button>
       </div>
     </div>
 
@@ -47,7 +45,12 @@
     </div>
 
     <button class="menu-mobil__cross-switch">
-      <img src="@/assets/icons/crossSwitch.svg" alt="" @click="closeMenuMobil" />
+      <img
+        class="menu-mobil__cross-image"
+        src="@/assets/icons/triple/Cross/Dark.svg"
+        alt="cross"
+        @click="closeMenuMobil"
+      />
     </button>
   </section>
 </template>
@@ -66,7 +69,6 @@ export default {
 // menu-mobil
 .menu-mobil {
   position: absolute;
-  z-index: 11;
   top: 0;
   right: 20%;
   width: 80%;
@@ -168,17 +170,14 @@ export default {
     font-size: 18px;
   }
 
-  &__obratnyy-zvonok {
-    font-size: 13px;
-    color: #b5bdc8;
-  }
-
   &__copy-right {
     font-size: 11px;
     color: #5a646e;
   }
 
   &__cross-switch {
+    width: 24px;
+    height: 24px;
     line-height: 12px;
     cursor: pointer;
     position: absolute;
@@ -193,6 +192,11 @@ export default {
     &:hover {
       border: 1px solid #50287d;
     }
+  }
+
+  &__cross-image {
+    width: 24px;
+    height: 24px;
   }
 }
 

@@ -3,13 +3,21 @@
     <!-- submit  на предке работает только на тэге <form><form/>  -->
     <h1 class="login-form__heading">Вход</h1>
 
-    <div class="my-form">
-      <InputPhone />
-      <InpitEmail />
-      <InputPassword />
+    <div class="login-form__block-of-forms">
+      <div class="login-form__input-container">
+        <InputPhone v-model.trim="form.phone" />
+      </div>
+
+      <div class="login-form__input-container">
+        <InpitEmail />
+      </div>
+
+      <div class="login-form__input-container">
+        <InputPassword />
+      </div>
 
       <div class="login-form__button-container">
-        <button class="my-form__button primary-button">
+        <button class="my-button__button primary-button">
           Продолжить
         </button>
         <!--    :disabled="!registrationPassed" -->
@@ -27,7 +35,7 @@
     </p>
 
     <button class="login-form__cross-switch" @click="closeLoginForm">
-      <img src="@/assets/icons/crossSwitch.svg" alt="" />
+      <img class="login-form__cross-image" src="@/assets/icons/triple/Cross/Dark.svg" alt="cross" />
     </button>
   </form>
 </template>
@@ -96,7 +104,6 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 6;
   background: #f3f5f7;
   box-shadow: 0px 4px 6px rgba(26, 65, 101, 0.15);
   opacity: 1;
@@ -114,12 +121,20 @@ export default {
     padding-right: 76.5px;
   }
 
+  &__block-of-forms {
+    width: 100%;
+  }
+
   &__heading {
     font-size: 34px;
     line-height: 48px;
     color: #28323c;
     text-align: center;
     margin-bottom: 24px;
+  }
+
+  &__input-container {
+    width: 100%;
   }
 
   &__button-container {
@@ -158,6 +173,11 @@ export default {
     &:hover {
       border: 1px solid #50287d;
     }
+  }
+
+  &__cross-image {
+    width: 24px;
+    height: 24px;
   }
 }
 // login-form

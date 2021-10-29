@@ -1,37 +1,35 @@
 <template>
-  <div class="my-form__label-container">
-    <label class="my-form__label">
-      <transition name="my-form__title">
-        <p class="my-form__title" v-if="isBottomMyFormTitle">Электронная почта</p>
-      </transition>
+  <label class="my-input__label">
+    <transition name="my-input__title">
+      <p class="my-input__title" v-if="isBottomMyFormTitle">Электронная почта</p>
+    </transition>
 
-      <transition name="my-form__title-else">
-        <p class="my-form__title-else" v-if="!isBottomMyFormTitle">Электронная почта</p>
-      </transition>
+    <transition name="my-input__title-else">
+      <p class="my-input__title-else" v-if="!isBottomMyFormTitle">Электронная почта</p>
+    </transition>
 
-      <input
-        class="my-form__field"
-        type="email"
-        name="email"
-        autocomplete="on"
-        @focus="onEmailFocus"
-        @blur="onEmailBlur"
-        :class="$v.form.email.$error ? 'my-form__field_invalid' : ''"
-        v-model.trim="form.email"
-      />
+    <input
+      class="my-input__field"
+      type="email"
+      name="email"
+      autocomplete="on"
+      @focus="onEmailFocus"
+      @blur="onEmailBlur"
+      :class="$v.form.email.$error ? 'my-input__field_invalid' : ''"
+      v-model.trim="form.email"
+    />
 
-      <p class="my-form__error" v-if="$v.form.email.$dirty && !$v.form.email.required">
-        Обязательное поле
-      </p>
+    <p class="my-input__error" v-if="$v.form.email.$dirty && !$v.form.email.required">
+      Обязательное поле
+    </p>
 
-      <p
-        class="my-form__error"
-        v-if="$v.form.email.$dirty && $v.form.email.required && !$v.form.email.email"
-      >
-        Некорректный email
-      </p>
-    </label>
-  </div>
+    <p
+      class="my-input__error"
+      v-if="$v.form.email.$dirty && $v.form.email.required && !$v.form.email.email"
+    >
+      Некорректный email
+    </p>
+  </label>
 </template>
 
 <script>

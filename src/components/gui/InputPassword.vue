@@ -1,32 +1,30 @@
 <template>
-  <div class="my-form__label-container">
-    <label class="my-form__label">
-      <transition name="my-form__title">
-        <p class="my-form__title" v-if="isBottomMyFormTitle">Пароль</p>
-      </transition>
+  <label class="my-input__label">
+    <transition name="my-input__title">
+      <p class="my-input__title" v-if="isBottomMyFormTitle">Пароль</p>
+    </transition>
 
-      <transition name="my-form__title-else">
-        <p class="my-form__title-else" v-if="!isBottomMyFormTitle">Пароль</p>
-      </transition>
+    <transition name="my-input__title-else">
+      <p class="my-input__title-else" v-if="!isBottomMyFormTitle">Пароль</p>
+    </transition>
 
-      <input
-        class="my-form__field"
-        type="text"
-        name="password"
-        @focus="onPasswordFocus"
-        @blur="onPasswordBlur"
-        :class="$v.form.password.$error ? 'my-form__field_invalid' : ''"
-        v-model.trim="form.password"
-      />
-      <p class="my-form__error" v-if="$v.form.password.$dirty && !$v.form.password.required">
-        Обязательное поле
-      </p>
+    <input
+      class="my-input__field"
+      type="text"
+      name="password"
+      @focus="onPasswordFocus"
+      @blur="onPasswordBlur"
+      :class="$v.form.password.$error ? 'my-input__field_invalid' : ''"
+      v-model.trim="form.password"
+    />
+    <p class="my-input__error" v-if="$v.form.password.$dirty && !$v.form.password.required">
+      Обязательное поле
+    </p>
 
-      <p class="my-form__error" v-if="$v.form.password.$dirty && !$v.form.password.minLength">
-        Минимальное количество символов 12
-      </p>
-    </label>
-  </div>
+    <p class="my-input__error" v-if="$v.form.password.$dirty && !$v.form.password.minLength">
+      Минимальное количество символов 12
+    </p>
+  </label>
 </template>
 
 <script>

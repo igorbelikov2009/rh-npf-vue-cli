@@ -1,37 +1,35 @@
 <template>
-  <div class="my-form__label-container">
-    <label class="my-form__label">
-      <transition name="my-form__title">
-        <p class="my-form__title" v-if="isBottomMyFormTitle">Телефон</p>
-      </transition>
+  <label class="my-input__label">
+    <transition name="my-input__title">
+      <p class="my-input__title" v-if="isBottomMyFormTitle">Телефон</p>
+    </transition>
 
-      <transition name="my-form__title-else">
-        <p class="my-form__title-else" v-if="!isBottomMyFormTitle">Телефон</p>
-      </transition>
+    <transition name="my-input__title-else">
+      <p class="my-input__title-else" v-if="!isBottomMyFormTitle">Телефон</p>
+    </transition>
 
-      <input
-        class="my-form__field  tel-number"
-        type="number"
-        name="phone"
-        autocomplete="on"
-        @focus="onPhoneFocus"
-        @blur="onPhoneBlur"
-        :class="$v.form.phone.$error ? 'my-form__field_invalid' : ''"
-        v-model.trim="form.phone"
-      />
+    <input
+      class="my-input__field  tel-number"
+      type="number"
+      name="phone"
+      autocomplete="on"
+      @focus="onPhoneFocus"
+      @blur="onPhoneBlur"
+      @input="$emit('input', $event.target.value)"
+      :class="$v.form.phone.$error ? 'my-input__field_invalid' : ''"
+    />
 
-      <p class="my-form__error" v-if="$v.form.phone.$dirty && !$v.form.phone.required">
-        Обязательное поле
-      </p>
+    <p class="my-input__error" v-if="$v.form.phone.$dirty && !$v.form.phone.required">
+      Обязательное поле
+    </p>
 
-      <p
-        class="my-form__error"
-        v-if="$v.form.phone.$dirty && $v.form.phone.required && $v.form.phone.$invalid"
-      >
-        Некорректный номер телефона
-      </p>
-    </label>
-  </div>
+    <p
+      class="my-input__error"
+      v-if="$v.form.phone.$dirty && $v.form.phone.required && $v.form.phone.$invalid"
+    >
+      Некорректный номер телефона
+    </p>
+  </label>
 </template>
 
 <script>
@@ -41,11 +39,18 @@ import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/va
 export default {
   mixins: [validationMixin],
   name: 'InputPhone',
+  // новое
+  model: {
+    // здесь связь модуля v-model="searchText2" с родительским компонентом ProductList
+    prop: 'value',
+    event: 'input',
+  },
+  // новое
 
   data() {
     return {
       isBottomMyFormTitle: true,
-      form: { phone: '' },
+      // form: { phone: '' },
     }
   },
   validations: {
@@ -59,13 +64,15 @@ export default {
       console.log('onPhoneFocus')
     },
     //
-    onPhoneBlur() {
-      console.log('onPhoneBlur')
-      this.$v.form.phone.$touch()
-      if (this.$v.form.phone.required) {
+    onPhoneBlur(event) {
+      console.log('onPhoneBlur', event.target.value.length)
+      // this.$v.form.phone.$touch()
+      if (event.target.value.length > 0) {
+        console.log('123')
         this.isBottomMyFormTitle = false
       } else {
         this.isBottomMyFormTitle = true
+        console.log('0')
       }
     },
   },
