@@ -39,7 +39,7 @@
 .my-input__field {
   width: 100%;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 23px;
   padding: 24px 0 8px;
   color: #28323c;
   border-bottom: 1px solid #b5bdc8;
@@ -47,11 +47,11 @@
   cursor: pointer;
 }
 .my-input__field:hover {
-  line-height: 23px;
+  line-height: 22px;
   border-bottom: 2px solid #50287d;
 }
 .my-input__field:focus {
-  line-height: 23px;
+  line-height: 22px;
   border-bottom: 2px solid #50287d;
 }
 .my-input__field_invalid {
@@ -69,11 +69,7 @@
 .my-input__error:last-of-type {
   top: 79px;
 }
-/* .my-input__button-container {
-  width: 100%;
-  max-width: 184px;
-  margin-bottom: 24px;
-} */
+
 .my-button__button[disabled] {
   background-color: #d2dce6;
 }

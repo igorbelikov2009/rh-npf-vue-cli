@@ -5,15 +5,15 @@
 
     <div class="login-form__block-of-forms">
       <div class="login-form__input-container">
-        <PhoneInput v-model.trim="form.phone" />
+        <PhoneInput v-model.trim="$v.form.phone.$model" />
       </div>
 
       <div class="login-form__input-container">
-        <EmailInpit />
+        <EmailInpit v-model.trim="$v.form.email.$model" />
       </div>
 
       <div class="login-form__input-container">
-        <PasswordInput />
+        <PasswordInput v-model.trim="$v.form.password.$model" />
       </div>
 
       <div class="login-form__button-container">
@@ -69,16 +69,16 @@ export default {
 
   methods: {
     closeLoginForm() {
-      console.log(this.isHideLoginForm)
       this.$emit('closeLoginForm')
     },
 
     checkForm() {
-      console.log('Ok')
       this.$v.form.$touch()
+
       if (!this.$v.form.$error) {
         this.registrationPassed = true
         console.log('Валидация прошла успешно', this.form)
+        this.$emit('closeLoginForm')
       }
     },
   },

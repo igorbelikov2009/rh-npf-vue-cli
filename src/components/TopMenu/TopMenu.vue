@@ -52,12 +52,13 @@
         </div>
       </div>
     </div>
-    <transition name="login-form">
-      <LoginForm v-show="isHideLoginForm" @closeLoginForm="openLoginForm" />
-    </transition>
 
     <transition name="call-back">
       <CallBackForm v-if="isHideCallBackForm" @closeCallBack="openCallBack" />
+    </transition>
+
+    <transition name="login-form">
+      <LoginForm v-show="isHideLoginForm" @closeLoginForm="openLoginForm" />
     </transition>
 
     <transition name="menu-mobil">

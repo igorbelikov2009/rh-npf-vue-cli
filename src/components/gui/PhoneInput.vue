@@ -13,20 +13,18 @@
       type="number"
       name="phone"
       autocomplete="on"
-      @focus="onPhoneFocus"
-      @blur="onPhoneBlur"
+      @focus="onFocus"
+      @blur="onBlur"
+      v-model.trim="phone"
       @input="$emit('input', $event.target.value)"
-      :class="$v.form.phone.$error ? 'my-input__field_invalid' : ''"
+      :class="$v.phone.$error ? 'my-input__field_invalid' : ''"
     />
 
-    <p class="my-input__error" v-if="$v.form.phone.$dirty && !$v.form.phone.required">
+    <p class="my-input__error" v-if="$v.phone.$dirty && !$v.phone.required">
       Обязательное поле
     </p>
 
-    <p
-      class="my-input__error"
-      v-if="$v.form.phone.$dirty && $v.form.phone.required && $v.form.phone.$invalid"
-    >
+    <p class="my-input__error" v-if="$v.phone.$dirty && $v.phone.required && $v.phone.$invalid">
       Некорректный номер телефона
     </p>
   </label>
@@ -34,7 +32,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
@@ -50,29 +48,24 @@ export default {
   data() {
     return {
       isBottomMyFormTitle: true,
-      // form: { phone: '' },
+      phone: '',
     }
   },
+
   validations: {
-    form: {
-      phone: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
-    },
+    phone: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
   },
   methods: {
-    onPhoneFocus() {
+    onFocus() {
       this.isBottomMyFormTitle = false
-      console.log('onPhoneFocus')
     },
     //
-    onPhoneBlur(event) {
-      console.log('onPhoneBlur', event.target.value.length)
-      // this.$v.form.phone.$touch()
-      if (event.target.value.length > 0) {
-        console.log('123')
+    onBlur(event) {
+      this.$v.phone.$touch()
+      if (this.$v.phone.required) {
         this.isBottomMyFormTitle = false
       } else {
         this.isBottomMyFormTitle = true
-        console.log('0')
       }
     },
   },

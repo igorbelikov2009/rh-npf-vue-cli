@@ -1,45 +1,71 @@
 <template>
-  <section class="call-back">
-    <div class="my-input">
-      <div class="my-input__label-container">
-        <label class="my-input__label">
-          <p class="my-input__title">Как вас зовут?</p>
+  <form class="call-back" @submit.prevent="checkForm">
+    <div class="call-back__input-container">
+      <FirstNameInput v-model.trim="$v.form.firstName.$model" />
+    </div>
 
-          <input class="my-input__field" type="text" name="name" />
+    <div class="call-back__input-container">
+      <PhoneInput v-model.trim="$v.form.phone.$model" />
+    </div>
 
-          <p class="my-input__error"></p>
-        </label>
-      </div>
-
-      <div class="my-input__label-container">
-        <label class="my-input__label">
-          <p class="my-input__title">Телефон</p>
-
-          <input class="my-input__field tel-number" type="number" name="phone" autocomplete="on" />
-
-          <p class="my-input__error"></p>
-        </label>
-      </div>
-
-      <div class="call-back__button-container">
-        <button class="my-button__button primary-button" disabled>
-          Отправить
-        </button>
-      </div>
+    <div class="call-back__button-container">
+      <button class="my-button__button primary-button">
+        Отправить
+      </button>
     </div>
 
     <button class="call-back__cross-switch" @click="closeCallBack">
       <img class="call-back__cross-image" src="@/assets/icons/triple/Cross/Dark.svg" alt="cross" />
     </button>
-  </section>
+  </form>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, minLength, maxLength, numeric, alpha } from 'vuelidate/lib/validators'
+
+import PhoneInput from '../gui/PhoneInput'
+import FirstNameInput from '../gui/FirstNameInput'
 export default {
+  mixins: [validationMixin],
+
+  name: 'CallBackForm',
+  data() {
+    return {
+      isBottomMyFormTitle: true,
+      registrationPassed: false,
+
+      form: {
+        firstName: '',
+        phone: '',
+      },
+    }
+  },
+  validations: {
+    form: {
+      firstName: { required, alpha, minLength: minLength(4) },
+      phone: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
+    },
+  },
   methods: {
     closeCallBack() {
       this.$emit('closeCallBack')
     },
+
+    checkForm() {
+      this.$v.form.$touch()
+
+      if (!this.$v.form.$error) {
+        this.registrationPassed = true
+        console.log('Валидация прошла успешно', this.form)
+        this.$emit('closeCallBack')
+      }
+    },
+  },
+
+  components: {
+    FirstNameInput,
+    PhoneInput,
   },
 }
 </script>
@@ -49,7 +75,7 @@ export default {
 .call-back {
   width: 100%;
   max-width: 320px;
-  padding: 24px;
+  padding: 36px;
   padding-top: 48px;
   background: #f3f5f7;
   position: fixed;
@@ -59,6 +85,10 @@ export default {
 
   @media screen and (min-width: 576px) {
     top: 18%;
+  }
+
+  &__input-container {
+    width: 100%;
   }
 
   &__button-container {

@@ -13,20 +13,18 @@
       type="email"
       name="email"
       autocomplete="on"
-      @focus="onEmailFocus"
-      @blur="onEmailBlur"
-      :class="$v.form.email.$error ? 'my-input__field_invalid' : ''"
-      v-model.trim="form.email"
+      @focus="onFocus"
+      @blur="onBlur"
+      v-model.trim="email"
+      @input="$emit('input', $event.target.value)"
+      :class="$v.email.$error ? 'my-input__field_invalid' : ''"
     />
 
-    <p class="my-input__error" v-if="$v.form.email.$dirty && !$v.form.email.required">
+    <p class="my-input__error" v-if="$v.email.$dirty && !$v.email.required">
       Обязательное поле
     </p>
 
-    <p
-      class="my-input__error"
-      v-if="$v.form.email.$dirty && $v.form.email.required && !$v.form.email.email"
-    >
+    <p class="my-input__error" v-if="$v.email.$dirty && $v.email.required && !$v.email.email">
       Некорректный email
     </p>
   </label>
@@ -34,7 +32,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
@@ -43,28 +41,22 @@ export default {
   data() {
     return {
       isBottomMyFormTitle: true,
-      form: { email: '' },
+      email: '',
     }
   },
 
   validations: {
-    form: {
-      email: { required, email },
-    },
+    email: { required, email },
   },
 
   methods: {
-    onEmailFocus() {
+    onFocus() {
       this.isBottomMyFormTitle = false
-      //
-      console.log('onEmailFocus')
     },
 
-    onEmailBlur() {
-      console.log('onEmailBlur')
-      //
-      this.$v.form.email.$touch()
-      if (this.$v.form.email.required) {
+    onBlur() {
+      this.$v.email.$touch()
+      if (this.$v.email.required) {
         this.isBottomMyFormTitle = false
       } else {
         this.isBottomMyFormTitle = true
