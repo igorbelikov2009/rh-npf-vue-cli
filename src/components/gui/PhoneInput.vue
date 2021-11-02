@@ -37,13 +37,13 @@ import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validator
 export default {
   mixins: [validationMixin],
   name: 'InputPhone',
-  // новое
-  model: {
-    // здесь связь модуля v-model="searchText2" с родительским компонентом ProductList
-    prop: 'value',
-    event: 'input',
-  },
-  // новое
+  //  model: нужен здесь? Разницы я не увидел
+  // model: {
+  //   // здесь связь модуля v-model="searchText2" с родительским компонентом ProductList
+  //   prop: 'value',
+  //   event: 'input',
+  // },
+  // model: нужен здесь? Разницы я не увидел
 
   data() {
     return {

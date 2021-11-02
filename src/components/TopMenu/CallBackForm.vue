@@ -22,7 +22,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength, numeric, alpha } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 import PhoneInput from '../gui/PhoneInput'
 import FirstNameInput from '../gui/FirstNameInput'
@@ -43,7 +43,7 @@ export default {
   },
   validations: {
     form: {
-      firstName: { required, alpha, minLength: minLength(4) },
+      firstName: { required, minLength: minLength(4) },
       phone: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
     },
   },

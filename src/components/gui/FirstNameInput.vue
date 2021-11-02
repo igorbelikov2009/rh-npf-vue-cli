@@ -22,10 +22,7 @@
       Обязательное поле
     </p>
 
-    <p
-      class="my-input__error"
-      v-if="($v.firstName.$dirty && !$v.firstName.minLength) || !$v.firstName.alpha"
-    >
+    <p class="my-input__error" v-if="$v.firstName.$dirty && !$v.firstName.minLength">
       Некорректное имя
     </p>
   </label>
@@ -33,7 +30,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, minLength, alpha } from 'vuelidate/lib/validators'
+import { required, minLength } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
@@ -46,7 +43,7 @@ export default {
     }
   },
   validations: {
-    firstName: { required, alpha, minLength: minLength(4) },
+    firstName: { required, minLength: minLength(4) },
   },
   methods: {
     onFocus() {
