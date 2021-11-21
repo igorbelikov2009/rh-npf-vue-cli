@@ -5,22 +5,21 @@
 
     <div class="login-form__block-of-forms">
       <div class="login-form__input-container">
-        <PhoneInput v-model.trim="$v.form.phone.$model" />
+        <PhoneInput @emitInputValues="onInputPhone" />
       </div>
 
       <div class="login-form__input-container">
-        <EmailInpit v-model.trim="$v.form.email.$model" />
+        <EmailInpit @emitInputValues="onInputEmail" />
       </div>
 
       <div class="login-form__input-container">
-        <PasswordInput v-model.trim="$v.form.password.$model" />
+        <PasswordInput @emitInputValues="onInputPassword" />
       </div>
 
       <div class="login-form__button-container">
         <button class="my-button__button primary-button">
           Продолжить
         </button>
-        <!--    :disabled="!registrationPassed" -->
       </div>
     </div>
 
@@ -53,9 +52,12 @@ export default {
 
   data() {
     return {
-      isBottomMyFormTitle: true,
       registrationPassed: false,
-      form: { phone: '', email: '', password: '' },
+      form: {
+        phone: '',
+        email: '',
+        password: '',
+      },
     }
   },
 
@@ -70,6 +72,15 @@ export default {
   methods: {
     closeLoginForm() {
       this.$emit('closeLoginForm')
+    },
+    onInputPhone(valueInput) {
+      this.form.phone = valueInput
+    },
+    onInputPassword(valueInput) {
+      this.form.password = valueInput
+    },
+    onInputEmail(valueInput) {
+      this.form.email = valueInput
     },
 
     checkForm() {
@@ -121,16 +132,16 @@ export default {
     padding-right: 76.5px;
   }
 
-  &__block-of-forms {
-    width: 100%;
-  }
-
   &__heading {
     font-size: 34px;
     line-height: 48px;
     color: #28323c;
     text-align: center;
     margin-bottom: 24px;
+  }
+
+  &__block-of-forms {
+    width: 100%;
   }
 
   &__input-container {

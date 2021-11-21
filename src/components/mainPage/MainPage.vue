@@ -5,6 +5,7 @@
     <Info />
     <Statistics />
     <Calculator />
+    <CalculatorImages />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import TopBlock from '../mainPage/TopBlock'
 import Info from '../mainPage/Info'
 import Statistics from '../mainPage/statistics/Statistics'
 import Calculator from '../mainPage/calculator/Calculator'
+import CalculatorImages from '../mainPage/CalculatorImages'
 
 export default {
   name: 'MainPage',
@@ -24,6 +26,7 @@ export default {
     Info,
     Statistics,
     Calculator,
+    CalculatorImages,
   },
 }
 </script>

@@ -9,139 +9,43 @@
             <form class="slider-block">
               <div class="slider-block__age">
                 <div class="slider-block__switch">
-                  <div class="double-switch">
-                    <label
-                      class="double-switch__item"
-                      :class="{
-                        'double-switch__active': !isActive,
-                        'double-switch__not-active': isActive,
-                      }"
-                    >
-                      <input
-                        class="double-switch__field"
-                        type="radio"
-                        name="gender"
-                        value="65"
-                        v-model="gender"
-                        @change="clickGender"
-                      />
-
-                      <p class="double-switch__title">М</p>
-                    </label>
-
-                    <label
-                      class="
-                            double-switch__item  
-                          "
-                      :class="{
-                        'double-switch__active': isActive,
-                        'double-switch__not-active': !isActive,
-                      }"
-                    >
-                      <input
-                        class="double-switch__field"
-                        type="radio"
-                        name="gender"
-                        value="60"
-                        v-model="gender"
-                        @change="clickGender"
-                      />
-
-                      <p class="double-switch__title">Ж</p>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="slider">
-                  <div class="slider__description">
-                    <p class="slider__title">Возраст, лет</p>
-
-                    <p class="slider__output">{{ ageSlider.currentValue }}</p>
-                  </div>
-
-                  <input
-                    class="slider-bicolor "
-                    type="range"
-                    name="ageSlider"
-                    :min="ageSlider.min"
-                    :max="ageSlider.max"
-                    :step="ageSlider.step"
-                    :value="ageSlider.currentValue"
-                    @input="ageSlider.currentValue = $event.target.value"
-                  />
-
-                  <p class="slider-block__time-invest-inner">
-                    Срок накопления 32,5
-                  </p>
-                </div>
-              </div>
-              <!--  -->
-              <div class="slider-block__container">
-                <div class="slider">
-                  <div class="slider__description">
-                    <p class="slider__title">
-                      Первоначальный взнос, р.
-                    </p>
-
-                    <p class="slider__output">{{ firstPayment.currentValue }} ₽.</p>
-                  </div>
-
-                  <input
-                    class="slider-bicolor "
-                    type="range"
-                    name="firstPayment"
-                    :min="firstPayment.min"
-                    :max="firstPayment.max"
-                    :step="firstPayment.step"
-                    :value="firstPayment.currentValue"
-                    @input="firstPayment.currentValue = $event.target.value"
+                  <RadioSwitch
+                    :defaultValue="genderSwitch.firstValue"
+                    :switchName="genderSwitch.switchName"
+                    :firstValue="genderSwitch.firstValue"
+                    :firstTitle="genderSwitch.firstTitle"
+                    :secondValue="genderSwitch.secondValue"
+                    :secondTitle="genderSwitch.secondTitle"
+                    @onChangeRadio="onChangeGenderRadio"
                   />
                 </div>
+
+                <BicolorSlider
+                  :title="ageSlider.title"
+                  :name="ageSlider.name"
+                  :min="ageSlider.min"
+                  :max="ageSlider.max"
+                  :step="ageSlider.step"
+                  :value="ageSlider.currentValue"
+                  @input="onInputAgeSlider"
+                />
+                <!-- Так @input связать без метода
+                     @input="ageSlider.currentValue = $event"-->
               </div>
 
-              <div class="slider-block__container">
-                <div class="slider">
-                  <div class="slider__description">
-                    <p class="slider__title">Ежемесячный взнос, р.</p>
-
-                    <p class="slider__output">{{ monthlyPayment.currentValue }} ₽.</p>
-                  </div>
-
-                  <input
-                    class="slider-bicolor "
-                    type="range"
-                    name="monthlyPayment"
-                    :min="monthlyPayment.min"
-                    :max="monthlyPayment.max"
-                    :step="monthlyPayment.step"
-                    :value="monthlyPayment.currentValue"
-                    @input="monthlyPayment.currentValue = $event.target.value"
-                  />
-                </div>
-              </div>
-
-              <div class="slider-block__container">
-                <div class="slider">
-                  <div class="slider__description">
-                    <p class="slider__title">
-                      Срок выплаты пенсии, лет
-                    </p>
-
-                    <p class="slider__output">{{ dueDate.currentValue }} лет</p>
-                  </div>
-
-                  <input
-                    class="slider-bicolor"
-                    type="range"
-                    name="dueDate"
-                    :min="dueDate.min"
-                    :max="dueDate.max"
-                    :step="dueDate.step"
-                    :value="dueDate.currentValue"
-                    @input="dueDate.currentValue = $event.target.value"
-                  />
-                </div>
-              </div>
+              <BicolorSlider
+                v-for="(slider, index) in sliders"
+                :key="index"
+                :title="slider.title"
+                :name="slider.name"
+                :min="slider.min"
+                :max="slider.max"
+                :step="slider.step"
+                :value="slider.currentValue"
+                @input="onInputSlider($event, slider.name)"
+              />
+              <!--    onInputSlider($event, slider.name)
+                         @input="slider.currentValue = $event" -->
 
               <div class="slider-block__checkbox">
                 <label tabindex="0" role="checkbox" class="r-checkbox">
@@ -164,38 +68,7 @@
               </div>
             </form>
           </div>
-
-          <div class="pension-info">
-            <div class="pension-info__container">
-              <div class="pension-info__v-budushchem">
-                <div class="pension-info__v-budushchem_wrapper">
-                  <p class="pension-info__output-pension">0 ₽.</p>
-
-                  <p class="pension-info__description">
-                    Пенсия
-                    <span class="pension-info__description_span"> в будущем</span>
-                  </p>
-                </div>
-              </div>
-
-              <div class="pension-info__box">
-                <div class="pension-info__calculation">
-                  <p class="pension-info__output-sum-nakoplen">0 ₽.</p>
-                  <p class="pension-info__description">Накоплено</p>
-                </div>
-
-                <div class="pension-info__calculation">
-                  <div class="pension-info__calculation_wrapper">
-                    <p class="pension-info__output-social">273 000 ₽.</p>
-
-                    <p class="pension-info__description">
-                      Размер соц. вычета
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <PensionInfo :pensionValue="pensionValue" :generalAccumValue="generalAccumValue" />
         </div>
 
         <div class="calculator__graph-container">
@@ -208,9 +81,12 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { minValue, maxValue } from 'vuelidate/lib/validators'
+import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
 
 import Graph from '../calculator/Graph'
+import PensionInfo from '../calculator/PensionInfo'
+import BicolorSlider from '../../gui/BicolorSlider'
+import RadioSwitch from '../../gui/RadioSwitch'
 
 export default {
   mixins: [validationMixin],
@@ -218,52 +94,161 @@ export default {
 
   data() {
     return {
-      gender: 65,
-      isActive: false,
+      genderValue: 65, // гендерный возраст выхода на пенсию
+      ageValue: 30, // текущий возраст
+      numberOfYears: 35, // срок инвестирования
+      firstInvestValue: '', // первичный взнос
+      monthInvestValue: '', // ежемесячный взнос
+      timePaymentsValue: '', // срок выплат пенсии
+      yearPersent: 0.05, // годовой процент накопления
+      generalAccumValue: 5143933, // общие накопления
+      pensionValue: 28577, // размер выплаты пенсии
+
+      genderSwitch: {
+        switchName: 'gender',
+        firstValue: 65,
+        firstTitle: 'М',
+        secondValue: 60,
+        secondTitle: 'Ж',
+      },
+
       ageSlider: {
+        title: 'Возраст, лет',
+        name: 'ageSlider',
         min: 18,
         max: 65,
         step: 1,
-        currentValue: 23.5,
+        currentValue: 30,
       },
-      firstPayment: {
-        min: 10000,
-        max: 1000000,
-        step: 10000,
-        currentValue: 500000,
-      },
-      monthlyPayment: {
-        min: 0,
-        max: 50000,
-        step: 500,
-        currentValue: 25000,
-      },
-      dueDate: {
-        name: 'dueDate',
-        min: 5,
-        max: 30,
-        step: 1,
-        currentValue: 12.5,
-      },
+      sliders: [
+        {
+          title: ' Первоначальный взнос, р',
+          name: 'firstPayment',
+          min: 0,
+          max: 1000000,
+          step: 10000,
+          currentValue: 10000,
+        },
+        {
+          title: 'Ежемесячный взнос, р.',
+          name: 'monthlyPayment',
+          min: 0,
+          max: 50000,
+          step: 500,
+          currentValue: 5000,
+        },
+        {
+          title: 'Срок выплаты пенсии, лет',
+          name: 'dueDate',
+          min: 5,
+          max: 30,
+          step: 1,
+          currentValue: 15,
+        },
+      ],
     }
   },
   validations: {
-    gender: { minValue: minValue(65), maxValue: maxValue(65) },
+    genderValue: { minValue: minValue(65), maxValue: maxValue(65) },
+    sliders: { required, numeric },
+    ageSlider: { required, numeric },
   },
   components: {
+    PensionInfo,
     Graph,
+    BicolorSlider,
+    RadioSwitch,
   },
   methods: {
-    clickGender() {
-      if (this.$v.gender.$invalid) {
-        this.isActive = true
-        this.ageSlider.max = 60
-        this.ageSlider.currentValue = 21
-      } else {
-        this.isActive = false
+    onChangeGenderRadio(valueRadio) {
+      this.genderValue = valueRadio
+      this.changeAttrAgeSlider()
+      // console.log(this.genderValue)
+      this.countOnCalculator()
+    },
+
+    changeAttrAgeSlider() {
+      if (this.genderValue === 65) {
         this.ageSlider.max = 65
         this.ageSlider.currentValue = 23.5
+      } else if (this.genderValue === 60) {
+        this.ageSlider.max = 60
+        this.ageSlider.currentValue = 21
       }
+    },
+
+    onInputAgeSlider(event) {
+      this.ageSlider.currentValue = event
+      // console.log(this.ageSlider.currentValue, typeof this.ageSlider.currentValue)
+
+      //
+      this.countOnCalculator()
+    },
+    onInputSlider(value, sliderName) {
+      const currentSlider = this.sliders.find(slider => {
+        return slider.name === sliderName
+      })
+
+      currentSlider.currentValue = value
+      this.countOnCalculator()
+
+      // console.log('ok', currentSlider)
+    },
+
+    countOnCalculator(event) {
+      this.genderValue = this.genderValue
+      this.ageValue = this.ageSlider.currentValue
+      this.numberOfYears = this.genderValue - this.ageValue
+      this.firstInvestValue = this.sliders[0].currentValue
+      this.monthInvestValue = this.sliders[1].currentValue
+      this.timePaymentsValue = this.sliders[2].currentValue
+      //
+      // console.log('genderValue:', this.genderValue, typeof this.genderValue)
+      // console.log('ageValue:', this.ageValue)
+      // console.log('numberOfYears:', this.numberOfYears)
+      // console.log('firstInvestValue:', this.firstInvestValue)
+      // console.log('monthInvestValue:', this.monthInvestValue)
+      // console.log('timePaymentsValue:', this.timePaymentsValue)
+
+      // // обнуляем каждый раз накопления от первичного взноса
+      let firstInvestAccumValue = 0
+      // // обнуляем каждый раз накопления ежемесячных взносов
+      let monthInvestAccumValue = 0
+      // // общие накопления
+      // this.generalAccumValue = 0
+      // debugger;
+
+      // // вычисляем общий процент накопления за несколько лет
+      let generalPercent = 1 + this.yearPersent
+      const percentNumberOfYears = generalPercent ** this.numberOfYears
+      // console.log('percent:', percentNumberOfYears)
+
+      // // вычисляем накопления от первичного взноса
+      firstInvestAccumValue = this.firstInvestValue * percentNumberOfYears
+      firstInvestAccumValue = Math.round(firstInvestAccumValue)
+      // console.log('firstInvestAccumValue:' + firstInvestAccumValue)
+
+      // // вычисляем количество месяцев ежемесячных взносов
+      let numberOfMonths = this.numberOfYears * 12
+      // console.log('numberOfMonths:' + numberOfMonths)
+
+      // // вычисляем накопления ежемесячных взносов за нескольк лет (количество месяцев ежемесячных взносов)
+      monthInvestAccumValue = 0 // обнуляем при каждом новом движении слайдера или свиттча
+      monthInvestAccumValue = Math.round(
+        this.monthInvestValue * numberOfMonths +
+          this.monthInvestValue * (numberOfMonths - 1) * ((this.yearPersent * numberOfMonths) / 24)
+      )
+      // console.log('monthInvestAccumValue:' + monthInvestAccumValue)
+
+      // // вычисляем общие накопления
+      this.generalAccumValue = 0
+      this.generalAccumValue = Math.round(firstInvestAccumValue + monthInvestAccumValue)
+      // console.log('generalAccumValue:' + this.generalAccumValue)
+
+      // // вычисляем размер ежемесячной пенсии
+      this.pensionValue = Math.round(this.generalAccumValue / this.timePaymentsValue / 12)
+      // console.log('pensionValue:', this.pensionValue)
+      // console.log('finish')
     },
   },
 }
@@ -387,152 +372,6 @@ export default {
 }
 // calculator
 
-// pension-info
-.pension-info {
-  width: 100%;
-  margin-bottom: 24px;
-  border-top: 1px solid #e4e4e4;
-  border-bottom: 1px solid #e4e4e4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  @media screen and (min-width: 576px) {
-    width: 29.41%;
-    border-top: none;
-    border-bottom: none;
-    display: block;
-  }
-
-  @media screen and (min-width: 1024px) {
-    display: flex;
-    width: 47.92%;
-  }
-
-  &__container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    @media screen and (min-width: 576px) {
-      display: block;
-    }
-
-    @media screen and (min-width: 1024px) {
-      display: flex;
-    }
-  }
-
-  &__v-budushchem {
-    padding: 24px;
-    width: 46.25%;
-    margin-right: 0;
-    margin-bottom: 0;
-    box-sizing: border-box;
-
-    @media screen and (min-width: 576px) {
-      width: 100%;
-      margin-bottom: 24px;
-      border: 1px solid #e4e4e4;
-    }
-
-    @media screen and (min-width: 1024px) {
-      width: 35.85%;
-      margin-right: 24px;
-      margin-bottom: 0;
-    }
-
-    &_wrapper {
-      width: 100%;
-      border-right: 1px solid #e4e4e4;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      @media screen and (min-width: 576px) {
-        border-right: none;
-      }
-    }
-  }
-
-  &__output-pension {
-    color: #28323c;
-    margin-bottom: 96px;
-    font-size: 18px;
-
-    @media screen and (min-width: 576px) {
-      margin-bottom: 48px;
-    }
-
-    @media screen and (min-width: 1024px) {
-      margin-bottom: 96px;
-    }
-  }
-
-  &__description {
-    font-size: 13px;
-    color: #5a646e;
-
-    &_span {
-      display: block;
-      font-size: inherit;
-      color: inherit;
-
-      @media screen and (min-width: 576px) {
-        display: inline;
-        margin-bottom: 48px;
-      }
-
-      @media screen and (min-width: 1024px) {
-        display: block;
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  &__box {
-    display: block;
-    width: 53.43%;
-    border: none;
-
-    @media screen and (min-width: 576px) {
-      width: 100%;
-      border: 1px solid #e4e4e4;
-    }
-
-    @media screen and (min-width: 1024px) {
-      width: 58.75%;
-    }
-  }
-
-  &__calculation {
-    width: 100%;
-    padding: 24px;
-
-    &_wrapper {
-      border-top: 1px solid #e4e4e4;
-    }
-
-    &:last-of-type {
-      // background-color: red;
-      padding-top: 0;
-      margin-top: 24px;
-    }
-  }
-
-  &__output-sum-nakoplen {
-    font-size: 18px;
-    color: #0a0a0a;
-  }
-
-  &__output-social {
-    font-size: 18px;
-    color: #0a0a0a;
-    margin-top: 24px;
-  }
-}
-// pension-info
-
 // sliders
 .slider-block {
   width: 100%;
@@ -540,12 +379,10 @@ export default {
   &__age {
     width: 100%;
     display: block;
-    margin-bottom: 24px;
 
     @media screen and (min-width: 576px) {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 48px;
     }
   }
 
@@ -559,14 +396,6 @@ export default {
     @media screen and (min-width: 576px) {
       margin-right: 24px;
       margin-bottom: 0px;
-    }
-  }
-
-  &__container {
-    margin-bottom: 24px;
-
-    @media screen and (min-width: 576px) {
-      margin-bottom: 48px;
     }
   }
 
@@ -595,120 +424,6 @@ export default {
   }
 }
 // sliders
-
-.slider {
-  position: relative;
-  width: 100%;
-
-  &__description {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__title {
-    font-size: 13px;
-    color: #b5bdc8;
-  }
-
-  &__output {
-    font-size: 16px;
-    line-height: 24px;
-    font-style: normal;
-    color: #5a646e;
-  }
-}
-
-// * double-switch Двойной переключатель *
-.double-switch {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  &__item {
-    cursor: pointer;
-    width: 64px;
-    height: 48px;
-    box-sizing: border-box;
-    border-radius: 24px;
-    display: flex;
-    opacity: 1;
-
-    transition: color 10s ease;
-
-    &:hover {
-      border: 2px solid #50287d;
-      opacity: 0.8;
-    }
-
-    &:hover .double-switch__title {
-      opacity: 1;
-    }
-  }
-
-  // double-switch__active
-  &__active {
-    background: #50287d;
-    transition: all 0.5s ease;
-  }
-
-  // double-switch__not-active
-  &__not-active {
-    background: #b5bdc8;
-    transition: all 0.5s ease;
-  }
-
-  &__field {
-    display: none;
-  }
-
-  &__title {
-    opacity: 0.7;
-    font-size: 16px;
-    color: #ffffff;
-    margin: auto;
-  }
-}
-// * double-switch Двойной переключатель *
-
-// стилизация ползунка slider-bicolor *
-.slider-bicolor {
-  width: 100%;
-  appearance: none;
-  outline: none;
-  overflow: hidden;
-  height: 4px;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &:hover .slider-bicolor::-webkit-slider-thumb {
-    border: 1px solid #0d4c8b;
-  }
-
-  &::-webkit-slider-runnable-track {
-    height: 4px;
-    background-color: #b5bdc8;
-  }
-
-  &::-webkit-slider-thumb {
-    background: #ecf0f1;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    // background: url(@/assets/icons/sliderOval.jpg);
-    background-color: #fff;
-    border: 1px solid #f3f5f7;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 6px rgba(26, 65, 101, 0.15);
-    -webkit-appearance: none;
-    box-shadow: -500px 0 0 500px #cedc01;
-  }
-}
-// стилизация ползунка slider-bicolor *
 
 // r-checkbox *
 .r-checkbox {

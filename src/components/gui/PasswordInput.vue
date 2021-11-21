@@ -1,29 +1,25 @@
 <template>
   <label class="my-input__label">
-    <transition name="my-input__title">
-      <p class="my-input__title" v-if="isBottomMyFormTitle">Пароль</p>
-    </transition>
+    <div>
+      <InputTitle :title="title" :isActive="isActive" />
+    </div>
 
-    <transition name="my-input__title-else">
-      <p class="my-input__title-else" v-if="!isBottomMyFormTitle">Пароль</p>
-    </transition>
-
-    <input
-      class="my-input__field"
-      type="text"
-      name="password"
+    <InputField
+      :type="type"
+      :name="name"
+      :value="valueInput"
       @focus="onFocus"
       @blur="onBlur"
-      v-model.trim="password"
-      @input="$emit('input', $event.target.value)"
-      :class="$v.password.$error ? 'my-input__field_invalid' : ''"
+      @input="onInput"
+      :hasError="hasError"
     />
-    <p class="my-input__error" v-if="$v.password.$dirty && !$v.password.required">
-      Обязательное поле
+
+    <p class="my-input__error" v-if="$v.valueInput.$dirty && !$v.valueInput.required">
+      {{ topError }}
     </p>
 
-    <p class="my-input__error" v-if="$v.password.$dirty && !$v.password.minLength">
-      Минимальное количество символов 12
+    <p class="my-input__error" v-if="$v.valueInput.$dirty && !$v.valueInput.minLength">
+      {{ buttomError }}
     </p>
   </label>
 </template>
@@ -32,32 +28,106 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength } from 'vuelidate/lib/validators'
 
+import InputTitle from '../gui/InputTitle'
+import InputField from '../gui/InputField'
+
 export default {
   mixins: [validationMixin],
-  name: 'InputPassword',
+
+  name: 'PasswordInput',
 
   data() {
     return {
-      isBottomMyFormTitle: true,
-      password: '',
+      isActive: false,
+      hasError: false,
+      type: 'text',
+      valueInput: '',
+      name: 'lastName',
+      title: 'Ваше пароль',
+      topError: 'Обязательное поле',
+      buttomError: 'Минимальное количество символов 12',
+      classError: 'my-input__field_invalid',
     }
   },
+
   validations: {
-    password: { required, minLength: minLength(12) },
+    valueInput: { required, minLength: minLength(12) },
   },
   methods: {
     onFocus() {
-      this.isBottomMyFormTitle = false
+      this.isActive = true
     },
 
     onBlur() {
-      this.$v.password.$touch()
-      if (this.$v.password.required) {
-        this.isBottomMyFormTitle = false
+      this.$v.valueInput.$touch()
+      if (this.$v.valueInput.required) {
+        this.isActive = true
       } else {
-        this.isBottomMyFormTitle = true
+        this.isActive = false
       }
     },
+
+    onInput(event) {
+      this.value = event
+      this.valueInput = this.value
+      this.hasError = this.$v.valueInput.$invalid
+
+      this.$emit('emitInputValues', this.valueInput)
+    },
+  },
+  components: {
+    InputTitle,
+    InputField,
   },
 }
 </script>
+
+<style lang="scss" scoped>
+// my-input
+.my-input {
+  width: 100%;
+
+  &__label {
+    width: 100%;
+    padding-bottom: 20px;
+    position: relative;
+  }
+
+  &__field {
+    width: 100%;
+    font-size: 16px;
+    line-height: 23px;
+    padding: 24px 0 8px;
+    color: #28323c;
+    border-bottom: 1px solid #b5bdc8;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &:hover {
+      line-height: 22px;
+      border-bottom: 2px solid #50287d;
+    }
+
+    &:focus {
+      line-height: 22px;
+      border-bottom: 2px solid #50287d;
+    }
+
+    // my-input__field_invalid
+    &_invalid {
+      border-bottom: 1px solid red;
+    }
+  }
+
+  &__error {
+    display: block;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    font-size: 12px;
+    line-height: 12px;
+    color: red;
+  }
+}
+// my-input
+</style>

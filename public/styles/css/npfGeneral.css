@@ -1,8 +1,8 @@
-.my-input {
+/* .my-input {
   width: 100%;
-}
+} */
 /* my-input */
-.my-input__label {
+/* .my-input__label {
   width: 100%;
   padding-bottom: 20px;
   position: relative;
@@ -68,7 +68,7 @@
 }
 .my-input__error:last-of-type {
   top: 79px;
-}
+} */
 
 .my-button__button[disabled] {
   background-color: #d2dce6;

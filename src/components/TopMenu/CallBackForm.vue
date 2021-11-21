@@ -1,11 +1,11 @@
 <template>
   <form class="call-back" @submit.prevent="checkForm">
     <div class="call-back__input-container">
-      <FirstNameInput v-model.trim="$v.form.firstName.$model" />
+      <FirstNameInput @emitInputValues="onInputFirstName" />
     </div>
 
     <div class="call-back__input-container">
-      <PhoneInput v-model.trim="$v.form.phone.$model" />
+      <PhoneInput @emitInputValues="onInputPhone" />
     </div>
 
     <div class="call-back__button-container">
@@ -26,13 +26,13 @@ import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validator
 
 import PhoneInput from '../gui/PhoneInput'
 import FirstNameInput from '../gui/FirstNameInput'
+
 export default {
   mixins: [validationMixin],
 
   name: 'CallBackForm',
   data() {
     return {
-      isBottomMyFormTitle: true,
       registrationPassed: false,
 
       form: {
@@ -43,7 +43,7 @@ export default {
   },
   validations: {
     form: {
-      firstName: { required, minLength: minLength(4) },
+      firstName: { required, minLength: minLength(2) },
       phone: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
     },
   },
@@ -60,6 +60,15 @@ export default {
         console.log('Валидация прошла успешно', this.form)
         this.$emit('closeCallBack')
       }
+    },
+
+    onInputFirstName(valueInput) {
+      this.form.firstName = valueInput
+    },
+
+    onInputPhone(valueInput) {
+      this.form.phone = valueInput
+      // console.log('Ok', valueInput, this.form.phone)
     },
   },
 
