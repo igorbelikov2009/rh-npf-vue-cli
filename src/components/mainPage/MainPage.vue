@@ -1,22 +1,32 @@
 <template>
   <div class="main-page">
-    <Header />
-    <LoginForm />
+    <TopMenu />
     <TopBlock />
+    <Info />
+    <Statistics />
+    <Calculator />
+    <CalculatorImages />
   </div>
 </template>
 
 <script>
-import Header from '../general/Header'
-import LoginForm from '../general/LoginForm'
+import TopMenu from '../topMenu/TopMenu'
 import TopBlock from '../mainPage/TopBlock'
+import Info from '../mainPage/Info'
+import Statistics from '../mainPage/statistics/Statistics'
+import Calculator from '../mainPage/calculator/Calculator'
+import CalculatorImages from '../mainPage/CalculatorImages'
+
 export default {
   name: 'MainPage',
 
   components: {
-    Header,
+    TopMenu,
     TopBlock,
-    LoginForm,
+    Info,
+    Statistics,
+    Calculator,
+    CalculatorImages,
   },
 }
 </script>

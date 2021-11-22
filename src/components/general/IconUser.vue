@@ -4,21 +4,26 @@
   <!-- <img
       v-show="isIconVisible"
       class="icon-user__icon"
-      src="@/assets/icons/generals/user/colored.svg"
+      src="@/assets/icons/triple/User/colored.svg"
+      alt="user"
+    />
+
+    в css TopMenu  установлен hover на 
+    top-menu__button-switch, 
+    .icon-user__icon:first-of-type
+    .icon-user__icon:nth-of-type(2)
+
+    <img
+      v-show="isIconVisible"
+      class="icon-user__icon"
+      src="@/assets/icons/triple/User/light.svg"
       alt="user"
     />
 
     <img
       v-show="isIconVisible"
       class="icon-user__icon"
-      src="@/assets/icons/generals/user/light.svg"
-      alt="user"
-    />
-
-    <img
-      v-show="isIconVisible"
-      class="icon-user__icon"
-      src="@/assets/icons/generals/user/dark.svg"
+      src="@/assets/icons/triple/User/dark.svg"
       alt="user"
     /> -->
 </template>
@@ -33,7 +38,7 @@ export default {
 
     imgUrl: {
       type: String,
-      default: '@/assets/icons/generals/user/light.svg',
+      default: '@/assets/icons/triple/User/light.svg',
     },
   },
 }
