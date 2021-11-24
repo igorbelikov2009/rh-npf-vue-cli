@@ -37,14 +37,14 @@
             </div>
           </div>
 
-          <div class="top-menu__button-switch" @click="openLoginForm">
+          <div
+            class="top-menu__button-switch"
+            @click="openLoginForm"
+            @mouseover="isLKButtonHovered = true"
+            @mouseout="isLKButtonHovered = false"
+          >
             <button class="top-menu__button-icons">
-              <IconUser
-                v-for="(icon, index) in icons"
-                v-bind:key="index"
-                :isIconVisible="icon.isIconVisible"
-                :imgUrl="icon.imgUrl"
-              />
+              <TripleIcon :hovered="isLKButtonHovered" light icon="User" />
             </button>
 
             <p class="top-menu__button-title">Личный кабинет</p>
@@ -68,20 +68,23 @@
 </template>
 
 <script>
-import Logotypes from '../general/Logotypes'
-import IconUser from '../general/IconUser'
-import LoginForm from './LoginForm'
-import CallBackForm from './CallBackForm'
-import MenuMobil from './MenuMobil'
-import userColored from '@/assets/icons/triple/User/colored.svg'
-import userLight from '@/assets/icons/triple/User/light.svg'
-import userDark from '@/assets/icons/triple/User/dark.svg'
+import Logotypes from '../general/Logotypes';
+import IconUser from '../general/IconUser';
+import LoginForm from './LoginForm';
+import CallBackForm from './CallBackForm';
+import MenuMobil from './MenuMobil';
+import userColored from '@/assets/icons/triple/User/colored.svg';
+import userLight from '@/assets/icons/triple/User/light.svg';
+import userDark from '@/assets/icons/triple/User/dark.svg';
+import TripleIcon from '@/components/general/TripleIcon.vue';
 
 export default {
   name: 'TopMenu',
 
   data() {
     return {
+      isLKButtonHovered: false,
+
       userColored: userColored,
       userLight: userLight,
       userDark: userDark,
@@ -94,7 +97,7 @@ export default {
         { isIconVisible: false, imgUrl: userLight },
         { isIconVisible: true, imgUrl: userDark },
       ],
-    }
+    };
   },
   components: {
     Logotypes,
@@ -102,19 +105,20 @@ export default {
     CallBackForm,
     MenuMobil,
     IconUser,
+    TripleIcon,
   },
   methods: {
     openLoginForm() {
-      this.isHideLoginForm = !this.isHideLoginForm
+      this.isHideLoginForm = !this.isHideLoginForm;
     },
     openCallBack() {
-      this.isHideCallBackForm = !this.isHideCallBackForm
+      this.isHideCallBackForm = !this.isHideCallBackForm;
     },
     openMenuMobil() {
-      this.isHideMenuMobil = !this.isHideMenuMobil
+      this.isHideMenuMobil = !this.isHideMenuMobil;
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

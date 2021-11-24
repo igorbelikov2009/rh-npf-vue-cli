@@ -1,0 +1,51 @@
+<template>
+  <img
+    @mouseover="isLocalHovered = true"
+    @mouseout="isLocalHovered = false"
+    class="triple-icon"
+    :src="imgUrl"
+    :alt="icon"
+  />
+</template>
+
+<script>
+export default {
+  name: 'TripleIcon',
+  data() {
+    return {
+      isLocalHovered: false,
+    };
+  },
+  props: {
+    icon: {
+      type: String,
+      required: true,
+    },
+    light: {
+      type: Boolean,
+      default: false,
+    },
+    hovered: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    imgUrl() {
+      let state = this.light ? 'Light' : 'Dark';
+
+      if (this.isLocalHovered || this.hovered) state = 'Colored';
+
+      return `/icons/triple/${this.icon}/${state}.svg`;
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.triple-icon {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+</style>
