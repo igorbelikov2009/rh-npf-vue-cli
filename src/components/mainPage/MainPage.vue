@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TopMenu from '../topMenu/TopMenu'
+import TopMenu from '../TopMenu/TopMenu'
 import TopBlock from '../mainPage/TopBlock'
 import Info from '../mainPage/Info'
 import Statistics from '../mainPage/statistics/Statistics'
