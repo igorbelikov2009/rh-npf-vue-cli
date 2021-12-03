@@ -4,20 +4,20 @@
       <div class="calculator-image__bloc-images">
         <img
           class="calculator-image__image"
-          src="@/assets/images/main/manBackground.jpg"
+          src="/images/main/manBackground.jpg"
           alt="manBackground"
         />
 
-        <img class="calculator-image__image" src="@/assets/images/main/man.png" alt="man" />
+        <img class="calculator-image__image" src="/images/main/man.png" alt="man" />
 
         <img
           class="calculator-image__image"
-          src="@/assets/images/main/businessWork.jpg"
+          src="/images/main/businessWork.jpg"
           alt="businessWork"
         />
 
         <div class="calculator-image__attention">
-          <img class="calculator-image__icon" src="@/assets/icons/attention.svg" alt="attention" />
+          <img class="calculator-image__icon" src="/icons/attention.svg" alt="attention" />
           <p class="calculator-image__description">
             Калькулятор позволяет произвести ориентировочный расчет будущей пенсии. Не является
             офертой.
@@ -31,7 +31,7 @@
 <script>
 export default {
   name: 'CalculatorImages',
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -151,7 +151,7 @@ export default {
     margin-left: 36px;
 
     // &::before {
-    //   content: url(@/assets/icons/attention.svg);
+    //   content: url(/icons/attention.svg);
     //   position: absolute;
     //   top: 0;
     //   left: -36px;

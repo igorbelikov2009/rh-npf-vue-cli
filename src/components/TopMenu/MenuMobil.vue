@@ -2,9 +2,9 @@
   <section class="menu-mobil">
     <div>
       <div class="menu-mobil__logos">
-        <img class="menu-mobil__logo-small" src="@/assets/logotype/logoColoredSmall.svg" alt="" />
+        <img class="menu-mobil__logo-small" src="/logotype/logoColoredSmall.svg" alt="" />
 
-        <img class="menu-mobil__logo-big" src="@/assets/logotype/logoColored.svg" alt="" />
+        <img class="menu-mobil__logo-big" src="/logotype/logoColored.svg" alt="" />
       </div>
 
       <p class="menu-mobil__title">О Фонде</p>
@@ -47,7 +47,7 @@
     <button class="menu-mobil__cross-switch">
       <img
         class="menu-mobil__cross-image"
-        src="@/assets/icons/triple/Cross/Dark.svg"
+        src="/icons/triple/Cross/Dark.svg"
         alt="cross"
         @click="closeMenuMobil"
       />
@@ -59,10 +59,10 @@
 export default {
   methods: {
     closeMenuMobil() {
-      this.$emit('closeMenuMobil')
+      this.$emit('closeMenuMobil');
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

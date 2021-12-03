@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate';
+import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators';
 
-import InputTitle from '../gui/InputTitle'
-import InputField from '../gui/InputField'
+import InputTitle from '../gui/InputTitle.vue';
+import InputField from '../gui/InputField.vue';
 
 export default {
   mixins: [validationMixin],
@@ -53,7 +53,7 @@ export default {
       topError: 'Обязательное поле',
       buttomError: 'Некорректный номер',
       classError: 'my-input__field_invalid',
-    }
+    };
   },
 
   validations: {
@@ -61,31 +61,31 @@ export default {
   },
   methods: {
     onFocus() {
-      this.isActive = true
+      this.isActive = true;
     },
 
     onBlur() {
-      this.$v.valueInput.$touch()
+      this.$v.valueInput.$touch();
       if (this.$v.valueInput.required) {
-        this.isActive = true
+        this.isActive = true;
       } else {
-        this.isActive = false
+        this.isActive = false;
       }
     },
     onInput(event) {
-      this.value = event
-      this.valueInput = this.value
-      this.hasError = this.$v.valueInput.$invalid
+      this.value = event;
+      this.valueInput = this.value;
+      this.hasError = this.$v.valueInput.$invalid;
       // console.log(this.valueInput, this.value)
 
-      this.$emit('emitInputValues', this.valueInput)
+      this.$emit('emitInputValues', this.valueInput);
     },
   },
   components: {
     InputTitle,
     InputField,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

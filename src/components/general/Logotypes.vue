@@ -1,15 +1,15 @@
 <template>
   <a class="logotype-link" href="#">
-    <img class="logotype-link__image" src="@/assets/logotype/logoWhite.svg" alt="" />
+    <img class="logotype-link__image" src="/logotype/logoWhite.svg" alt="" />
 
-    <img class="logotype-link__image" src="@/assets/logotype/logoWhiteSmall.svg" alt="" />
+    <img class="logotype-link__image" src="/logotype/logoWhiteSmall.svg" alt="" />
   </a>
 </template>
 
 <script>
 export default {
   name: 'Logotypes',
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -26,10 +26,10 @@ export default {
 
   methods: {
     emitValue(event) {
-      this.$emit('input', String(event.target.value))
+      this.$emit('input', String(event.target.value));
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

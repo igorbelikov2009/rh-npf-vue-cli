@@ -25,10 +25,10 @@ export default {
   methods: {
     emitValue(event) {
       // console.log(event)
-      this.$emit('change', Number(event.target.value))
+      this.$emit('change', Number(event.target.value));
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

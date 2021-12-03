@@ -13,7 +13,7 @@
 
     <div class="info__row">
       <div class="info__block">
-        <img class="info__image" src="@/assets/images/main/girl.jpg" alt="" />
+        <img class="info__image" src="/images/main/girl.jpg" alt="girl" />
 
         <div class="info__offer">
           <h1 class="info__title">Для себя</h1>
@@ -31,7 +31,7 @@
       </div>
 
       <div class="info__block">
-        <img class="info__image" src="@/assets/images/main/building.jpg" alt="" />
+        <img class="info__image" src="/images/main/building.jpg" alt="building" />
 
         <div class="info__offer">
           <h1 class="info__title">Для бизнеса</h1>

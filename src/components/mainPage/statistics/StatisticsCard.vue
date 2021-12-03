@@ -1,6 +1,6 @@
 <template>
   <div class="statistics-card">
-    <img class="statistics-card__icon" :src="imgSrc" alt="Calendar" />
+    <img class="statistics-card__icon" :src="imgSrc" :alt="imgAlt" />
     <div>
       <p class="statistics-card__title">
         {{ title }} <span class="statistics-card__span"> {{ span }} </span>
@@ -19,6 +19,9 @@ export default {
       type: String,
       default: 'https://tsum.by/images/no-photo.png',
     },
+
+    imgAlt: { type: String },
+
     title: {
       type: String,
     },
@@ -29,7 +32,7 @@ export default {
       type: String,
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

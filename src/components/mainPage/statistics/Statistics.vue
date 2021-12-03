@@ -3,78 +3,81 @@
     <div class="statistics__container">
       <h2 class="statistics__heading">Фонд в цифрах</h2>
 
-      <ul class="statistics__block">
-        <li class="statistics__list" v-for="(card, index) in statistics" v-bind:key="index">
+      <div class="statistics__block">
+        <div class="statistics__list" v-for="(card, index) in statistics" v-bind:key="index">
           <StatisticsCard
             :imgSrc="card.imgSrc"
+            :imgAlt="card.imgAlt"
             :title="card.title"
             :span="card.span"
             :subtitle="card.subtitle"
           />
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import StatisticsCard from './StatisticsCard'
-import calendarDark from '@/assets/icons/triple/Calendar/Dark.svg'
-import rateDark from '@/assets/icons/triple/High Rate/Dark.svg'
-import usersDark from '@/assets/icons/triple/Users/Dark.svg'
-import partnerDark from '@/assets/icons/triple/Partner/Dark.svg'
-import bankDark from '@/assets/icons/triple/Bank/Dark.svg'
+import StatisticsCard from './StatisticsCard.vue';
+
+// import usersDark from '@/assets/icons/triple/Users/Dark.svg';
+// import partnerDark from '@/assets/icons/triple/Partner/Dark.svg';
+// import bankDark from '@/assets/icons/triple/Bank/Dark.svg';
 
 export default {
   name: 'Statistics',
 
   data() {
     return {
-      calendarDark: calendarDark,
-      rateDark: rateDark,
-      usersDark: usersDark,
-      partnerDark: partnerDark,
-      bankDark: bankDark,
+      // usersDark: usersDark,
+      // partnerDark: partnerDark,
+      // bankDark: bankDark,
 
       statistics: [
         {
-          imgSrc: calendarDark,
+          imgSrc: '/icons/triple/Calendar/Dark.svg',
+          imgAlt: 'Calendar',
           title: '17 лет',
           span: 'на рынке',
           subtitle: 'Фонд "Ренессанс пенсии" основан в 2002 году',
         },
         {
-          imgSrc: rateDark,
+          imgSrc: 'icons/triple/High Rate/Dark.svg',
+          imgAlt: 'Rate',
           title: 'Высокий ',
           span: 'рейтинг',
           subtitle: 'Надежность ruАА- по оценке Эксперт РА',
         },
         {
-          imgSrc: usersDark,
+          imgSrc: 'icons/triple/Users/Dark.svg',
+          imgAlt: 'Users',
           title: '41 000',
           span: 'человек',
           subtitle: ' участники пенсионной программы',
         },
         {
-          imgSrc: partnerDark,
+          imgSrc: 'icons/triple/Partner/Dark.svg',
+          imgAlt: 'Partner',
           title: '150',
           span: 'компаний',
           subtitle: 'заботятся о пенсиях сотрудников',
         },
         {
-          imgSrc: bankDark,
+          imgSrc: 'icons/triple/Bank/Dark.svg',
+          imgAlt: 'Bank',
           title: '17 млрд',
           span: 'рублей',
           subtitle: 'пенсионных резервов в Фонде',
         },
       ],
-    }
+    };
   },
 
   components: {
     StatisticsCard,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

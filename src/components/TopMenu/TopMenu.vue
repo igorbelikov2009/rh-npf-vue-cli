@@ -10,7 +10,7 @@
           </button>
 
           <div class="top-menu__logotype">
-            <Logotypes />
+            <Logotypes @click.native="$router.push({ name: 'main' })" />
           </div>
 
           <div class="top-menu__nav">
@@ -18,7 +18,7 @@
             <a class="top-menu__link" href="../templates/invest.html"
               >Инвестиционная деятельность</a
             >
-            <a class="top-menu__link" href="../templates/forBusiness.html">Бизнесу</a>
+            <router-link class="top-menu__link" :to="{ name: 'business' }">Бизнесу</router-link>
             <a class="top-menu__link" href="../templates/supportService.html">Поддержка</a>
             <a class="top-menu__link" href="../templates/contacts.html">Контакты</a>
           </div>
@@ -68,14 +68,13 @@
 </template>
 
 <script>
-import Logotypes from '../general/Logotypes';
-import IconUser from '../general/IconUser';
-import LoginForm from './LoginForm';
-import CallBackForm from './CallBackForm';
-import MenuMobil from './MenuMobil';
-import userColored from '@/assets/icons/triple/User/colored.svg';
-import userLight from '@/assets/icons/triple/User/light.svg';
-import userDark from '@/assets/icons/triple/User/dark.svg';
+import Logotypes from '../general/Logotypes.vue';
+import LoginForm from './LoginForm.vue';
+import CallBackForm from './CallBackForm.vue';
+import MenuMobil from './MenuMobil.vue';
+// import userColored from '../../../public/icons/triple/User/colored.svg';
+// import userLight from '../../../public/icons/triple/User/light.svg';
+// import userDark from '../../../public/icons/triple/User/dark.svg';
 import TripleIcon from '@/components/general/TripleIcon.vue';
 
 export default {
@@ -84,19 +83,18 @@ export default {
   data() {
     return {
       isLKButtonHovered: false,
-
-      userColored: userColored,
-      userLight: userLight,
-      userDark: userDark,
+      // userColored: userColored,
+      // userLight: userLight,
+      // userDark: userDark,
       isHideLoginForm: false,
       isHideCallBackForm: false,
       isHideMenuMobil: false,
 
-      icons: [
-        { isIconVisible: false, imgUrl: userColored },
-        { isIconVisible: false, imgUrl: userLight },
-        { isIconVisible: true, imgUrl: userDark },
-      ],
+      // icons: [
+      //   { isIconVisible: false, imgUrl: userColored },
+      //   { isIconVisible: false, imgUrl: userLight },
+      //   { isIconVisible: true, imgUrl: userDark },
+      // ],
     };
   },
   components: {
@@ -104,7 +102,6 @@ export default {
     LoginForm,
     CallBackForm,
     MenuMobil,
-    IconUser,
     TripleIcon,
   },
   methods: {

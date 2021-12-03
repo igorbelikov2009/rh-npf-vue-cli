@@ -80,13 +80,13 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate';
+import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators';
 
-import Graph from '../calculator/Graph'
-import PensionInfo from '../calculator/PensionInfo'
-import BicolorSlider from '../../gui/BicolorSlider'
-import RadioSwitch from '../../gui/RadioSwitch'
+import Graph from '../calculator/Graph.vue';
+import PensionInfo from '../calculator/PensionInfo.vue';
+import BicolorSlider from '../../gui/BicolorSlider.vue';
+import RadioSwitch from '../../gui/RadioSwitch.vue';
 
 export default {
   mixins: [validationMixin],
@@ -146,7 +146,7 @@ export default {
           currentValue: 15,
         },
       ],
-    }
+    };
   },
   validations: {
     genderValue: { minValue: minValue(65), maxValue: maxValue(65) },
@@ -161,47 +161,47 @@ export default {
   },
   methods: {
     onChangeGenderRadio(valueRadio) {
-      this.genderValue = valueRadio
-      this.changeAttrAgeSlider()
+      this.genderValue = valueRadio;
+      this.changeAttrAgeSlider();
       // console.log(this.genderValue)
-      this.countOnCalculator()
+      this.countOnCalculator();
     },
 
     changeAttrAgeSlider() {
       if (this.genderValue === 65) {
-        this.ageSlider.max = 65
-        this.ageSlider.currentValue = 23.5
+        this.ageSlider.max = 65;
+        this.ageSlider.currentValue = 23.5;
       } else if (this.genderValue === 60) {
-        this.ageSlider.max = 60
-        this.ageSlider.currentValue = 21
+        this.ageSlider.max = 60;
+        this.ageSlider.currentValue = 21;
       }
     },
 
     onInputAgeSlider(event) {
-      this.ageSlider.currentValue = event
+      this.ageSlider.currentValue = event;
       // console.log(this.ageSlider.currentValue, typeof this.ageSlider.currentValue)
 
       //
-      this.countOnCalculator()
+      this.countOnCalculator();
     },
     onInputSlider(value, sliderName) {
       const currentSlider = this.sliders.find(slider => {
-        return slider.name === sliderName
-      })
+        return slider.name === sliderName;
+      });
 
-      currentSlider.currentValue = value
-      this.countOnCalculator()
+      currentSlider.currentValue = value;
+      this.countOnCalculator();
 
       // console.log('ok', currentSlider)
     },
 
     countOnCalculator(event) {
-      this.genderValue = this.genderValue
-      this.ageValue = this.ageSlider.currentValue
-      this.numberOfYears = this.genderValue - this.ageValue
-      this.firstInvestValue = this.sliders[0].currentValue
-      this.monthInvestValue = this.sliders[1].currentValue
-      this.timePaymentsValue = this.sliders[2].currentValue
+      this.genderValue = this.genderValue;
+      this.ageValue = this.ageSlider.currentValue;
+      this.numberOfYears = this.genderValue - this.ageValue;
+      this.firstInvestValue = this.sliders[0].currentValue;
+      this.monthInvestValue = this.sliders[1].currentValue;
+      this.timePaymentsValue = this.sliders[2].currentValue;
       //
       // console.log('genderValue:', this.genderValue, typeof this.genderValue)
       // console.log('ageValue:', this.ageValue)
@@ -211,47 +211,47 @@ export default {
       // console.log('timePaymentsValue:', this.timePaymentsValue)
 
       // // обнуляем каждый раз накопления от первичного взноса
-      let firstInvestAccumValue = 0
+      let firstInvestAccumValue = 0;
       // // обнуляем каждый раз накопления ежемесячных взносов
-      let monthInvestAccumValue = 0
+      let monthInvestAccumValue = 0;
       // // общие накопления
       // this.generalAccumValue = 0
       // debugger;
 
       // // вычисляем общий процент накопления за несколько лет
-      let generalPercent = 1 + this.yearPersent
-      const percentNumberOfYears = generalPercent ** this.numberOfYears
+      let generalPercent = 1 + this.yearPersent;
+      const percentNumberOfYears = generalPercent ** this.numberOfYears;
       // console.log('percent:', percentNumberOfYears)
 
       // // вычисляем накопления от первичного взноса
-      firstInvestAccumValue = this.firstInvestValue * percentNumberOfYears
-      firstInvestAccumValue = Math.round(firstInvestAccumValue)
+      firstInvestAccumValue = this.firstInvestValue * percentNumberOfYears;
+      firstInvestAccumValue = Math.round(firstInvestAccumValue);
       // console.log('firstInvestAccumValue:' + firstInvestAccumValue)
 
       // // вычисляем количество месяцев ежемесячных взносов
-      let numberOfMonths = this.numberOfYears * 12
+      let numberOfMonths = this.numberOfYears * 12;
       // console.log('numberOfMonths:' + numberOfMonths)
 
       // // вычисляем накопления ежемесячных взносов за нескольк лет (количество месяцев ежемесячных взносов)
-      monthInvestAccumValue = 0 // обнуляем при каждом новом движении слайдера или свиттча
+      monthInvestAccumValue = 0; // обнуляем при каждом новом движении слайдера или свиттча
       monthInvestAccumValue = Math.round(
         this.monthInvestValue * numberOfMonths +
           this.monthInvestValue * (numberOfMonths - 1) * ((this.yearPersent * numberOfMonths) / 24)
-      )
+      );
       // console.log('monthInvestAccumValue:' + monthInvestAccumValue)
 
       // // вычисляем общие накопления
-      this.generalAccumValue = 0
-      this.generalAccumValue = Math.round(firstInvestAccumValue + monthInvestAccumValue)
+      this.generalAccumValue = 0;
+      this.generalAccumValue = Math.round(firstInvestAccumValue + monthInvestAccumValue);
       // console.log('generalAccumValue:' + this.generalAccumValue)
 
       // // вычисляем размер ежемесячной пенсии
-      this.pensionValue = Math.round(this.generalAccumValue / this.timePaymentsValue / 12)
+      this.pensionValue = Math.round(this.generalAccumValue / this.timePaymentsValue / 12);
       // console.log('pensionValue:', this.pensionValue)
       // console.log('finish')
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

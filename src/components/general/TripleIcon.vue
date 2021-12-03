@@ -6,6 +6,8 @@
     :src="imgUrl"
     :alt="icon"
   />
+  <!--  @mouseover="isLocalHovered = true"
+    @mouseout="isLocalHovered = false" -->
 </template>
 
 <script>
@@ -30,6 +32,7 @@ export default {
       default: false,
     },
   },
+
   computed: {
     imgUrl() {
       let state = this.light ? 'Light' : 'Dark';

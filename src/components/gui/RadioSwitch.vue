@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import RadioSwitchItem from '../gui/RadioSwitchItem'
+import RadioSwitchItem from '../gui/RadioSwitchItem.vue';
 
 export default {
   name: 'RadioSwitch',
@@ -33,7 +33,7 @@ export default {
           title: this.secondTitle,
         },
       ],
-    }
+    };
   },
 
   props: {
@@ -47,17 +47,17 @@ export default {
 
   methods: {
     onChangeRadio(value) {
-      this.valueRadio = value
+      this.valueRadio = value;
       // console.log(this.valueRadio)
 
-      this.$emit('onChangeRadio', this.valueRadio)
+      this.$emit('onChangeRadio', this.valueRadio);
     },
   },
 
   components: {
     RadioSwitchItem,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
