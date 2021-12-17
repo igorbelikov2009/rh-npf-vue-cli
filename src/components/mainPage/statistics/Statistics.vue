@@ -4,15 +4,14 @@
       <h2 class="statistics__heading">Фонд в цифрах</h2>
 
       <div class="statistics__block">
-        <div class="statistics__list" v-for="(card, index) in statistics" v-bind:key="index">
-          <StatisticsCard
-            :imgSrc="card.imgSrc"
-            :imgAlt="card.imgAlt"
-            :title="card.title"
-            :span="card.span"
-            :subtitle="card.subtitle"
-          />
-        </div>
+        <StatisticsCard
+          v-for="(card, index) in cards"
+          :key="index"
+          :iconName="card.icon"
+          :title="card.title"
+          :span="card.span"
+          :subtitle="card.subtitle"
+        />
       </div>
     </div>
   </section>
@@ -21,51 +20,38 @@
 <script>
 import StatisticsCard from './StatisticsCard.vue';
 
-// import usersDark from '@/assets/icons/triple/Users/Dark.svg';
-// import partnerDark from '@/assets/icons/triple/Partner/Dark.svg';
-// import bankDark from '@/assets/icons/triple/Bank/Dark.svg';
-
 export default {
   name: 'Statistics',
 
   data() {
     return {
-      // usersDark: usersDark,
-      // partnerDark: partnerDark,
-      // bankDark: bankDark,
-
-      statistics: [
+      cards: [
         {
-          imgSrc: '/icons/triple/Calendar/Dark.svg',
-          imgAlt: 'Calendar',
+          icon: 'Calendar',
           title: '17 лет',
           span: 'на рынке',
           subtitle: 'Фонд "Ренессанс пенсии" основан в 2002 году',
         },
         {
-          imgSrc: 'icons/triple/High Rate/Dark.svg',
-          imgAlt: 'Rate',
+          icon: 'High Rate',
           title: 'Высокий ',
           span: 'рейтинг',
           subtitle: 'Надежность ruАА- по оценке Эксперт РА',
         },
         {
-          imgSrc: 'icons/triple/Users/Dark.svg',
-          imgAlt: 'Users',
+          icon: 'Users',
           title: '41 000',
           span: 'человек',
           subtitle: ' участники пенсионной программы',
         },
         {
-          imgSrc: 'icons/triple/Partner/Dark.svg',
-          imgAlt: 'Partner',
+          icon: 'Partner',
           title: '150',
           span: 'компаний',
           subtitle: 'заботятся о пенсиях сотрудников',
         },
         {
-          imgSrc: 'icons/triple/Bank/Dark.svg',
-          imgAlt: 'Bank',
+          icon: 'Bank',
           title: '17 млрд',
           span: 'рублей',
           subtitle: 'пенсионных резервов в Фонде',
@@ -129,17 +115,9 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-  }
 
-  &__list {
-    width: 100%;
-
-    @media screen and (min-width: 576px) {
-      width: 227px;
-    }
-
-    @media screen and (min-width: 1440px) {
-      width: 192px;
+    @media screen and (min-width: 1160px) {
+      flex-wrap: nowrap;
     }
   }
 }

@@ -2,34 +2,43 @@
   <section class="menu-mobil">
     <div>
       <div class="menu-mobil__logos">
-        <img class="menu-mobil__logo-small" src="/logotype/logoColoredSmall.svg" alt="" />
-
-        <img class="menu-mobil__logo-big" src="/logotype/logoColored.svg" alt="" />
+        <Logotypes
+          :isBackgroundWhite="ifBackgroundWhite"
+          @click.native="$router.push({ name: 'main' })"
+        />
       </div>
 
-      <p class="menu-mobil__title">О Фонде</p>
+      <router-link class="menu-mobil__link" :to="{ name: 'aboutFund' }">О Фонде</router-link>
 
-      <a class="menu-mobil__link" href="../templates/fundManagement.html">Руководство Фондом</a>
+      <router-link class="menu-mobil__link" :to="{ name: 'management' }"
+        >Руководство Фондом</router-link
+      >
 
+      <router-link class="menu-mobil__link"></router-link>
       <a class="menu-mobil__link" href="../templates/infoOpening.html">Раскрытие информации</a>
 
-      <a class="menu-mobil__link" href="../templates/invest.html">Инвестиционная деятельность</a>
+      <router-link class="menu-mobil__link " :to="{ name: 'invest' }"
+        >Инвестиционная деятельность</router-link
+      >
 
       <p class="menu-mobil__title">Клиентам</p>
 
-      <a class="menu-mobil__link" href="../templates/forBusiness.html">Для бизнеса</a>
+      <router-link class="menu-mobil__link" :to="{ name: 'business' }">Для бизнеса</router-link>
 
-      <a class="menu-mobil__link" href="../templates/main.html#calculator">Калькулятор</a>
-
-      <a class="menu-mobil__link" href="../templates/supportService.html#write-to-us"
-        >Написать нам</a
+      <router-link class="menu-mobil__link" :to="{ path: '/main#calculator' }"
+        >Калькулятор</router-link
       >
 
-      <a class="menu-mobil__link" href="../templates/supportService.html#questions-and-answers"
-        >Вопросы и ответы</a
+      <router-link class="menu-mobil__link" :to="{ path: '/support#form' }"
+        >Написать нам</router-link
+      >
+
+      <router-link class="menu-mobil__link" :to="{ path: 'support#questionsAnswers' }"
+        >Вопросы и ответы</router-link
       >
 
       <div class="menu-mobil__phone">
+        <router-link></router-link>
         <a class="menu-mobil__phone-link" href="tel:+78002004766">
           <p class="menu-mobil__phone-number">8 800 200-47-66</p>
         </a>
@@ -56,11 +65,23 @@
 </template>
 
 <script>
+import Logotypes from '@/components/general/Logotypes.vue';
+
 export default {
+  name: 'MenuMobil',
+  data() {
+    return {
+      ifBackgroundWhite: true,
+    };
+  },
+
   methods: {
     closeMenuMobil() {
       this.$emit('closeMenuMobil');
     },
+  },
+  components: {
+    Logotypes,
   },
 };
 </script>
@@ -78,30 +99,14 @@ export default {
 
   &__logos {
     height: 24px;
-    margin-bottom: 38px;
-
-    @media screen and (min-width: 576px) {
-      margin-bottom: 56px;
-    }
-  }
-
-  &__logo-small {
-    height: 24px;
     margin-left: 32px;
+    margin-bottom: 38px;
     display: block;
 
     @media screen and (min-width: 576px) {
-      display: none;
-    }
-  }
-
-  &__logo-big {
-    height: 24px;
-    margin-left: 80px;
-    display: none;
-
-    @media screen and (min-width: 576px) {
-      display: block;
+      height: 24px;
+      margin-left: 80px;
+      margin-bottom: 56px;
     }
   }
 

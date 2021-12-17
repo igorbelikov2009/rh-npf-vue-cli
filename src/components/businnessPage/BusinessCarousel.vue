@@ -78,7 +78,7 @@ export default {
     emitValueRadio(currentValue) {
       this.carouselValue = currentValue;
       this.$emit('emitValueRadio', this.carouselValue);
-      console.log('carouselValue: ' + this.carouselValue);
+      // console.log('carouselValue: ' + this.carouselValue);
     },
     // emitValueRadio(event) {
     //   this.carouselValue = event;

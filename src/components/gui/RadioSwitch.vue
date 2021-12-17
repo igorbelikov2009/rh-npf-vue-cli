@@ -1,7 +1,9 @@
 <template>
   <div class="switch">
-    <div class="switch" v-for="(itemRadio, index) in itemsRadio" v-bind:key="index">
+    <div class="switch">
       <RadioSwitchItem
+        v-for="(itemRadio, index) in itemsRadio"
+        v-bind:key="index"
         :name="name"
         :value="itemRadio.value"
         :isActive="itemRadio.value === valueRadio"

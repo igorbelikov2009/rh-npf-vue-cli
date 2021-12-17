@@ -24,8 +24,8 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators';
 
-import PhoneInput from '../gui/PhoneInput.vue';
-import FirstNameInput from '../gui/FirstNameInput.vue';
+import PhoneInput from '@/components/gui/PhoneInput.vue';
+import FirstNameInput from '@/components/gui/FirstNameInput.vue';
 
 export default {
   mixins: [validationMixin],
@@ -53,6 +53,8 @@ export default {
     },
 
     checkForm() {
+      if (!this.$v || !this.$v.form) return;
+
       this.$v.form.$touch();
 
       if (!this.$v.form.$error) {

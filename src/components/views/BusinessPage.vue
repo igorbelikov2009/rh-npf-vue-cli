@@ -9,6 +9,12 @@
       :subheadingSpan="subheadingSpanTop"
     />
     <BusinessCarouselBlock />
+    <BusinessProgramm />
+    <BusinnesImages />
+    <BusinnesStatistic />
+    <TaxPreferences />
+    <BusinnesForm />
+    <Footer />
   </div>
 </template>
 
@@ -16,8 +22,14 @@
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
 import businessTopImage from '../../../public/images/businnes/businnes.jpg';
-
 import BusinessCarouselBlock from '@/components/businnessPage/BusinessCarouselBlock.vue';
+import BusinessProgramm from '@/components/businnessPage/BusinessProgramm.vue';
+import BusinnesImages from '@/components/businnessPage/BusinnesImages.vue';
+import BusinnesStatistic from '@/components/businnessPage/BusinnesStatistic.vue';
+import TaxPreferences from '@/components/businnessPage/TaxPreferences.vue';
+import BusinnesForm from '@/components/businnessPage/BusinnesForm.vue';
+import Footer from '@/components/Footer.vue';
+
 export default {
   name: 'BusinessPage',
   data() {
@@ -35,6 +47,12 @@ export default {
     TopMenu,
     TopBlock,
     BusinessCarouselBlock,
+    BusinessProgramm,
+    BusinnesImages,
+    BusinnesStatistic,
+    TaxPreferences,
+    BusinnesForm,
+    Footer,
   },
 };
 </script>

@@ -43,9 +43,9 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators';
 
-import PhoneInput from '../gui/PhoneInput.vue';
-import EmailInpit from '../gui/EmailInpit.vue';
-import PasswordInput from '../gui/PasswordInput.vue';
+import PhoneInput from '@/components/gui/PhoneInput.vue';
+import EmailInpit from '@/components/gui/EmailInpit.vue';
+import PasswordInput from '@/components/gui/PasswordInput.vue';
 
 export default {
   mixins: [validationMixin],

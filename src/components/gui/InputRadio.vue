@@ -19,7 +19,7 @@ export default {
     emitValue(event) {
       this.valueRadio = Number(event.target.value);
       this.$emit('emitValueRadio', this.valueRadio);
-      console.log('radioValue: ' + this.valueRadio);
+      // console.log('radioValue: ' + this.valueRadio);
     },
   },
 };

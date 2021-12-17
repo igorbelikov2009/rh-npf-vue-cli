@@ -1,14 +1,33 @@
 <template>
   <a class="logotype-link" href="#">
-    <img class="logotype-link__image" src="/logotype/logoWhite.svg" alt="" />
+    <div class="logotype-link__block">
+      <img v-if="isBackgroundWhite" src="../../../public/logotype/logoColored.svg" alt="logotype" />
 
-    <img class="logotype-link__image" src="/logotype/logoWhiteSmall.svg" alt="" />
+      <img v-else src="../../../public/logotype/logoWhite.svg" alt="logotype" />
+    </div>
+
+    <div class="logotype-link__block">
+      <img
+        v-if="isBackgroundWhite"
+        src="../../../public/logotype/logoColoredSmall.svg"
+        alt="logotype"
+      />
+
+      <img v-else src="../../../public/logotype/logoWhiteSmall.svg" alt="logotype" />
+    </div>
   </a>
 </template>
 
 <script>
 export default {
   name: 'Logotypes',
+
+  props: {
+    isBackgroundWhite: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>
 
@@ -17,7 +36,7 @@ export default {
   text-decoration: none;
   outline: none;
 
-  &__image {
+  &__block {
     display: none;
 
     @media screen and (min-width: 576px) {

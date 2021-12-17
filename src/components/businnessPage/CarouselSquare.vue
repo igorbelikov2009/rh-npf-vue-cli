@@ -1,6 +1,5 @@
 <template>
   <label class="carousel__square" :class="{ 'carousel__square-actived': isActived }">
-    <!-- <input class="carousel__radio" type="radio" :value="valueRadio" @click="emitValue" /> -->
     <InputRadio :radioValue="valueRadio" @emitValueRadio="emitValueRadio" />
     <div class="carousel__icons">
       <TripleIcon :hovered="isOuterHovered" :light="isLight" :icon="icon" />
@@ -42,7 +41,7 @@ export default {
     // },
     emitValueRadio(valueRadio) {
       this.currentValue = valueRadio;
-      console.log('currentValue: ' + this.currentValue);
+      // console.log('currentValue: ' + this.currentValue);
       this.$emit('emitValueRadio', Number(event.target.value));
     },
   },

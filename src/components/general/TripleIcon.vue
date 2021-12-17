@@ -6,8 +6,6 @@
     :src="imgUrl"
     :alt="icon"
   />
-  <!--  @mouseover="isLocalHovered = true"
-    @mouseout="isLocalHovered = false" -->
 </template>
 
 <script>

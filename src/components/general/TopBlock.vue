@@ -45,7 +45,7 @@ export default {
 
   @media screen and (min-width: 576px) {
     height: 552px;
-    padding: 24px 28px 144px;
+    padding: 0px 28px 48px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -83,6 +83,7 @@ export default {
     font-size: 13px;
     line-height: 24px;
     color: #ffffff;
+    max-width: 660px;
 
     @media screen and (min-width: 768px) {
       font-size: 18px;

@@ -1,26 +1,53 @@
 <template>
-  <header class="top-menu">
+  <header class="top-menu" :class="{ 'top-menu_news': ifBackgroundWhite }">
     <div class="top-menu__container">
       <div class="top-menu__row">
         <div class="top-menu__left-block">
           <button class="top-menu__button-lines" @click="openMenuMobil">
-            <div class="top-menu__line"></div>
-            <div class="top-menu__line"></div>
-            <div class="top-menu__line"></div>
+            <TripleIcon :light="!ifBackgroundWhite" icon="Hamburger" />
           </button>
 
           <div class="top-menu__logotype">
-            <Logotypes @click.native="$router.push({ name: 'main' })" />
+            <Logotypes
+              :isBackgroundWhite="ifBackgroundWhite"
+              @click.native="$router.push({ name: 'main' })"
+            />
           </div>
 
           <div class="top-menu__nav">
-            <a class="top-menu__link" href="../templates/aboutFund.html">О фонде</a>
-            <a class="top-menu__link" href="../templates/invest.html"
-              >Инвестиционная деятельность</a
+            <router-link
+              class="top-menu__link"
+              :to="{ name: 'aboutFund' }"
+              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
+              >О фонде</router-link
             >
-            <router-link class="top-menu__link" :to="{ name: 'business' }">Бизнесу</router-link>
-            <a class="top-menu__link" href="../templates/supportService.html">Поддержка</a>
-            <a class="top-menu__link" href="../templates/contacts.html">Контакты</a>
+
+            <router-link
+              class="top-menu__link"
+              :to="{ name: 'invest' }"
+              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
+              >Инвестиционная деятельность</router-link
+            >
+
+            <router-link
+              class="top-menu__link"
+              :to="{ name: 'business' }"
+              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
+              >Бизнесу</router-link
+            >
+
+            <router-link
+              class="top-menu__link"
+              :to="{ name: 'supportServiсe' }"
+              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
+              >Поддержка</router-link
+            >
+            <router-link
+              class="top-menu__link"
+              :to="{ name: 'contacts' }"
+              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
+              >Контакты</router-link
+            >
           </div>
         </div>
 
@@ -28,10 +55,19 @@
           <div class="top-menu__contacts">
             <div class="top-menu__phone">
               <a class="top-menu__phone-link" href="tel:+78002004766">
-                <p class="top-menu__phone-number">8 800 200-47-66</p>
+                <p
+                  class="top-menu__phone-number"
+                  :class="{ 'top-menu__button-title_news': ifBackgroundWhite }"
+                >
+                  8 800 200-47-66
+                </p>
               </a>
 
-              <button class="top-menu__call-back" @click="openCallBack">
+              <button
+                class="top-menu__call-back"
+                @click="openCallBack"
+                :class="{ 'top-menu__call-back_news': ifBackgroundWhite }"
+              >
                 Обратный звонок
               </button>
             </div>
@@ -44,10 +80,15 @@
             @mouseout="isLKButtonHovered = false"
           >
             <button class="top-menu__button-icons">
-              <TripleIcon :hovered="isLKButtonHovered" light icon="User" />
+              <TripleIcon :hovered="isLKButtonHovered" :light="!ifBackgroundWhite" icon="User" />
             </button>
 
-            <p class="top-menu__button-title">Личный кабинет</p>
+            <p
+              class="top-menu__button-title"
+              :class="{ 'top-menu__button-title_news': ifBackgroundWhite }"
+            >
+              Личный кабинет
+            </p>
           </div>
         </div>
       </div>
@@ -72,9 +113,6 @@ import Logotypes from '../general/Logotypes.vue';
 import LoginForm from './LoginForm.vue';
 import CallBackForm from './CallBackForm.vue';
 import MenuMobil from './MenuMobil.vue';
-// import userColored from '../../../public/icons/triple/User/colored.svg';
-// import userLight from '../../../public/icons/triple/User/light.svg';
-// import userDark from '../../../public/icons/triple/User/dark.svg';
 import TripleIcon from '@/components/general/TripleIcon.vue';
 
 export default {
@@ -82,20 +120,18 @@ export default {
 
   data() {
     return {
+      //
       isLKButtonHovered: false,
-      // userColored: userColored,
-      // userLight: userLight,
-      // userDark: userDark,
       isHideLoginForm: false,
       isHideCallBackForm: false,
       isHideMenuMobil: false,
-
-      // icons: [
-      //   { isIconVisible: false, imgUrl: userColored },
-      //   { isIconVisible: false, imgUrl: userLight },
-      //   { isIconVisible: true, imgUrl: userDark },
-      // ],
     };
+  },
+  props: {
+    ifBackgroundWhite: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     Logotypes,
@@ -125,7 +161,7 @@ export default {
   position: absolute;
   top: 0;
 
-  // top-menu__news
+  // top-menu_news
   &_news {
     position: relative;
     border-bottom: 1px solid #e4e4e4;
@@ -153,16 +189,14 @@ export default {
     flex: content;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
   }
 
   &__button-lines {
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 18px;
-    height: 17px;
+    display: block;
+    width: 24px;
+    height: 24px;
     margin-right: 18px;
     position: absolute;
     top: 27.5px;
@@ -174,33 +208,7 @@ export default {
 
     @media screen and (min-width: 1300px) {
       display: none;
-    }
-  }
-
-  &__line {
-    width: 18px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.6);
-
-    &:first-of-type {
-      background: #ffffff;
-    }
-
-    &:last-of-type {
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    // top-menu__line_news
-    &_news {
-      background: #6f7479;
-
-      &:first-of-type {
-        background: black;
-      }
-
-      &:last-of-type {
-        background: rgba(27, 27, 27, 0.3);
-      }
+      // display: block;
     }
   }
 
@@ -245,7 +253,7 @@ export default {
       margin-left: 16px;
       margin-right: 16px;
     }
-
+    // top-menu__link_news
     &_news {
       color: #78828c;
 
@@ -281,6 +289,7 @@ export default {
   &__phone-number {
     color: white;
 
+    // top-menu__button-title_news
     &_news {
       color: #000;
     }
@@ -298,6 +307,7 @@ export default {
       color: white;
     }
 
+    // top-menu__call-back_news
     &_news {
       color: #78828c;
 
@@ -342,6 +352,7 @@ export default {
       display: block;
     }
 
+    // top-menu__button-title_news
     &_news {
       color: #78828c;
 

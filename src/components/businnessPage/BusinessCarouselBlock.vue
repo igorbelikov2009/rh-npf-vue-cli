@@ -1,7 +1,9 @@
 <template>
   <section class="carousel">
     <div class="carousel__block">
-      <BusinessHeader
+      <CarouselHeader
+        :headerSubtitle="carouselHeaderSubtitle"
+        :ifHasHeaderSubtitle="isHasHeaderSubtitle"
         :NoCursorLeft="isNoCursorLeft"
         :BlurredLeft="isBlurredLeft"
         :NoCursorRight="isNoCursorRight"
@@ -33,7 +35,7 @@
 </template>
 
 <script>
-import BusinessHeader from './BusinessHeader.vue';
+import CarouselHeader from '@/components/general/carousel/CarouselHeader.vue';
 import BusinessCarousel from './BusinessCarousel.vue';
 import CarouselTransmittedText from '../businnessPage/CarouselTransmittedText.vue';
 
@@ -41,6 +43,9 @@ export default {
   name: 'BusinessCarouselBlock',
   data() {
     return {
+      carouselHeaderSubtitle: 'Какие задачи решает внедрение пенсионной программы',
+      isHasHeaderSubtitle: true,
+
       // меняем цвет у стрелок и свойства курсора на "cursor: default;"
       isNoCursorLeft: true,
       isBlurredLeft: true,
@@ -86,15 +91,15 @@ export default {
     getCarouselValueOnClickArrowLeft() {
       if (this.carouselValue !== 0) this.carouselValue--;
       if (this.carouselValue < 0) this.carouselValue = 0;
-      console.log('carouselValue: ' + this.carouselValue);
+      // console.log('carouselValue: ' + this.carouselValue);
     },
     getCarouselValueOnClickArrowRight() {
       if (this.carouselValue < this.amountChildren - 1) {
         this.carouselValue++;
-        console.log('carouselValue: ' + this.carouselValue);
+        // console.log('carouselValue: ' + this.carouselValue);
       } else {
         this.carouselValue === this.amountChildren - 1;
-        console.log('carouselValue: ' + this.carouselValue);
+        // console.log('carouselValue: ' + this.carouselValue);
       }
     },
 
@@ -147,7 +152,7 @@ export default {
       this.carouselValue = carouselValue;
       this.changeColorArrowOnClickRadio();
       this.scrollingBusinessCarousel();
-      console.log('carouselValue:' + this.carouselValue);
+      // console.log('carouselValue:' + this.carouselValue);
     },
 
     // запускаем функции
@@ -163,7 +168,7 @@ export default {
     },
   },
   components: {
-    BusinessHeader,
+    CarouselHeader,
     BusinessCarousel,
     CarouselTransmittedText,
   },
