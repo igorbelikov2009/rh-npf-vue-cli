@@ -33,6 +33,8 @@ export default {
 // top-bloc
 .top-block {
   width: 100%;
+  position: relative;
+  top: 0;
   margin: 0 auto;
   height: 360px;
   background-position: center center;

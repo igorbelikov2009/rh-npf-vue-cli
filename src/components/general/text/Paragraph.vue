@@ -15,7 +15,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// paragraph
 .paragraph {
   margin: 12px 0;
   color: #5a646e;
@@ -41,5 +40,4 @@ export default {
     }
   }
 }
-// paragraph
 </style>

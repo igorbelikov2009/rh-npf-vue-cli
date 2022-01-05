@@ -1,15 +1,9 @@
 <template>
   <div class="management-page">
-    <TopMenu />
-    <TopBlock
-      :image="imageTop"
-      :heading="headingTop"
-      :headingSpan="headingSpanTop"
-      :subheading="subheadingTop"
-      :subheadingSpan="subheadingSpanTop"
-    />
-    <Management />
+    <TopBlock :image="topBlock.imageTop" :heading="topBlock.heading" />
 
+    <Management />
+    <TopMenu />
     <Footer />
   </div>
 </template>
@@ -17,7 +11,7 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import managementTopImage from '../../../public/images/fundManagement/fundManagement.jpg';
+import managementImage from '../../../public/images/fundManagement/fundManagement.jpg';
 import Management from '../../components/managementPage/Management.vue';
 import Footer from '@/components/Footer.vue';
 
@@ -26,11 +20,10 @@ export default {
 
   data() {
     return {
-      imageTop: managementTopImage,
-      headingTop: 'Руководство и команда',
-      headingSpanTop: '',
-      subheadingTop: '',
-      subheadingSpanTop: '',
+      topBlock: {
+        imageTop: managementImage,
+        heading: 'Руководство и команда',
+      },
     };
   },
 
@@ -38,7 +31,6 @@ export default {
     TopMenu,
     TopBlock,
     Management,
-
     Footer,
   },
 };

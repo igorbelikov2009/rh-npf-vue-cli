@@ -56,18 +56,20 @@
           </div>
 
           <div class="footer__column">
-            <!-- <router-link class="footer__link"></router-link> -->
-            <a class="footer__link" href="../templates/news.html">Новости</a>
+            <router-link class="footer__link" :to="{ name: 'newsPage' }">Новости</router-link>
 
-            <!-- <router-link class="footer__link"></router-link> -->
-            <a class="footer__link" href="../templates/taxation.html">Налогообложение</a>
+            <router-link class="footer__link" :to="{ name: 'newPage' }"
+              >Новости страница (Налогообложение)</router-link
+            >
           </div>
         </div>
 
         <div class="footer__copyright-wrapper">
           <div class="footer__copyright">
-            <!-- <router-link class="footer__link"></router-link> -->
-            <a class="footer__copyright-link" href="../templates/spisokAktsionerov.html">
+            <a
+              class="footer__copyright-link"
+              href="/pdf/infoOpening/archive-aktsionerov/01 Beneficiaries structure 16.03.2021.pdf"
+            >
               Список акционеров Фонда и лиц, под контролем либо значительным влиянием которых
               находится Фонд (соответствует информации, направленной в Банк России 16.03.2021 г. для
               размещения на официальном сайте Банка России).</a

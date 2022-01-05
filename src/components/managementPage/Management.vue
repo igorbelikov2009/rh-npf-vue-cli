@@ -122,7 +122,7 @@ export default {
 
   methods: {
     handleScroll() {
-      console.log('hi');
+      // console.log('hi');
       this.getTopBarContainer();
       this.changeStyleBarNav();
       this.getTopAllComponents();
@@ -163,7 +163,7 @@ export default {
 
       const block6 = this.$refs.block6;
       this.h06 = block6.getBoundingClientRect().height;
-      console.log(this.h06);
+      // console.log(this.h06);
 
       const block7 = this.$refs.block7;
       this.h07 = block7.getBoundingClientRect().height;

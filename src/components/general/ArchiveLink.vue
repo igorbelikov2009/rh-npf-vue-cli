@@ -10,9 +10,13 @@
       <TripleIcon :hovered="isLinkHovered" icon="Pdf" />
     </div>
 
-    <p class="archive-link__title">
-      {{ linkTitle }}
-    </p>
+    <div class="archive-link__row">
+      <p class="archive-link__title">
+        {{ linkTitle }}
+      </p>
+
+      <p class="archive-link__subtitle">{{ linkSubtitle }}</p>
+    </div>
   </a>
 </template>
 
@@ -21,6 +25,7 @@ import TripleIcon from '@/components/general/TripleIcon.vue';
 
 export default {
   name: 'ArchiveLink',
+
   data() {
     return {
       isLinkHovered: false,
@@ -30,6 +35,7 @@ export default {
   props: {
     linkHref: { type: String },
     linkTitle: { type: String },
+    linkSubtitle: { type: String },
   },
 
   components: {
@@ -48,6 +54,7 @@ export default {
   justify-content: flex-start;
   border-bottom: 1px solid #e6f0fa;
   border-top: 1px solid #e6f0fa;
+  box-sizing: border-box;
 
   &:last-of-type {
     border-top: none;
@@ -58,20 +65,64 @@ export default {
   }
 
   &__images {
+    width: 24px;
+    height: 24px;
     margin-right: 24px;
   }
 
+  &__row {
+    width: 100%;
+    display: block;
+    justify-content: space-between;
+
+    @media screen and (min-width: 576px) {
+      display: flex;
+    }
+  }
+
   &__title {
-    width: calc(100% - 48px);
-    margin-bottom: 24px;
     display: block;
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
     color: #5a646e;
+    margin-bottom: 24px;
+
+    @media screen and (min-width: 576px) {
+      max-width: 560px;
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  // &__title {
+  //   width: calc(100% - 48px);
+  //   margin-bottom: 24px;
+  //   display: block;
+  //   font-size: 16px;
+  //   line-height: 24px;
+  //   font-weight: 400;
+  //   color: #5a646e;
+
+  //   @media screen and (min-width: 576px) {
+  //     margin-bottom: 0;
+  //   }
+  // }
+
+  &__subtitle {
+    width: 125px;
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #5a646e;
+    margin-left: 0px;
+    // text-align: right;
 
     @media screen and (min-width: 576px) {
       margin-bottom: 0;
+      margin-left: 48px;
+      text-align: right;
     }
   }
 }

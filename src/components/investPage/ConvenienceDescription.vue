@@ -1,33 +1,24 @@
 <template>
   <section class="sredstva-description">
-    <Paragraph
-      v-for="(info, index) in information1"
-      :key="index"
-      :isHasBefore="info.isHasBefore"
-      :text="info.text"
-    />
+    <BlockOfParagraphs :paragraphs="paragraphs1" />
 
     <h1 class="sredstva-description__heading">
       Положение о возможности увеличения или уменьшения дохода
     </h1>
 
-    <!-- <Paragraph
-      v-for="(info, index) in information2"
-      :key="index"
-      :isHasBefore="info.isHasBefore"
-      :text="info.text"
-    /> -->
+    <BlockOfParagraphs :paragraphs="paragraphs2" />
   </section>
 </template>
 
 <script>
-import Paragraph from '../../components/general/text/Paragraph.vue';
+import BlockOfParagraphs from '@/components/general/text/BlockOfParagraphs.vue';
 
 export default {
   name: 'ConvenienceDescription',
+
   data() {
     return {
-      information1: [
+      paragraphs1: [
         {
           isHasBefore: false,
           text:
@@ -63,7 +54,7 @@ export default {
             'В соответствии с нормами законодательства, ежедневный контроль за соблюдением фондами и управляющими компаниями ограничений на размещение средств пенсионных резервов осуществляет специализированный депозитарий. Для АО НПФ «Ренессанс пенсии» эти услуги предоставляет АО ВТБ Специализированный депозитарий, занимающее лидирующие позиции на внутреннем рынке депозитарных услуг. Фонд на ежедневной основе рассчитывает долю активов, приходящуюся на каждый пенсионный счет. Окончательный расчет и распределение инвестиционного дохода за календарный год на пенсионные счета участников производится, в соответствии с требованиями законодательства РФ, до 31-го марта следующего календарного года.',
         },
       ],
-      information2: [
+      paragraphs2: [
         { isHasBefore: false, text: 'Просим вас обратить внимание на следующее:' },
         {
           isHasBefore: true,
@@ -88,14 +79,14 @@ export default {
       ],
     };
   },
+
   components: {
-    Paragraph,
+    BlockOfParagraphs,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// sredstva-description
 .sredstva-description {
   width: 100%;
   max-width: 960px;
@@ -112,45 +103,11 @@ export default {
     padding-bottom: 48px;
   }
 
-  &__specification {
-    margin: 12px 0;
-    font-size: 13px;
-    color: #5a646e;
-
-    @media screen and (min-width: 768px) {
-      font-size: 16px;
-    }
-  }
-
-  &__opisaniye {
-    margin: 12px 0;
-    font-size: 13px;
-    color: #5a646e;
-    position: relative;
-    margin-left: 32px;
-
-    @media screen and (min-width: 768px) {
-      font-size: 16px;
-    }
-
-    &::before {
-      position: absolute;
-      content: '';
-      display: block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #50287d;
-      left: -24px;
-      top: 8px;
-    }
-  }
-
   &__heading {
     font-size: 34px;
     line-height: 48px;
     margin: 24px 0;
     color: #28323c;
   }
-} // sredstva-description
+}
 </style>

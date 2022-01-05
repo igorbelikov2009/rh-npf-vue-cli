@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <TableHeadCell v-for="(title, index) in titles" :key="index" :title="title" />
+    <TableHeadCell v-for="(headTitle, index) in headTitles" :key="index" :headTitle="headTitle" />
   </tr>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   name: 'TableHeadRow',
 
   props: {
-    titles: { type: Array },
+    headTitles: { type: Array },
   },
 
   components: {

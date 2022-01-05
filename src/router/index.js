@@ -7,8 +7,20 @@ import InvestPage from '@/components/views/InvestPage.vue';
 import AboutFundPage from '@/components/views/AboutFundPage.vue';
 import ContactsPage from '@/components/views/ContactsPage.vue';
 import ManagementPage from '@/components/views/ManagementPage.vue';
+import InfoOpeningPage from '@/components/views/InfoOpeningPage.vue';
+import NewsPage from '@/components/views/NewsPage.vue';
+import NewPage from '@/components/views/NewPage.vue';
+
 import NotFoundPage from '@/components/views/NotFoundPage.vue';
-import InfoOpeningPage from '../components/views/InfoOpeningPage.vue';
+
+/**
+ * Добавлено для обработки ошибки "navigation duplicated"
+ * Возможно стоит обрабатывать ТОЛЬКО "navigation duplicated", а не все ошибки
+ */
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+};
 
 Vue.use(VueRouter);
 
@@ -57,6 +69,17 @@ const routes = [
     path: '/info',
     name: 'infoOpening',
     component: InfoOpeningPage,
+  },
+  {
+    path: '/news',
+    name: 'newsPage',
+    component: NewsPage,
+  },
+  {
+    // path: '/new/:id',
+    path: '/new',
+    name: 'newPage',
+    component: NewPage,
   },
 
   //Все остальные роуты нужно ставить выше NotFound

@@ -1,16 +1,11 @@
 <template>
   <div class="support-servise-page">
-    <TopMenu />
-    <TopBlock
-      :image="imageTop"
-      :heading="headingTop"
-      :headingSpan="headingSpanTop"
-      :subheading="subheadingTop"
-      :subheadingSpan="subheadingSpanTop"
-    />
+    <TopBlock :image="topBlock.image" :heading="topBlock.heading" />
+
     <QuestionsAnswers id="questionsAnswers" />
     <PensionPrograms />
     <SupportForm id="form" />
+    <TopMenu />
     <Footer />
   </div>
 </template>
@@ -18,7 +13,7 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import supportServiceTopImage from '../../../public/images/supportService/supportService.jpg';
+import supportImage from '../../../public/images/supportService/supportService.jpg';
 import QuestionsAnswers from '@/components/supportServiсePage/QuestionsAnswers.vue';
 import PensionPrograms from '@/components/supportServiсePage/PensionPrograms.vue';
 import SupportForm from '@/components/supportServiсePage/SupportForm.vue';
@@ -29,11 +24,10 @@ export default {
   name: 'SupportServiсePage',
   data() {
     return {
-      imageTop: supportServiceTopImage,
-      headingTop: 'Поддержка',
-      headingSpanTop: '',
-      subheadingTop: '',
-      subheadingSpanTop: '',
+      topBlock: {
+        image: supportImage,
+        heading: 'Поддержка',
+      },
     };
   },
 

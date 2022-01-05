@@ -7,8 +7,9 @@
           <p class="select__title"></p>
           30 ноября 2021 г.
         </option>
-        <option class="select__option" value="23">31 октября 2021 г.</option>
-        <!-- <option class="select__option" value="22">30 сентября 2021 г.</option>
+        <option class="select__option" value="23">30 ноября 2021 г.</option>
+        <!--   <option class="select__option" value="23">31 октября 2021 г.</option>
+         <option class="select__option" value="22">30 сентября 2021 г.</option>
         <option class="select__option" value="21">31 августа 2021 г.</option>
         <option class="select__option" value="20">31 июля 2021 г.</option>
         <option class="select__option" value="19">30 июня 2021 г.</option>

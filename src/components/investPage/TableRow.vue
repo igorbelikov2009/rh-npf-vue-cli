@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <TableCell v-for="(title, index) in titles" :key="index" :title="title" />
+    <TableCell v-for="(titleCell, index) in titleCells" :key="index" :titleCell="titleCell" />
   </tr>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'TableRow',
 
   props: {
-    titles: { type: Array },
+    titleCells: { type: Array },
   },
 
   components: {

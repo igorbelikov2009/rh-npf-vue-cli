@@ -1,5 +1,5 @@
 <template>
-  <th>{{ title }}</th>
+  <th>{{ headTitle }}</th>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   name: 'TableHeadCell',
 
   props: {
-    title: { type: String },
+    headTitle: { type: String },
   },
 };
 </script>

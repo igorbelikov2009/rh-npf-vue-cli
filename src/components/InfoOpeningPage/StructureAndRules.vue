@@ -9,15 +9,15 @@
         <a
           target="_blank"
           class="structure-and-rules__link"
-          href="../assets/pdf/infoOpening/Список акционеров фонда.pdf"
+          href="/pdf/infoOpening/Список акционеров фонда.pdf"
         >
           Список акционеров Фонда и лиц, под контролем либо значительным влиянием которых находится
           Фонд (соответствует информации, направленной в Банк России 04.08.2021 г. для размещения на
           официальном сайте Банка России)
         </a>
 
-        <div class="structure-and-rules__container-button">
-          <button class="button-to-archive">Архив</button>
+        <div class="structure-and-rules__container-button" @click="onClickArchiveShareholders">
+          <ButtonToArchive />
         </div>
       </div>
 
@@ -27,13 +27,13 @@
         <a
           target="_blank"
           class="structure-and-rules__link"
-          href="../assets/pdf/infoOpening/пенсионные правила.pdf"
+          href="/pdf/infoOpening/пенсионные правила.pdf"
         >
           Пенсионные правила (PDF)
         </a>
 
-        <div class="structure-and-rules__container-button">
-          <button class="button-to-archive">Архив</button>
+        <div class="structure-and-rules__container-button" @click="onClickArchivePension">
+          <ButtonToArchive />
         </div>
       </div>
     </div>
@@ -41,8 +41,24 @@
 </template>
 
 <script>
+import ButtonToArchive from '../../components/gui/ButtonToArchive.vue';
+
 export default {
   name: 'StructureAndRules',
+
+  methods: {
+    onClickArchiveShareholders() {
+      this.$emit('onClickArchiveShareholders');
+      // console.log('onClickArchiveShareholders');
+    },
+    onClickArchivePension() {
+      this.$emit('onClickArchivePension');
+      // console.log('onClickArchivePension');
+    },
+  },
+  components: {
+    ButtonToArchive,
+  },
 };
 </script>
 
@@ -60,7 +76,7 @@ export default {
   &__fixed {
     position: fixed;
     top: 0;
-    z-index: 1;
+    // z-index: 1;
   }
 
   &__container {
@@ -126,30 +142,30 @@ export default {
 // structure-and-rules
 
 // button-to-archive
-.button-to-archive {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 400;
-  // text-align: center;
-  color: #50287d;
-  background-color: #fff;
-  border: 2px solid #50287d;
-  border-radius: 24px;
-  box-sizing: border-box;
-  cursor: pointer;
-  opacity: 1;
-  transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
-    opacity 0.6s cubic-bezier(0.25, 0.8, 0.5, 1);
+// .button-to-archive {
+//   width: 100%;
+//   padding: 10px 12px;
+//   font-size: 14px;
+//   line-height: 24px;
+//   font-weight: 400;
+//   // text-align: center;
+//   color: #50287d;
+//   background-color: #fff;
+//   border: 2px solid #50287d;
+//   border-radius: 24px;
+//   box-sizing: border-box;
+//   cursor: pointer;
+//   opacity: 1;
+//   transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
+//     opacity 0.6s cubic-bezier(0.25, 0.8, 0.5, 1);
 
-  &:hover {
-    background-color: #50287d;
-    color: white;
-    opacity: 0.8;
-    transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
-      opacity 0.6s cubic-bezier(0.25, 0.8, 0.5, 1);
-  }
-}
+//   &:hover {
+//     background-color: #50287d;
+//     color: white;
+//     opacity: 0.8;
+//     transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
+//       opacity 0.6s cubic-bezier(0.25, 0.8, 0.5, 1);
+//   }
+// }
 // button-to-archive
 </style>

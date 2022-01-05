@@ -1,27 +1,33 @@
 <template>
   <div class="info-opening">
-    <TopMenu />
-    <TopBlock
-      :image="imageTop"
-      :heading="headingTop"
-      :headingSpan="headingSpanTop"
-      :subheading="subheadingTop"
-      :subheadingSpan="subheadingSpanTop"
-    />
+    <TopBlock :image="topBlock.image" :heading="topBlock.heading" />
     <OverallInfo />
     <FundPerformance />
     <DocumentsOfTitle />
-    <StructureAndRules />
-    <Reporting />
+    <StructureAndRules
+      @onClickArchiveShareholders="onClickArchiveShareholders"
+      @onClickArchivePension="onClickArchivePension"
+    />
+    <Reporting @onClickArchiveReporting="onClickArchiveReporting" />
     <PortfolioStructure />
     <IncomeChangeRegulation />
-    <AssetValueRules />
-
+    <AssetValueRules @onClickArchiveAssetValueRules="onClickArchiveAssetValueRules" />
+    <HidingArchive
+      :isHidingArchiveVisible="hidingArchive.isHidingArchiveVisible"
+      :isArchiveShareholdersVisible="hidingArchive.isArchiveShareholdersVisible"
+      :isArchivePensionVisible="hidingArchive.isArchivePensionVisible"
+      :isArchiveReportingVisible="hidingArchive.isArchiveReportingVisible"
+      :isArchiveAssetValueRulesVisible="hidingArchive.isArchiveAssetValueRulesVisible"
+      @onClickHidingArchive="onClickHidingArchive"
+    />
     <Other />
     <ManagementCompanies />
     <SpecDepository />
     <Interactions />
     <Notifics />
+
+    <TopMenu />
+
     <Footer />
   </div>
 </template>
@@ -29,16 +35,16 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import infoOpeningTopImage from '../../../public/images/infoOpening/infoOpening.jpg';
+import infoOpeningImage from '../../../public/images/infoOpening/infoOpening.jpg';
 import OverallInfo from '@/components/InfoOpeningPage/OverallInfo.vue';
 import FundPerformance from '@/components/InfoOpeningPage/FundPerformance.vue';
 import DocumentsOfTitle from '@/components/InfoOpeningPage/DocumentsOfTitle';
 import StructureAndRules from '@/components/InfoOpeningPage/StructureAndRules.vue';
 import Reporting from '@/components/InfoOpeningPage/Reporting.vue';
+import HidingArchive from '@/components/InfoOpeningPage/HidingArchive.vue';
 import PortfolioStructure from '@/components/InfoOpeningPage/PortfolioStructure.vue';
 import IncomeChangeRegulation from '@/components/InfoOpeningPage/IncomeChangeRegulation.vue';
 import AssetValueRules from '@/components/InfoOpeningPage/AssetValueRules.vue';
-
 import Other from '@/components/InfoOpeningPage/Other.vue';
 import ManagementCompanies from '@/components/InfoOpeningPage/ManagementCompanies.vue';
 import SpecDepository from '@/components/InfoOpeningPage/SpecDepository.vue';
@@ -50,12 +56,51 @@ export default {
 
   data() {
     return {
-      imageTop: infoOpeningTopImage,
-      headingTop: 'Раскрытие информации',
-      headingSpanTop: '',
-      subheadingTop: '',
-      subheadingSpanTop: '',
+      topBlock: {
+        image: infoOpeningImage,
+        heading: 'Раскрытие информации',
+      },
+
+      hidingArchive: {
+        isHidingArchiveVisible: false,
+        isArchiveShareholdersVisible: false,
+        isArchivePensionVisible: false,
+        isArchiveReportingVisible: false,
+        isArchiveAssetValueRulesVisible: false,
+      },
     };
+  },
+
+  methods: {
+    onClickHidingArchive() {
+      this.hidingArchive.isHidingArchiveVisible = false;
+      this.hidingArchive.isArchiveShareholdersVisible = false;
+      this.hidingArchive.isArchivePensionVisible = false;
+      this.hidingArchive.isArchiveReportingVisible = false;
+      this.hidingArchive.isArchiveAssetValueRulesVisible = false;
+
+      document.body.style.overflow = '';
+    },
+    onClickArchiveShareholders() {
+      this.hidingArchive.isHidingArchiveVisible = true;
+      this.hidingArchive.isArchiveShareholdersVisible = true;
+      document.body.style.overflow = 'hidden';
+    },
+    onClickArchivePension() {
+      this.hidingArchive.isHidingArchiveVisible = true;
+      this.hidingArchive.isArchivePensionVisible = true;
+      document.body.style.overflow = 'hidden';
+    },
+    onClickArchiveReporting() {
+      this.hidingArchive.isHidingArchiveVisible = true;
+      this.hidingArchive.isArchiveReportingVisible = true;
+      document.body.style.overflow = 'hidden';
+    },
+    onClickArchiveAssetValueRules() {
+      this.hidingArchive.isHidingArchiveVisible = true;
+      this.hidingArchive.isArchiveAssetValueRulesVisible = true;
+      document.body.style.overflow = 'hidden';
+    },
   },
 
   components: {
@@ -66,6 +111,7 @@ export default {
     DocumentsOfTitle,
     StructureAndRules,
     Reporting,
+    HidingArchive,
     PortfolioStructure,
     IncomeChangeRegulation,
     AssetValueRules,
@@ -89,5 +135,14 @@ export default {
   line-height: 24px;
   font-style: normal;
   color: #5a646e;
+  //
+  height: 100%;
+  overflow: hidden;
+
+  // info-opening__stop-scrolling
+  &__stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
 }
 </style>

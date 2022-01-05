@@ -1,5 +1,5 @@
 <template>
-  <td>{{ title }}</td>
+  <td>{{ titleCell }}</td>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   name: 'TableCell',
 
   props: {
-    title: { type: String },
+    titleCell: { type: String },
   },
 };
 </script>

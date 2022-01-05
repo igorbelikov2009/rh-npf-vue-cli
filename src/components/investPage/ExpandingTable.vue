@@ -21,13 +21,11 @@ export default {
 
   data() {
     return {
-      ifContentVisible: this.isContentVisible,
+      ifContentVisible: false,
     };
   },
   props: {
-    isContentVisible: { type: Boolean },
     title: { type: String },
-
     tableHeadings: { type: Array },
     tableRows: { type: Array },
   },

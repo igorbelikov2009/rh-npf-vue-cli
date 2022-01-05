@@ -14,8 +14,9 @@
         >Руководство Фондом</router-link
       >
 
-      <router-link class="menu-mobil__link"></router-link>
-      <a class="menu-mobil__link" href="../templates/infoOpening.html">Раскрытие информации</a>
+      <router-link class="menu-mobil__link" :to="{ name: 'infoOpening' }"
+        >Раскрытие информации</router-link
+      >
 
       <router-link class="menu-mobil__link " :to="{ name: 'invest' }"
         >Инвестиционная деятельность</router-link
@@ -38,7 +39,6 @@
       >
 
       <div class="menu-mobil__phone">
-        <router-link></router-link>
         <a class="menu-mobil__phone-link" href="tel:+78002004766">
           <p class="menu-mobil__phone-number">8 800 200-47-66</p>
         </a>
@@ -46,7 +46,7 @@
     </div>
 
     <div>
-      <p class="menu-mobil__copy-right">© 2009-2019 НПФ Ренессанс. Пенсии</p>
+      <p class="menu-mobil__copy-right">©2009-2019 НПФРенессанс. Пенсии</p>
 
       <p class="menu-mobil__copy-right">
         Лицензия № 383/2 от 16 июня 2009 года
@@ -87,7 +87,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// menu-mobil
 .menu-mobil {
   position: absolute;
   top: 0;
@@ -216,5 +215,4 @@ export default {
   opacity: 0;
   right: 100%;
 }
-// menu-mobil
 </style>

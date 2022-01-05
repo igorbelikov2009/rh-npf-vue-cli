@@ -1,6 +1,6 @@
 <template>
   <div class="contacts">
-    <TopMenu :ifBackgroundWhite="isBackgroundWhite" />
+    <TopMenu :ifBackgroundWhite="topMenu.isBackgroundWhite" />
     <Contacts />
     <ContactsMap />
     <Footer />
@@ -18,7 +18,7 @@ export default {
 
   data() {
     return {
-      isBackgroundWhite: true,
+      topMenu: { isBackgroundWhite: true },
     };
   },
 

@@ -95,15 +95,15 @@
     </div>
 
     <transition name="call-back">
-      <CallBackForm v-if="isHideCallBackForm" @closeCallBack="openCallBack" />
+      <CallBackForm v-if="isCallBackFormVisible" @closeCallBack="closeCallBack" />
     </transition>
 
     <transition name="login-form">
-      <LoginForm v-show="isHideLoginForm" @closeLoginForm="openLoginForm" />
+      <LoginForm v-show="isLoginFormVisible" @closeLoginForm="closeLoginForm" />
     </transition>
 
     <transition name="menu-mobil">
-      <MenuMobil v-if="isHideMenuMobil" @closeMenuMobil="openMenuMobil" />
+      <MenuMobil v-if="isMenuMobilVisible" @closeMenuMobil="closeMenuMobil" />
     </transition>
   </header>
 </template>
@@ -120,18 +120,15 @@ export default {
 
   data() {
     return {
-      //
+      isMenuMobilVisible: false,
+
       isLKButtonHovered: false,
-      isHideLoginForm: false,
-      isHideCallBackForm: false,
-      isHideMenuMobil: false,
+      isLoginFormVisible: false,
+      isCallBackFormVisible: false,
     };
   },
   props: {
-    ifBackgroundWhite: {
-      type: Boolean,
-      default: false,
-    },
+    ifBackgroundWhite: { type: Boolean, default: false },
   },
   components: {
     Logotypes,
@@ -141,14 +138,35 @@ export default {
     TripleIcon,
   },
   methods: {
-    openLoginForm() {
-      this.isHideLoginForm = !this.isHideLoginForm;
-    },
     openCallBack() {
-      this.isHideCallBackForm = !this.isHideCallBackForm;
+      this.isCallBackFormVisible = !this.isCallBackFormVisible;
+      if (this.isCallBackFormVisible === false) {
+        document.body.style.overflow = '';
+      }
+      document.body.style.overflow = 'hidden';
+    },
+    closeCallBack() {
+      this.isCallBackFormVisible = false;
+      document.body.style.overflow = '';
+    },
+    openLoginForm() {
+      this.isLoginFormVisible = !this.isLoginFormVisible;
+      if (this.isLoginFormVisible === false) {
+        document.body.style.overflow = '';
+      }
+      document.body.style.overflow = 'hidden';
+    },
+    closeLoginForm() {
+      this.isLoginFormVisible = false;
+      document.body.style.overflow = '';
     },
     openMenuMobil() {
-      this.isHideMenuMobil = !this.isHideMenuMobil;
+      this.isMenuMobilVisible = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeMenuMobil() {
+      this.isMenuMobilVisible = false;
+      document.body.style.overflow = '';
     },
   },
 };
@@ -361,6 +379,11 @@ export default {
       }
     }
   }
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
 
 .icon-user__icon {

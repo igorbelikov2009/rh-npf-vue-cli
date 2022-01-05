@@ -1,13 +1,11 @@
 <template>
   <div class="about-fund">
-    <TopMenu />
     <TopBlock
-      :image="imageTop"
-      :heading="headingTop"
-      :headingSpan="headingSpanTop"
-      :subheading="subheadingTop"
-      :subheadingSpan="subheadingSpanTop"
+      :image="topBlock.image"
+      :heading="topBlock.heading"
+      :subheading="topBlock.subheading"
     />
+
     <section class="about-fund__about-us">
       <p class="about-fund__description">
         Мы являемся одним из немногих безотраслевых фондов, что позволяет нам вести абсолютно
@@ -22,6 +20,7 @@
 
     <AboutFundBlock />
     <Statistics />
+    <TopMenu />
     <Footer />
   </div>
 </template>
@@ -29,7 +28,7 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import aboutFundTopImage from '../../../public/images/aboutFund/aboutFundTop.jpg';
+import aboutFundImage from '../../../public/images/aboutFund/aboutFundTop.jpg';
 import AboutFundBlock from '@/components/aboutFundPage/AboutFundBlock.vue';
 import Statistics from '@/components/mainPage/statistics/Statistics.vue';
 import Footer from '@/components/Footer.vue';
@@ -38,12 +37,12 @@ export default {
   name: 'AboutFundPage',
   data() {
     return {
-      imageTop: aboutFundTopImage,
-      headingTop: 'О фонде',
-      headingSpanTop: '',
-      subheadingTop:
-        'На сегодняшний день АО НПФ "Ренессанс пенсии" – один из крупнейших и надежных негосударственных пенсионных фондов на рынке негосударственного пенсионного обеспечения (НПО).',
-      subheadingSpanTop: '',
+      topBlock: {
+        image: aboutFundImage,
+        heading: 'О фонде',
+        subheading:
+          'На сегодняшний день АО НПФ "Ренессанс пенсии" – один из крупнейших и надежных негосударственных пенсионных фондов на рынке негосударственного пенсионного обеспечения (НПО).',
+      },
     };
   },
 
@@ -52,7 +51,6 @@ export default {
     TopBlock,
     AboutFundBlock,
     Statistics,
-
     Footer,
   },
 };

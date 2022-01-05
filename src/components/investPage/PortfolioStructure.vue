@@ -1,102 +1,312 @@
 <template>
-  <section class="structure">
-    <h1 class="structure__heading">Структура портфеля</h1>
+  <section class="portfolie-structure">
+    <h1 class="portfolie-structure__heading">Структура портфеля</h1>
 
-    <div class="structure__selection-by-options">
-      <div class="structure__selection-calendar">
-        <SelectionCalendar />
-      </div>
+    <div class="portfolie-structure__selection" ref="selectionTopBlock">
+      <SelectionTopBlock
+        :ifSelectionOptionsBlock="isSelectionBlockVisible"
+        :value="selectionValue"
+        :selectionItems="selectionItems"
+        @onClickSelectionTopBlock="onClickSelectionTopBlock"
+      />
+    </div>
 
-      <div class="structure__content">
-        <div class="structure__graph">graph</div>
+    <div class="portfolie-structure__content">
+      <PortfolioStructureGraph />
 
-        <div class="structure__percent">
-          <div class="structure__percent-block">
-            <p class="structure__percent-number structure__percent-number_01">
-              56.2%
-            </p>
-            <p class="structure__percent-title">
-              Облигации федерального займа
-            </p>
-          </div>
-
-          <div class="structure__percent-block">
-            <p class="structure__percent-number structure__percent-number_02">
-              12.1%
-            </p>
-            <p class="structure__percent-title">
-              Облигации хозяйствующих обществ
-            </p>
-          </div>
-
-          <div class="structure__percent-block">
-            <p class="structure__percent-number structure__percent-number_03">
-              1.2%
-            </p>
-            <p class="structure__percent-title">Акции</p>
-          </div>
-
-          <div class="structure__percent-block">
-            <p class="structure__percent-number structure__percent-number_04">
-              28.2%
-            </p>
-            <p class="structure__percent-title">
-              Субфедеральные и муниципальные облигации
-            </p>
-          </div>
-
-          <div class="structure__percent-block">
-            <p class="structure__percent-number structure__percent-number_05">
-              1.7%
-            </p>
-            <p class="structure__percent-title">
-              Депозиты / денежные средства на расчетных счетах
-            </p>
-          </div>
-
-          <div class="structure__percent-block">
-            <p class="structure__percent-number structure__percent-number_06">
-              0.6%
-            </p>
-            <p class="structure__percent-title">
-              Открытые паевые инвестиционные фонды
-            </p>
-          </div>
-        </div>
-      </div>
+      <PortfolioStructureAsPercentag
+        v-for="(percentBlock, index) in percentBlocks"
+        :key="index"
+        :isContainerVisible="selectionValue === index"
+        :percent="percentBlock"
+      />
     </div>
   </section>
 </template>
 
 <script>
-import SelectionCalendar from '../../components/investPage/SelectionCalendar.vue';
+import SelectionTopBlock from '@/components/gui/SelectionTopBlock.vue';
+import PortfolioStructureGraph from '@/components/investPage/PortfolioStructureGraph.vue';
+import PortfolioStructureAsPercentag from '@/components/investPage/PortfolioStructureAsPercentag.vue';
+
 export default {
   name: 'PortfolioStructure',
+
+  data() {
+    return {
+      selectionTopBlockTop: 0,
+      selectionTopBlockBottom: 0,
+      selectionTopBlockLeft: 0,
+      selectionTopBlockWidth: 0,
+      selectionTopBlockHeight: 0,
+
+      percentBlocks: [
+        {
+          percentNumber01: '57.6%',
+          percentNumber02: '24.7%',
+          percentNumber03: '13%',
+          percentNumber04: '2.8%',
+          percentNumber05: '1.2%',
+          percentNumber06: '0.7%',
+        },
+        {
+          percentNumber01: '57.8%',
+          percentNumber02: '25.1%',
+          percentNumber03: '13.8%',
+          percentNumber04: '1.5%',
+          percentNumber05: '1.1%',
+          percentNumber06: '0.7%',
+        },
+        {
+          percentNumber01: '55.3%',
+          percentNumber02: '26.9%',
+          percentNumber03: '13.8%',
+          percentNumber04: '2.2%',
+          percentNumber05: '1.1%',
+          percentNumber06: '0.7%',
+        },
+        {
+          percentNumber01: '55.2%',
+          percentNumber02: '27.2%',
+          percentNumber03: '13.7%',
+          percentNumber04: '2.1%',
+          percentNumber05: '1.1%',
+          percentNumber06: '0.7%',
+        },
+        {
+          percentNumber01: '56.1%',
+          percentNumber02: '27.1%',
+          percentNumber03: '12.4%',
+          percentNumber04: '2.8%',
+          percentNumber05: '1%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '56.2%',
+          percentNumber02: '28.2%',
+          percentNumber03: '12.1%',
+          percentNumber04: '1.7%',
+          percentNumber05: '1.2%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '56.5%',
+          percentNumber02: '28.5%',
+          percentNumber03: '12%',
+          percentNumber04: '1.3%',
+          percentNumber05: '1.1%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '55.4%',
+          percentNumber02: '29.7%',
+          percentNumber03: '12.2%',
+          percentNumber04: '1.1%',
+          percentNumber05: '1%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '54.5%',
+          percentNumber02: '29.8%',
+          percentNumber03: '12.1%',
+          percentNumber04: '2%',
+          percentNumber05: '1%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '53.9%',
+          percentNumber02: '30.4%',
+          percentNumber03: '12.1%',
+          percentNumber04: '2.1%',
+          percentNumber05: '0.9%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '53.1%',
+          percentNumber02: '30.7%',
+          percentNumber03: '12.6%',
+          percentNumber04: '2.1%',
+          percentNumber05: '0.9%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '53%',
+          percentNumber02: '30.9%',
+          percentNumber03: '12.5%',
+          percentNumber04: '2.2%',
+          percentNumber05: '0.8%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '52%',
+          percentNumber02: '31.4%',
+          percentNumber03: '12.2%',
+          percentNumber04: '3%',
+          percentNumber05: '0.8%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '51%',
+          percentNumber02: '31%',
+          percentNumber03: '12%',
+          percentNumber04: '4.8%',
+          percentNumber05: '0.6%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '50.1%',
+          percentNumber02: '31.2%',
+          percentNumber03: '12%',
+          percentNumber04: '5.5%',
+          percentNumber05: '0.6%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '48.5%',
+          percentNumber02: '31.9%',
+          percentNumber03: '12%',
+          percentNumber04: '6.4%',
+          percentNumber05: '0.6%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '48.6%',
+          percentNumber02: '32.7%',
+          percentNumber03: '11.9%',
+          percentNumber04: '5.6%',
+          percentNumber05: '0.6%',
+          percentNumber06: '0.6%',
+        },
+        {
+          percentNumber01: '49.6%',
+          percentNumber02: '32.1%',
+          percentNumber03: '11.9%',
+          percentNumber04: '5.4%',
+          percentNumber05: '0.5%',
+          percentNumber06: '0.5%',
+        },
+        {
+          percentNumber01: '49.08%',
+          percentNumber02: '31.47%',
+          percentNumber03: '10.79%',
+          percentNumber04: '7.65%',
+          percentNumber05: '0.52%',
+          percentNumber06: '0.49%',
+        },
+        {
+          percentNumber01: '49.53%',
+          percentNumber02: '30.45%',
+          percentNumber03: '9.68%',
+          percentNumber04: '9.61%',
+          percentNumber05: '0.53%',
+          percentNumber06: '0.2%',
+        },
+        {
+          percentNumber01: '50%',
+          percentNumber02: '29.62%',
+          percentNumber03: '10.35%',
+          percentNumber04: '9.27%',
+          percentNumber05: '0.53%',
+          percentNumber06: '0.23%',
+        },
+        {
+          percentNumber01: '49.69%',
+          percentNumber02: '29.46%',
+          percentNumber03: '10.06%',
+          percentNumber04: '10.02%',
+          percentNumber05: '0.51%',
+          percentNumber06: '0.26%',
+        },
+        {
+          percentNumber01: '51%',
+          percentNumber02: '28.5%',
+          percentNumber03: '10.5%',
+          percentNumber04: '9.2%',
+          percentNumber05: '0.5%',
+          percentNumber06: '0.3%',
+        },
+        {
+          percentNumber01: '50.2%',
+          percentNumber02: '28.2%',
+          percentNumber03: '10.7%',
+          percentNumber04: '10.4%',
+          percentNumber05: '0.5%',
+          percentNumber06: '0%',
+        },
+        {
+          percentNumber01: '50.3%',
+          percentNumber02: '27.5%',
+          percentNumber03: '11%',
+          percentNumber04: '10.7%',
+          percentNumber05: '0.5%',
+          percentNumber06: '0%',
+        },
+      ],
+    };
+  },
+
+  props: {
+    selectionValue: { type: Number, required: true },
+    isSelectionBlockVisible: { type: Boolean, default: false },
+    selectionItems: { type: Array },
+    name: { type: String },
+  },
+
+  created() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+
+  methods: {
+    onClickSelectionTopBlock() {
+      this.$emit('onClickSelectionTopBlock');
+    },
+    handleScroll() {
+      this.getSelectionTopBlockCoords();
+      this.$emit(
+        'handleScroll',
+        this.selectionTopBlockTop,
+        this.selectionTopBlockBottom,
+        this.selectionTopBlockLeft,
+        this.selectionTopBlockWidth,
+        this.selectionTopBlockHeight
+      );
+    },
+    getSelectionTopBlockCoords() {
+      const selectionTopBlock = this.$refs.selectionTopBlock;
+      this.selectionTopBlockTop = selectionTopBlock.getBoundingClientRect().top;
+      this.selectionTopBlockBottom = selectionTopBlock.getBoundingClientRect().bottom;
+      this.selectionTopBlockLeft = selectionTopBlock.getBoundingClientRect().left;
+      this.selectionTopBlockWidth = selectionTopBlock.getBoundingClientRect().width;
+      this.selectionTopBlockHeight = selectionTopBlock.getBoundingClientRect().height;
+    },
+  },
+
   components: {
-    SelectionCalendar,
+    SelectionTopBlock,
+    PortfolioStructureGraph,
+    PortfolioStructureAsPercentag,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// structure
-.structure {
+.portfolie-structure {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
   border-color: #ffffff;
-  padding-top: 0;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 24px;
+  padding: 24px 24px 0;
 
   @media screen and (min-width: 576px) {
-    padding-left: 28px;
-    padding-right: 28px;
+    padding: 24px 28px 0;
   }
 
   @media screen and (min-width: 768px) {
-    padding-bottom: 48px;
+    padding: 48px 28px 0;
   }
 
   @media screen and (min-width: 1024px) {
@@ -117,25 +327,16 @@ export default {
     }
   }
 
-  &__selection-by-options {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  &__selection-calendar {
-    width: 100%;
-    min-width: 272px;
-    max-width: 344px;
-    margin-bottom: 24px;
+  &__selection {
+    max-width: 382px;
+    margin: 0 auto;
 
     @media screen and (min-width: 576px) {
-      min-width: 176px;
-      max-width: 176px;
+      max-width: 210px;
     }
 
     @media screen and (min-width: 768px) {
-      margin-bottom: 72px;
+      margin: 0;
     }
   }
 
@@ -150,88 +351,5 @@ export default {
       justify-content: flex-start;
     }
   }
-
-  &__graph {
-    width: 260px;
-    height: 260px;
-    background-color: rgb(112, 23, 23);
-  }
-
-  &__percent {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 0;
-    margin-top: 48px;
-
-    @media screen and (min-width: 768px) {
-      width: calc(100% - 280px);
-      margin-left: 20px;
-      margin-top: 0px;
-    }
-  }
-
-  &__percent-block {
-    width: calc(50% - 24px);
-    margin: 0 12px;
-    margin-bottom: 24px;
-    display: block;
-
-    @media screen and (min-width: 768px) {
-      display: flex;
-    }
-  }
-
-  &__percent-number {
-    position: relative;
-    width: 25%;
-    padding-left: 16px;
-    font-size: 18px;
-    line-height: 24px;
-    color: black;
-
-    &::before {
-      content: '';
-      display: block;
-      width: 8px;
-      height: 8px;
-      position: absolute;
-      top: 8px;
-      left: 0px;
-      background-color: rgb(175, 22, 124);
-    }
-
-    &_01::before {
-      background-color: rgb(69, 194, 83);
-    }
-
-    &_02::before {
-      background-color: rgb(214, 223, 94);
-    }
-
-    &_03::before {
-      background-color: rgb(197, 94, 223);
-    }
-
-    &_04::before {
-      background-color: rgb(146, 39, 6);
-    }
-
-    &_05::before {
-      background-color: rgb(94, 204, 223);
-    }
-
-    &_06::before {
-      background-color: rgb(22, 22, 20);
-    }
-  }
-
-  &__percent-title {
-    font-size: 13px;
-    line-height: 24px;
-    color: #5a646e;
-    width: 75%;
-    padding-left: 16px;
-  }
-} // structure
+}
 </style>
