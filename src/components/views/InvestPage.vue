@@ -1,11 +1,10 @@
 <template>
   <div class="invest-page">
     <TopBlock
-      :image="topBlock.image"
-      :heading="topBlock.heading"
-      :headingSpan="topBlock.headingSpan"
-      :subheading="topBlock.subheading"
-      :subheadingSpan="topBlock.subheadingSpan"
+      image="/images/invest/InvestTop.jpg"
+      heading="Инвестиционная"
+      headingSpan="деятельность"
+      subheading="АО НПФ «Ренессанс пенсии» осуществляет инвестирование пенсионных резервов в интересах участников Фонда на принципах сохранности и надежности, в соответствии с действующим законодательством РФ и корпоративной инвестиционной политикой"
     />
 
     <InvestmentRules />
@@ -71,7 +70,7 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import investImage from '/public/images/invest/InvestTop.jpg';
+// import investImage from '/public/images/invest/InvestTop.jpg';
 import InvestmentRules from '@/components/investPage/InvestmentRules.vue';
 import PortfolioStructure from '@/components/investPage/PortfolioStructure.vue';
 import CompositionOfFunds from '@/components/investPage/CompositionOfFunds.vue';
@@ -84,14 +83,14 @@ export default {
   name: 'InvestPage',
   data() {
     return {
-      topBlock: {
-        image: investImage,
-        heading: 'Инвестиционная',
-        headingSpan: 'деятельность',
-        subheading:
-          'АО НПФ «Ренессанс пенсии» осуществляет инвестирование пенсионных резервов в интересах участников Фонда на принципах сохранности и надежности, в соответствии с действующим законодательством РФ и корпоративной инвестиционной политикой',
-        subheadingSpan: '',
-      },
+      // topBlock: {
+      //   // image: investImage,
+      //   heading: 'Инвестиционная',
+      //   headingSpan: 'деятельность',
+      //   subheading:
+      //     'АО НПФ «Ренессанс пенсии» осуществляет инвестирование пенсионных резервов в интересах участников Фонда на принципах сохранности и надежности, в соответствии с действующим законодательством РФ и корпоративной инвестиционной политикой',
+
+      // },
       clientHeight: 0,
 
       firstSelectionTopBlock: {
@@ -381,13 +380,13 @@ export default {
   //  selection-options-block_hide
   &_hide {
     opacity: 0;
-    transition: all 0.28s ease;
+    transition: opacity 0.28s ease;
   }
 
   // selection-options-block_show
   &_show {
     opacity: 1;
-    transition: all 0.28s ease;
+    transition: opacity 0.28s ease;
   }
 }
 </style>

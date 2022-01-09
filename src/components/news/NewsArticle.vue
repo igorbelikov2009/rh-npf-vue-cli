@@ -1,34 +1,12 @@
 <template>
-  <div id="21" class="news-block" v-if="isNewsVisible">
-    <input class="news-block__input" type="radio" value="value" />
-
+  <div class="news-block">
     <div class="news__header">
-      <h1 class="news__header-heading">
-        Рейтинговое агентство «Эксперт РА» подтвердило рейтинг финансовой надежности АО НПФ
-        «Ренессанс пенсии»
-      </h1>
+      <h1 class="news__header-heading">{{ data.title }}</h1>
 
-      <p class="news__header-date">04 марта 2019 г.</p>
+      <p class="news__header-date">{{ data.date }}</p>
 
-      <p class="news__paragraph">
-        Рейтинговое агентство «Эксперт РА» подтвердило
-        <a class="news__paragraph_link" href="https://raexpert.ru/ratings/npf/"
-          >рейтинг финансовой надежности
-        </a>
-        АО НПФ "Ренессанс пенсии" на
-        <a
-          class="news__paragraph_link"
-          href="https://raexpert.ru/database/companies/npf_blago_mnc/"
-        >
-          уровне ruAA-
-        </a>
-        . Прогноз по рейтингу – стабильный.
-      </p>
-
-      <p class="news__paragraph">
-        В качестве положительных факторов Агентство отметило значительную динамику обязательств
-        фонда по НПО: за период 30.09.2017 - 30.09.2018 прирост обязательств по НПО составил 20,8% и
-        высокие показатели среднего счета фонда по НПО (380,2 тыс. рублей на 30.09.2018).
+      <p v-for="(paragraph, index) in data.paragraphs" :key="index" class="news__paragraph">
+        {{ paragraph }}
       </p>
     </div>
   </div>
@@ -36,11 +14,9 @@
 
 <script>
 export default {
-  name: 'News21',
-
+  name: 'NewsArticle',
   props: {
-    isNewsVisible: { type: Boolean, default: false },
-    value: { type: Number, required: true },
+    data: Object,
   },
 };
 </script>

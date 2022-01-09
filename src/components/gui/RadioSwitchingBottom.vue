@@ -19,7 +19,7 @@ export default {
 
   data() {
     return {
-      switchValue: 0,
+      switchValue: 2021,
     };
   },
 

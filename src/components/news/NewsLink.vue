@@ -1,67 +1,26 @@
 <template>
-  <label
-    class="news-link"
-    v-if="
-      isNewsLinkVisible ||
-        isBlock2014Visible ||
-        isBlock2015Visible ||
-        isBlock2016Visible ||
-        isBlock2017Visible ||
-        isBlock2018Visible ||
-        isBlock2019Visible ||
-        isBlock2020Visible ||
-        isBlock2021Visible
-    "
-    @click="emitValue"
-  >
-    <input class="news-link__input" type="radio" value="value" />
+  <div class="news-link">
+    <!-- Возможно стоило бы это сделать обычной кнопкой и генерировать (эметить)
+    событие click наружу, и уже в родителе определять, что делать на этот клик -->
+    <router-link class="news-link__link" :to="{ path: `/new?id=${id}` }"> {{ title }} </router-link>
 
-    <router-link class="news-link__link" :to="{ path: '/new#20' }">{{ title }} </router-link>
-    <!-- :to="{ path: `${pathUrl}` }" -->
-
-    <p class="news-link__date">{{ date }}</p>
-  </label>
+    <p class="news-link__date">{{ formattedDate }}</p>
+  </div>
 </template>
 
 <script>
+import { format } from 'date-fns';
+
 export default {
   name: 'NewsLink',
-  data() {
-    return {
-      valueRadio: 0,
-      pathUrl: { path: '/new#id' },
-    };
-  },
-
   props: {
-    isNewsLinkVisible: { type: Boolean, default: false },
-    isBlock2014Visible: { type: Boolean, default: false },
-    isBlock2015Visible: { type: Boolean, default: false },
-    isBlock2016Visible: { type: Boolean, default: false },
-    isBlock2017Visible: { type: Boolean, default: false },
-    isBlock2018Visible: { type: Boolean, default: false },
-    isBlock2019Visible: { type: Boolean, default: false },
-    isBlock2020Visible: { type: Boolean, default: false },
-    isBlock2021Visible: { type: Boolean, default: false },
-    value: { type: Number, required: true },
-    href: { type: String },
-    title: { type: String },
-    date: { type: String },
+    title: { type: String, required: true },
+    date: { type: String, required: true },
+    id: { type: Number, required: true },
   },
   computed: {
-    id() {
-      return String(this.value);
-    },
-    // pathUrl() {
-    //   // return `{ path: ' /new/:${this.id}' }`;
-    // },
-  },
-
-  methods: {
-    emitValue() {
-      this.valueRadio = this.value;
-      // console.log(this.valueRadio);
-      this.$emit('emitValue', this.valueRadio);
+    formattedDate() {
+      return format(new Date(this.date), 'd MMMM Y г.');
     },
   },
 };

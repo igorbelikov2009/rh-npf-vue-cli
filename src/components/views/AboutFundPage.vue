@@ -1,9 +1,9 @@
 <template>
   <div class="about-fund">
     <TopBlock
-      :image="topBlock.image"
-      :heading="topBlock.heading"
-      :subheading="topBlock.subheading"
+      image="/images/aboutFund/aboutFundTop.jpg"
+      heading="О фонде"
+      subheading='На сегодняшний день АО НПФ "Ренессанс пенсии" – один из крупнейших и надежных негосударственных пенсионных фондов на рынке негосударственного пенсионного обеспечения (НПО).'
     />
 
     <section class="about-fund__about-us">
@@ -28,23 +28,23 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import aboutFundImage from '../../../public/images/aboutFund/aboutFundTop.jpg';
+// import aboutFundImage from '../../../public/images/aboutFund/aboutFundTop.jpg';
 import AboutFundBlock from '@/components/aboutFundPage/AboutFundBlock.vue';
 import Statistics from '@/components/mainPage/statistics/Statistics.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'AboutFundPage',
-  data() {
-    return {
-      topBlock: {
-        image: aboutFundImage,
-        heading: 'О фонде',
-        subheading:
-          'На сегодняшний день АО НПФ "Ренессанс пенсии" – один из крупнейших и надежных негосударственных пенсионных фондов на рынке негосударственного пенсионного обеспечения (НПО).',
-      },
-    };
-  },
+  // data() {
+  //   return {
+  //     topBlock: {
+  //       // image: aboutFundImage,
+  //       // heading: 'О фонде',
+  //       subheading:
+  //         'На сегодняшний день АО НПФ "Ренессанс пенсии" – один из крупнейших и надежных негосударственных пенсионных фондов на рынке негосударственного пенсионного обеспечения (НПО).',
+  //     },
+  //   };
+  // },
 
   components: {
     TopMenu,

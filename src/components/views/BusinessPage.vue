@@ -1,9 +1,9 @@
 <template>
   <div class="business-page">
     <TopBlock
-      :image="topBlock.image"
-      :heading="topBlock.heading"
-      :subheading="topBlock.subheading"
+      image="/images/businnes/businnes.jpg"
+      heading="Для бизнеса"
+      subheading="Пенсионная программа – современный, эффективный инструмент с уникальным набором опций и льгот, позволяющий влиять на мотивацию  сотрудников и управлять результативностью бизнеса, создавая для компании положительный имидж и характеризуя ее как социально ответственного работодателя."
     />
 
     <BusinessCarouselBlock />
@@ -20,7 +20,7 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import businessImage from '../../../public/images/businnes/businnes.jpg';
+// import businessImage from '../../../public/images/businnes/businnes.jpg';
 import BusinessCarouselBlock from '@/components/businnessPage/BusinessCarouselBlock.vue';
 import BusinessProgramm from '@/components/businnessPage/BusinessProgramm.vue';
 import BusinnesImages from '@/components/businnessPage/BusinnesImages.vue';
@@ -31,16 +31,16 @@ import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'BusinessPage',
-  data() {
-    return {
-      topBlock: {
-        image: businessImage,
-        heading: 'Для бизнеса',
-        subheading:
-          'Пенсионная программа – современный, эффективный инструмент с уникальным набором опций и льгот, позволяющий влиять на мотивацию  сотрудников и управлять результативностью бизнеса, создавая для компании положительный имидж и характеризуя ее как социально ответственного работодателя.',
-      },
-    };
-  },
+  // data() {
+  //   return {
+  //     topBlock: {
+  //       // image: businessImage,
+  //       // heading: 'Для бизнеса',
+  //       subheading:
+  //         'Пенсионная программа – современный, эффективный инструмент с уникальным набором опций и льгот, позволяющий влиять на мотивацию  сотрудников и управлять результативностью бизнеса, создавая для компании положительный имидж и характеризуя ее как социально ответственного работодателя.',
+  //     },
+  //   };
+  // },
 
   components: {
     TopMenu,

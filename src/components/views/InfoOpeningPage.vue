@@ -1,6 +1,6 @@
 <template>
   <div class="info-opening">
-    <TopBlock :image="topBlock.image" :heading="topBlock.heading" />
+    <TopBlock image="images/infoOpening/infoOpening.jpg" heading="Раскрытие информации" />
     <OverallInfo />
     <FundPerformance />
     <DocumentsOfTitle />
@@ -35,7 +35,7 @@
 <script>
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-import infoOpeningImage from '../../../public/images/infoOpening/infoOpening.jpg';
+// import infoOpeningImage from '../../../public/images/infoOpening/infoOpening.jpg';
 import OverallInfo from '@/components/InfoOpeningPage/OverallInfo.vue';
 import FundPerformance from '@/components/InfoOpeningPage/FundPerformance.vue';
 import DocumentsOfTitle from '@/components/InfoOpeningPage/DocumentsOfTitle';
@@ -56,10 +56,10 @@ export default {
 
   data() {
     return {
-      topBlock: {
-        image: infoOpeningImage,
-        heading: 'Раскрытие информации',
-      },
+      // topBlock: {
+      //   // image: infoOpeningImage,
+      //   heading: 'Раскрытие информации',
+      // },
 
       hidingArchive: {
         isHidingArchiveVisible: false,
