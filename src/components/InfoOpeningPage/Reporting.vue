@@ -3,13 +3,30 @@
     <div class="reporting__container">
       <h1 class="reporting__heading">Отчетность</h1>
 
-      <RadioSwitching
-        :isHidingBlockVisible="radioSwitching.ifHidingBlockVisible"
-        :isHasButtonToArchive="radioSwitching.isHasButtonToArchive"
-        :switchItems="switchItems"
-        @onChangeRadioSwitching="onChangeRadioSwitching"
-        @onClickArchiveReporting="onClickArchiveReporting"
-      />
+      <div class="reporting__flex-container">
+        <div class="reporting__select">
+          <GuiSelect
+            :value="radioValue"
+            :isSelectionOptionsBlock="ifSelectionOptionsBlock"
+            :selectionElements="switchItems"
+            @onClickSelectionController="onClickSelectionController"
+            @onChangeSelectionBlock="onChangeSelectionBlock"
+            @onClickSelectionBlock="onClickSelectionBlock"
+          />
+        </div>
+
+        <div class="reporting__adaptive-radio">
+          <GuiAdaptiveRadio
+            :value="radioValue"
+            :radioElements="switchItems"
+            @onChangeRadio="onChangeRadio"
+          />
+        </div>
+
+        <div class="reporting__container-button" @click="onClickArchiveReporting">
+          <GuiButtonToArchive />
+        </div>
+      </div>
 
       <div>
         <Reports
@@ -24,46 +41,45 @@
 </template>
 
 <script>
-import RadioSwitching from '@/components/gui/RadioSwitching.vue';
+import GuiSelect from '@/components/gui/guiSelect/GuiSelect.vue';
+import GuiAdaptiveRadio from '@/components/gui/guiRadio/GuiAdaptiveRadio.vue';
 import Reports from '@/components/InfoOpeningPage/Reports.vue';
-import ButtonToArchive from '@/components/gui/ButtonToArchive.vue';
+import GuiButtonToArchive from '@/components/gui/guiButton/GuiButtonToArchive.vue';
 
 export default {
   name: 'Reporting',
   data() {
     return {
-      radioSwitching: {
-        ifHidingBlockVisible: false,
-        isHasButtonToArchive: true,
-      },
       radioValue: 0,
+      ifSelectionOptionsBlock: false,
+
       switchItems: [
         {
-          name: '2021',
+          date: '2021',
           value: 0,
         },
         {
-          name: '2020',
+          date: '2020',
           value: 1,
         },
         {
-          name: '2019',
+          date: '2019',
           value: 2,
         },
         {
-          name: '2018',
+          date: '2018',
           value: 3,
         },
         {
-          name: '2017',
+          date: '2017',
           value: 4,
         },
         {
-          name: '2016',
+          date: '2016',
           value: 5,
         },
         {
-          name: '2015',
+          date: '2015',
           value: 6,
         },
       ],
@@ -1013,17 +1029,31 @@ export default {
   },
 
   methods: {
-    onChangeRadioSwitching(radioValue) {
+    onChangeRadio(radioValue) {
+      this.radioValue = radioValue;
+      // console.log('OK, radioValue: ' + this.radioValue);
+    },
+    onClickSelectionController() {
+      this.ifSelectionOptionsBlock = !this.ifSelectionOptionsBlock;
+      // console.log('ifSelectionOptionsBlock: ' + this.ifSelectionOptionsBlock);
+    },
+    onChangeSelectionBlock(radioValue) {
       this.radioValue = radioValue;
       // console.log('radioValue: ' + this.radioValue);
     },
+    onClickSelectionBlock() {
+      this.ifSelectionOptionsBlock = false;
+    },
+
     onClickArchiveReporting() {
       this.$emit('onClickArchiveReporting');
     },
   },
   components: {
-    RadioSwitching,
-    ButtonToArchive,
+    GuiSelect,
+    GuiAdaptiveRadio,
+    // RadioSwitching,
+    GuiButtonToArchive,
     Reports,
   },
 };
@@ -1055,6 +1085,48 @@ export default {
       font-size: 34px;
       line-height: 48px;
       margin-bottom: 48px;
+    }
+  }
+
+  &__flex-container {
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: 576px) {
+      margin-bottom: 48px;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    position: relative;
+    display: block;
+
+    @media screen and (min-width: 576px) {
+      display: none;
+    }
+  }
+
+  &__adaptive-radio {
+    position: relative;
+    display: none;
+
+    @media screen and (min-width: 576px) {
+      display: block;
+    }
+  }
+
+  &__container-button {
+    width: 96px;
+    margin-left: 0;
+
+    @media screen and (min-width: 576px) {
+      margin-left: 24px;
+      margin-top: 0;
     }
   }
 }

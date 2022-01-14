@@ -1,12 +1,12 @@
 <template>
-  <div class="selection-options__container" @click="onClickSelectionBlock">
-    <div class="selection-options__scrollable-block">
-      <SelectionOption
-        v-for="(selectionItem, index) in selectionItems"
+  <div class="selection-options-block" @click="onClickSelectionBlock">
+    <div class="selection-options-block__scrollable-block">
+      <GuiSelectionOption
+        v-for="(selectionElement, index) in selectionElements"
         :key="index"
-        :name="selectionItem.name"
-        :value="selectionItem.value"
-        :isActive="selectionItem.value === selectionValue"
+        :date="selectionElement.date"
+        :value="selectionElement.value"
+        :isActive="selectionElement.value === selectionValue"
         @change="onChangeSelectionBlock"
       />
     </div>
@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import SelectionOption from '@/components/gui/SelectionOption.vue';
+import GuiSelectionOption from '@/components/gui/guiSelect/GuiSelectionOption.vue';
 
 export default {
-  name: 'SelectionOptionsBlock',
+  name: 'GuiSelectionOptionsBlock',
 
   data() {
     return {
@@ -26,8 +26,8 @@ export default {
   },
 
   props: {
-    selectionItems: { type: Array },
-    name: { type: String },
+    selectionElements: { type: Array },
+    date: { type: String },
     value: { type: Number },
   },
 
@@ -43,18 +43,17 @@ export default {
   },
 
   components: {
-    SelectionOption,
+    GuiSelectionOption,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.selection-options {
-  &__container {
-    margin: 0 auto;
-    box-shadow: 1px 3px 5px 2px #d7d7d7;
-    overflow: hidden;
-  }
+// selection-options-block
+.selection-options-block {
+  margin: 0 auto;
+  box-shadow: 1px 3px 5px 2px #d7d7d7;
+  overflow: hidden;
 
   &__scrollable-block {
     height: 224px;

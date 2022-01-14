@@ -16,7 +16,7 @@
         </a>
 
         <div class="asset-value-rules__container-button" @click="onClickArchiveAssetValueRules">
-          <ButtonToArchive />
+          <GuiButtonToArchive />
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import ButtonToArchive from '../../components/gui/ButtonToArchive.vue';
+import GuiButtonToArchive from '@/components/gui/guiButton/GuiButtonToArchive.vue';
 
 export default {
   name: 'AssetValueRules',
@@ -37,7 +37,7 @@ export default {
   },
 
   components: {
-    ButtonToArchive,
+    GuiButtonToArchive,
   },
 };
 </script>

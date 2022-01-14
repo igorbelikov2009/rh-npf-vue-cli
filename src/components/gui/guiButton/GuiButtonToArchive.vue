@@ -4,7 +4,8 @@
 
 <script>
 export default {
-  name: 'ButtonToArchive',
+  name: 'GuiButtonToArchive',
+  //   import GuiButtonToArchive from '@/components/gui/guiButton/GuiButtonToArchive.vue';
 };
 </script>
 
@@ -15,7 +16,6 @@ export default {
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
-  // text-align: center;
   color: #50287d;
   background-color: #fff;
   border: 2px solid #50287d;

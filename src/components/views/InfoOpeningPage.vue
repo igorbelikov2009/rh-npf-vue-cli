@@ -1,17 +1,26 @@
 <template>
   <div class="info-opening">
     <TopBlock image="images/infoOpening/infoOpening.jpg" heading="Раскрытие информации" />
+
     <OverallInfo />
+
     <FundPerformance />
+
     <DocumentsOfTitle />
+
     <StructureAndRules
       @onClickArchiveShareholders="onClickArchiveShareholders"
       @onClickArchivePension="onClickArchivePension"
     />
+
     <Reporting @onClickArchiveReporting="onClickArchiveReporting" />
+
     <PortfolioStructure />
+
     <IncomeChangeRegulation />
+
     <AssetValueRules @onClickArchiveAssetValueRules="onClickArchiveAssetValueRules" />
+
     <HidingArchive
       :isHidingArchiveVisible="hidingArchive.isHidingArchiveVisible"
       :isArchiveShareholdersVisible="hidingArchive.isArchiveShareholdersVisible"
@@ -20,10 +29,13 @@
       :isArchiveAssetValueRulesVisible="hidingArchive.isArchiveAssetValueRulesVisible"
       @onClickHidingArchive="onClickHidingArchive"
     />
+
     <Other />
+
     <ManagementCompanies />
+
     <SpecDepository />
-    <Interactions />
+
     <Notifics />
 
     <TopMenu />
@@ -48,7 +60,6 @@ import AssetValueRules from '@/components/InfoOpeningPage/AssetValueRules.vue';
 import Other from '@/components/InfoOpeningPage/Other.vue';
 import ManagementCompanies from '@/components/InfoOpeningPage/ManagementCompanies.vue';
 import SpecDepository from '@/components/InfoOpeningPage/SpecDepository.vue';
-import Interactions from '@/components/InfoOpeningPage/Interactions.vue';
 import Notifics from '@/components/InfoOpeningPage/Notifics.vue';
 import Footer from '@/components/Footer.vue';
 export default {
@@ -119,7 +130,6 @@ export default {
     Other,
     ManagementCompanies,
     SpecDepository,
-    Interactions,
     Notifics,
     Footer,
   },

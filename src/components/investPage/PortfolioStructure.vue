@@ -2,12 +2,12 @@
   <section class="portfolie-structure">
     <h1 class="portfolie-structure__heading">Структура портфеля</h1>
 
-    <div class="portfolie-structure__selection" ref="selectionTopBlock">
-      <SelectionTopBlock
+    <div class="portfolie-structure__selection" ref="selectController">
+      <GuiSelectController
         :ifSelectionOptionsBlock="isSelectionBlockVisible"
-        :value="selectionValue"
-        :selectionItems="selectionItems"
-        @onClickSelectionTopBlock="onClickSelectionTopBlock"
+        :value="controllerValue"
+        :selectionElements="selectionElements"
+        @onClickSelectionController="onClickSelectionController"
       />
     </div>
 
@@ -17,7 +17,7 @@
       <PortfolioStructureAsPercentag
         v-for="(percentBlock, index) in percentBlocks"
         :key="index"
-        :isContainerVisible="selectionValue === index"
+        :isContainerVisible="controllerValue === index"
         :percent="percentBlock"
       />
     </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import SelectionTopBlock from '@/components/gui/SelectionTopBlock.vue';
+import GuiSelectController from '@/components/gui/guiSelect/GuiSelectController.vue';
 import PortfolioStructureGraph from '@/components/investPage/PortfolioStructureGraph.vue';
 import PortfolioStructureAsPercentag from '@/components/investPage/PortfolioStructureAsPercentag.vue';
 
@@ -34,11 +34,11 @@ export default {
 
   data() {
     return {
-      selectionTopBlockTop: 0,
-      selectionTopBlockBottom: 0,
-      selectionTopBlockLeft: 0,
-      selectionTopBlockWidth: 0,
-      selectionTopBlockHeight: 0,
+      selectControllerTop: 0,
+      selectControllerBottom: 0,
+      selectControllerLeft: 0,
+      selectControllerWidth: 0,
+      selectControllerHeight: 0,
 
       percentBlocks: [
         {
@@ -246,10 +246,10 @@ export default {
   },
 
   props: {
-    selectionValue: { type: Number, required: true },
     isSelectionBlockVisible: { type: Boolean, default: false },
-    selectionItems: { type: Array },
-    name: { type: String },
+    controllerValue: { type: Number, required: true },
+    selectionElements: { type: Array },
+    date: { type: String },
   },
 
   created() {
@@ -261,32 +261,32 @@ export default {
   },
 
   methods: {
-    onClickSelectionTopBlock() {
-      this.$emit('onClickSelectionTopBlock');
+    onClickSelectionController() {
+      this.$emit('onClickSelectionController');
     },
     handleScroll() {
-      this.getSelectionTopBlockCoords();
+      this.getSelectControllerCoords();
       this.$emit(
         'handleScroll',
-        this.selectionTopBlockTop,
-        this.selectionTopBlockBottom,
-        this.selectionTopBlockLeft,
-        this.selectionTopBlockWidth,
-        this.selectionTopBlockHeight
+        this.selectControllerTop,
+        this.selectControllerBottom,
+        this.selectControllerLeft,
+        this.selectControllerWidth,
+        this.selectControllerHeight
       );
     },
-    getSelectionTopBlockCoords() {
-      const selectionTopBlock = this.$refs.selectionTopBlock;
-      this.selectionTopBlockTop = selectionTopBlock.getBoundingClientRect().top;
-      this.selectionTopBlockBottom = selectionTopBlock.getBoundingClientRect().bottom;
-      this.selectionTopBlockLeft = selectionTopBlock.getBoundingClientRect().left;
-      this.selectionTopBlockWidth = selectionTopBlock.getBoundingClientRect().width;
-      this.selectionTopBlockHeight = selectionTopBlock.getBoundingClientRect().height;
+    getSelectControllerCoords() {
+      const selectController = this.$refs.selectController;
+      this.selectControllerTop = selectController.getBoundingClientRect().top;
+      this.selectControllerBottom = selectController.getBoundingClientRect().bottom;
+      this.selectControllerLeft = selectController.getBoundingClientRect().left;
+      this.selectControllerWidth = selectController.getBoundingClientRect().width;
+      this.selectControllerHeight = selectController.getBoundingClientRect().height;
     },
   },
 
   components: {
-    SelectionTopBlock,
+    GuiSelectController,
     PortfolioStructureGraph,
     PortfolioStructureAsPercentag,
   },

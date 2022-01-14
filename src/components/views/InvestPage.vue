@@ -12,17 +12,17 @@
     <PortfolioStructure
       id="portfolioStructure"
       :isSelectionBlockVisible="firstSelectionBlock.isVisible"
-      :selectionValue="commonSelectionBlocks.selectionValue"
-      :selectionItems="commonSelectionBlocks.selectionItems"
-      @onClickSelectionTopBlock="onClickFirstSelectionTopBlock"
+      :controllerValue="firstSelectionBlock.selectionValue"
+      :selectionElements="firstSelectionElements"
+      @onClickSelectionController="onClickFirstSelectController"
       @handleScroll="onScrollPortfolioStructure"
     />
 
     <CompositionOfFunds
       :isSelectionBlockVisible="secondSelectionBlock.isVisible"
-      :selectionValue="commonSelectionBlocks.selectionValue"
-      :selectionItems="commonSelectionBlocks.selectionItems"
-      @onClickSelectionTopBlock="onClickSecondSelectionTopBlock"
+      :controllerValue="secondSelectionBlock.selectionValue"
+      :selectionElements="secondSelectionElements"
+      @onClickSelectionController="onClickSecondSelectController"
       @handleScroll="onScrollCompositionOfFunds"
     />
 
@@ -43,8 +43,8 @@
         'selection-options-block_hide': !firstSelectionBlock.isVisible,
       }"
     >
-      <SelectionOptionsBlock
-        :selectionItems="commonSelectionBlocks.selectionItems"
+      <GuiSelectionOptionsBlock
+        :selectionElements="firstSelectionElements"
         @onClickSelectionBlock="onClickFirstSelectionBlock"
         @onChangeSelectionBlock="onChangeFirstSelectionBlock"
       />
@@ -58,8 +58,8 @@
         'selection-options-block_hide': !secondSelectionBlock.isVisible,
       }"
     >
-      <SelectionOptionsBlock
-        :selectionItems="commonSelectionBlocks.selectionItems"
+      <GuiSelectionOptionsBlock
+        :selectionElements="secondSelectionElements"
         @onClickSelectionBlock="onClickSecondSelectionBlock"
         @onChangeSelectionBlock="onChangeSecondSelectionBlock"
       />
@@ -68,9 +68,10 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
+
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import TopBlock from '@/components/general/TopBlock.vue';
-// import investImage from '/public/images/invest/InvestTop.jpg';
 import InvestmentRules from '@/components/investPage/InvestmentRules.vue';
 import PortfolioStructure from '@/components/investPage/PortfolioStructure.vue';
 import CompositionOfFunds from '@/components/investPage/CompositionOfFunds.vue';
@@ -78,148 +79,376 @@ import ConvenienceArchives from '@/components/investPage/ConvenienceArchives.vue
 import ConvenienceDescription from '@/components/investPage/ConvenienceDescription.vue';
 
 import Footer from '@/components/Footer.vue';
-import SelectionOptionsBlock from '@/components/gui/SelectionOptionsBlock.vue';
+import GuiSelectionOptionsBlock from '@/components/gui/guiSelect/GuiSelectionOptionsBlock.vue';
+
 export default {
   name: 'InvestPage',
   data() {
     return {
-      // topBlock: {
-      //   // image: investImage,
-      //   heading: 'Инвестиционная',
-      //   headingSpan: 'деятельность',
-      //   subheading:
-      //     'АО НПФ «Ренессанс пенсии» осуществляет инвестирование пенсионных резервов в интересах участников Фонда на принципах сохранности и надежности, в соответствии с действующим законодательством РФ и корпоративной инвестиционной политикой',
-
-      // },
       clientHeight: 0,
 
-      firstSelectionTopBlock: {
+      firstSelectController: {
         top: 0,
         bottom: 0,
         height: 0,
+        width: 0,
+        left: 0,
+        selectionElements: [
+          {
+            date: '2021-11-30T09:00:00.000Z',
+            value: 0,
+          },
+          {
+            date: '2021-10-31T09:00:00.000Z',
+            value: 1,
+          },
+          {
+            date: '2021-09-30T09:00:00.000Z',
+            value: 2,
+          },
+          {
+            date: '2021-08-31T09:00:00.000Z',
+            value: 3,
+          },
+          {
+            date: '2021-07-31T09:00:00.000Z',
+            value: 4,
+          },
+          {
+            date: '2021-06-30T09:00:00.000Z',
+            value: 5,
+          },
+          {
+            date: '2021-05-31T09:00:00.000Z',
+            value: 6,
+          },
+          {
+            date: '2021-04-30T09:00:00.000Z',
+            value: 7,
+          },
+          {
+            date: '2021-03-31T09:00:00.000Z',
+            value: 8,
+          },
+          {
+            date: '2021-02-28T09:00:00.000Z',
+            value: 9,
+          },
+          {
+            date: '2021-01-31T09:00:00.000Z',
+            value: 10,
+          },
+          {
+            date: '2020-12-31T09:00:00.000Z',
+            value: 11,
+          },
+          {
+            date: '2020-11-30T09:00:00.000Z',
+            value: 12,
+          },
+          {
+            date: '2020-10-31T09:00:00.000Z',
+            value: 13,
+          },
+          {
+            date: '2020-09-30T09:00:00.000Z',
+            value: 14,
+          },
+          {
+            date: '2020-08-31T09:00:00.000Z',
+            value: 15,
+          },
+          {
+            date: '2020-07-31T09:00:00.000Z',
+            value: 16,
+          },
+          {
+            date: '2020-06-30T09:00:00.000Z',
+            value: 17,
+          },
+          {
+            date: '2020-05-31T09:00:00.000Z',
+            value: 18,
+          },
+          {
+            date: '2020-04-30T09:00:00.000Z',
+            value: 19,
+          },
+          {
+            date: '2020-03-31T09:00:00.000Z',
+            value: 20,
+          },
+          {
+            date: '2020-02-29T09:00:00.000Z',
+            value: 21,
+          },
+          {
+            date: '2020-01-31T09:00:00.000Z',
+            value: 22,
+          },
+          {
+            date: '2019-12-31T09:00:00.000Z',
+            value: 23,
+          },
+          {
+            date: '2019-11-30T09:00:00.000Z',
+            value: 24,
+          },
+        ],
+
+        // selectionElements: [
+        //   {
+        //     date: '2021-11-30T09:00:00.000Z',
+        //     value: '2021-11-30T09:00:00.000Z',
+        //     id: 0,
+        //   },
+        //   {
+        //     date: '2021-10-31T09:00:00.000Z',
+        //     value: '2021-10-31T09:00:00.000Z',
+        //     id: 1,
+        //   },
+        //   {
+        //     date: '2021-09-30T09:00:00.000Z',
+        //     value: 2,
+        //     id: 0,
+        //   },
+        //   {
+        //     date: '2021-08-31T09:00:00.000Z',
+        //     value: '2021-08-31T09:00:00.000Z',
+        //     id: 3,
+        //   },
+        //   {
+        //     date: '2021-07-31T09:00:00.000Z',
+        //     value: '2021-07-31T09:00:00.000Z',
+        //     id: 4,
+        //   },
+        //   {
+        //     date: '2021-06-30T09:00:00.000Z',
+        //     value: '2021-06-30T09:00:00.000Z',
+        //     id: 5,
+        //   },
+        //   {
+        //     date: '2021-05-31T09:00:00.000Z',
+        //     value: '2021-05-31T09:00:00.000Z',
+        //     id: 6,
+        //   },
+        //   {
+        //     date: '2021-04-30T09:00:00.000Z',
+        //     value: '2021-04-30T09:00:00.000Z',
+        //     id: 7,
+        //   },
+        //   {
+        //     date: '2021-03-31T09:00:00.000Z',
+        //     value: '2021-03-31T09:00:00.000Z',
+        //     id: 8,
+        //   },
+        //   {
+        //     date: '2021-02-28T09:00:00.000Z',
+        //     value: '2021-02-28T09:00:00.000Z',
+        //     id: 9,
+        //   },
+        //   {
+        //     date: '2021-01-31T09:00:00.000Z',
+        //     value: '2021-01-31T09:00:00.000Z',
+        //     id: 10,
+        //   },
+        //   {
+        //     date: '2020-12-31T09:00:00.000Z',
+        //     value: '2020-12-31T09:00:00.000Z',
+        //     id: 11,
+        //   },
+        //   {
+        //     date: '2020-11-30T09:00:00.000Z',
+        //     value: '2020-11-30T09:00:00.000Z',
+        //     id: 12,
+        //   },
+        //   {
+        //     date: '2020-10-31T09:00:00.000Z',
+        //     value: '2020-10-31T09:00:00.000Z',
+        //     id: 13,
+        //   },
+        //   {
+        //     date: '2020-09-30T09:00:00.000Z',
+        //     value: '2020-09-30T09:00:00.000Z',
+        //     id: 14,
+        //   },
+        //   {
+        //     date: '2020-08-31T09:00:00.000Z',
+        //     value: '2020-08-31T09:00:00.000Z',
+        //     id: 15,
+        //   },
+        //   {
+        //     date: '2020-07-31T09:00:00.000Z',
+        //     value: '2020-07-31T09:00:00.000Z',
+        //     id: 16,
+        //   },
+        //   {
+        //     date: '2020-06-30T09:00:00.000Z',
+        //     value: '2020-06-30T09:00:00.000Z',
+        //     id: 17,
+        //   },
+        //   {
+        //     date: '2020-05-31T09:00:00.000Z',
+        //     value: '2020-05-31T09:00:00.000Z',
+        //     id: 18,
+        //   },
+        //   {
+        //     date: '2020-04-30T09:00:00.000Z',
+        //     value: '2020-04-30T09:00:00.000Z',
+        //     id: 19,
+        //   },
+        //   {
+        //     date: '2020-03-31T09:00:00.000Z',
+        //     value: '2020-03-31T09:00:00.000Z',
+        //     id: 20,
+        //   },
+        //   {
+        //     date: '2020-02-29T09:00:00.000Z',
+        //     value: '2020-02-29T09:00:00.000Z',
+        //     id: 21,
+        //   },
+        //   {
+        //     date: '2020-01-31T09:00:00.000Z',
+        //     value: '2020-01-31T09:00:00.000Z',
+        //     id: 22,
+        //   },
+        //   {
+        //     date: '2019-12-31T09:00:00.000Z',
+        //     value: '2019-12-31T09:00:00.000Z',
+        //     id: 23,
+        //   },
+        //   {
+        //     date: '2019-11-30T09:00:00.000Z',
+        //     value: '2019-11-30T09:00:00.000Z',
+        //     id: 24,
+        //   },
+        // ],
       },
       firstSelectionBlock: {
+        selectionValue: 0,
+        height: 0,
         top: 0,
         isVisible: false,
       },
 
-      secondSelectionTopBlock: {
+      secondSelectController: {
         top: 0,
         bottom: 0,
         height: 0,
+        width: 0,
+        left: 0,
+        selectionElements: [
+          {
+            date: '2021-11-30T09:00:00.000Z',
+            value: 0,
+          },
+          {
+            date: '2021-10-31T09:00:00.000Z',
+            value: 1,
+          },
+          {
+            date: '2021-09-30T09:00:00.000Z',
+            value: 2,
+          },
+          {
+            date: '2021-08-31T09:00:00.000Z',
+            value: 3,
+          },
+          {
+            date: '2021-07-31T09:00:00.000Z',
+            value: 4,
+          },
+          {
+            date: '2021-06-30T09:00:00.000Z',
+            value: 5,
+          },
+          {
+            date: '2021-05-31T09:00:00.000Z',
+            value: 6,
+          },
+          {
+            date: '2021-04-30T09:00:00.000Z',
+            value: 7,
+          },
+          {
+            date: '2021-03-31T09:00:00.000Z',
+            value: 8,
+          },
+          {
+            date: '2021-02-28T09:00:00.000Z',
+            value: 9,
+          },
+          {
+            date: '2021-01-31T09:00:00.000Z',
+            value: 10,
+          },
+          {
+            date: '2020-12-31T09:00:00.000Z',
+            value: 11,
+          },
+          {
+            date: '2020-11-30T09:00:00.000Z',
+            value: 12,
+          },
+          {
+            date: '2020-10-31T09:00:00.000Z',
+            value: 13,
+          },
+          {
+            date: '2020-09-30T09:00:00.000Z',
+            value: 14,
+          },
+          {
+            date: '2020-08-31T09:00:00.000Z',
+            value: 15,
+          },
+          {
+            date: '2020-07-31T09:00:00.000Z',
+            value: 16,
+          },
+          {
+            date: '2020-06-30T09:00:00.000Z',
+            value: 17,
+          },
+          {
+            date: '2020-05-31T09:00:00.000Z',
+            value: 18,
+          },
+          {
+            date: '2020-04-30T09:00:00.000Z',
+            value: 19,
+          },
+          {
+            date: '2020-03-31T09:00:00.000Z',
+            value: 20,
+          },
+          {
+            date: '2020-02-29T09:00:00.000Z',
+            value: 21,
+          },
+          {
+            date: '2020-01-31T09:00:00.000Z',
+            value: 22,
+          },
+          {
+            date: '2019-12-31T09:00:00.000Z',
+            value: 23,
+          },
+          {
+            date: '2019-11-30T09:00:00.000Z',
+            value: 24,
+          },
+        ],
       },
       secondSelectionBlock: {
+        selectionValue: 0,
+        height: 0,
         top: 0,
         isVisible: false,
       },
 
       commonSelectionBlocks: {
-        width: 0,
-        left: 0,
         height: 0,
-        selectionValue: 0,
-        selectionItems: [
-          {
-            name: '30 ноября 2021 г.',
-            value: 0,
-          },
-          {
-            name: '31 октября 2021 г.',
-            value: 1,
-          },
-          {
-            name: '30 сентября 2021 г.',
-            value: 2,
-          },
-          {
-            name: '31 августа 2021 г.',
-            value: 3,
-          },
-          {
-            name: '31 июля 2021 г.',
-            value: 4,
-          },
-          {
-            name: '30 июня 2021 г.',
-            value: 5,
-          },
-          {
-            name: '31 мая 2021 г.',
-            value: 6,
-          },
-          {
-            name: '30 апреля 2021 г.',
-            value: 7,
-          },
-          {
-            name: '31 марта 2021 г.',
-            value: 8,
-          },
-          {
-            name: '28 февраля 2021 г.',
-            value: 9,
-          },
-          {
-            name: '31 января 2021 г.',
-            value: 10,
-          },
-          {
-            name: '31 декабря 2020 г.',
-            value: 11,
-          },
-          {
-            name: '30 ноября 2020 г.',
-            value: 12,
-          },
-          {
-            name: '31 октября 2020 г.',
-            value: 13,
-          },
-          {
-            name: '30 сентября 2020 г.',
-            value: 14,
-          },
-          {
-            name: '31 августа 2020 г.',
-            value: 15,
-          },
-          {
-            name: '31 июля 2020 г.',
-            value: 16,
-          },
-          {
-            name: '30 июня 2020 г.',
-            value: 17,
-          },
-          {
-            name: '31 мая 2020 г.',
-            value: 18,
-          },
-          {
-            name: '30 апреля 2020 г.',
-            value: 19,
-          },
-          {
-            name: '31 марта 2020 г. ',
-            value: 20,
-          },
-          {
-            name: '29 февраля 2020 г.',
-            value: 21,
-          },
-          {
-            name: '31 января 2020 г.',
-            value: 22,
-          },
-          {
-            name: '31 декабря 2019 г.',
-            value: 23,
-          },
-          {
-            name: '30 ноября 2019 г.',
-            value: 24,
-          },
-        ],
       },
     };
   },
@@ -228,17 +457,29 @@ export default {
     firstSelectionBlockStyle() {
       return {
         top: `${this.firstSelectionBlock.top}px`,
-        left: `${this.commonSelectionBlocks.left + 6}px`,
-        width: `${this.commonSelectionBlocks.width - 12}px`,
+        left: `${this.firstSelectController.left + 6}px`,
+        width: `${this.firstSelectController.width - 12}px`,
       };
     },
     secondSelectionBlockStyle() {
       return {
         top: `${this.secondSelectionBlock.top}px`,
-        left: `${this.commonSelectionBlocks.left + 6}px`,
-        width: `${this.commonSelectionBlocks.width - 12}px`,
+        left: `${this.secondSelectController.left + 6}px`,
+        width: `${this.secondSelectController.width - 12}px`,
       };
     },
+    //
+    firstSelectionElements() {
+      return this.firstSelectController.selectionElements
+        .map(item => format(new Date(item.date), 'd MMMM Y г.'))
+        .map((item, index) => ({ date: String(item), value: index }));
+    },
+    secondSelectionElements() {
+      return this.secondSelectController.selectionElements
+        .map(item => format(new Date(item.date), 'd MMMM Y г.'))
+        .map((item, index) => ({ date: String(item), value: index }));
+    },
+    //
   },
 
   mounted() {
@@ -246,15 +487,15 @@ export default {
   },
 
   methods: {
-    onClickFirstSelectionTopBlock() {
+    onClickFirstSelectController() {
       this.firstSelectionBlock.isVisible = !this.firstSelectionBlock.isVisible;
       this.secondSelectionBlock.isVisible = false;
-      this.firstSelectionBlock.top = this.firstSelectionBlock.bottom;
+      this.firstSelectionBlock.top = this.firstSelectController.bottom;
     },
-    onClickSecondSelectionTopBlock() {
+    onClickSecondSelectController() {
       this.secondSelectionBlock.isVisible = !this.secondSelectionBlock.isVisible;
       this.firstSelectionBlock.isVisible = false;
-      this.secondSelectionBlock.top = this.secondSelectionTopBlock.bottom;
+      this.secondSelectionBlock.top = this.secondSelectController.bottom;
     },
 
     onClickFirstSelectionBlock() {
@@ -265,11 +506,10 @@ export default {
     },
 
     onChangeFirstSelectionBlock(selectionValue) {
-      this.commonSelectionBlocks.selectionValue = selectionValue;
-      // console.log('selectionValue:' + this.commonSelectionBlocks.selectionValue);
+      this.firstSelectionBlock.selectionValue = selectionValue;
     },
     onChangeSecondSelectionBlock(selectionValue) {
-      this.commonSelectionBlocks.selectionValue = selectionValue;
+      this.secondSelectionBlock.selectionValue = selectionValue;
     },
 
     getClientHeight() {
@@ -281,55 +521,53 @@ export default {
       this.commonSelectionBlocks.height = Math.round(
         selectionOptionBlock.getBoundingClientRect().height
       );
-      // console.log('height: ' + this.commonSelectionBlocks.height);
     },
 
     onScrollPortfolioStructure(top, bottom, left, width, height) {
-      this.firstSelectionTopBlock.top = top;
-      this.firstSelectionTopBlock.bottom = bottom;
-      this.commonSelectionBlocks.left = left;
-      this.commonSelectionBlocks.width = width;
-      this.firstSelectionTopBlock.height = height;
       this.getFirstSelectionBlockCoordsTop();
-      this.getClientHeight();
-      // console.log('height: ' + this.commonSelectionBlocks.height);
-    },
 
+      this.firstSelectController.top = top;
+      this.firstSelectController.bottom = bottom;
+      this.firstSelectController.left = left;
+      this.firstSelectController.width = width;
+      this.firstSelectController.height = height;
+      this.getClientHeight();
+    },
     onScrollCompositionOfFunds(top, bottom, left, width, height) {
-      this.secondSelectionTopBlock.top = top;
-      this.secondSelectionTopBlock.bottom = bottom;
-      this.commonSelectionBlocks.left = left;
-      this.commonSelectionBlocks.width = width;
-      this.secondSelectionTopBlock.height = height;
+      this.secondSelectController.top = top;
+      this.secondSelectController.bottom = bottom;
+      this.secondSelectController.left = left;
+      this.secondSelectController.width = width;
+      this.secondSelectController.height = height;
       this.getSecondSelectionBlockCoordsTop();
       this.getClientHeight();
-      // console.log('height: ' + this.commonSelectionBlocks.height);
     },
+
     getFirstSelectionBlockCoordsTop() {
-      this.firstSelectionBlock.top = this.firstSelectionTopBlock.bottom;
-      if (this.firstSelectionTopBlock.bottom <= 0) {
+      this.firstSelectionBlock.top = this.firstSelectController.bottom;
+      if (this.firstSelectController.bottom <= 0) {
         this.firstSelectionBlock.top = 0;
       } else if (
-        this.firstSelectionTopBlock.top >= this.clientHeight - this.commonSelectionBlocks.height &&
-        this.firstSelectionTopBlock.bottom <= this.clientHeight
+        this.firstSelectController.top >= this.clientHeight - this.commonSelectionBlocks.height &&
+        this.firstSelectController.bottom <= this.clientHeight
       ) {
         this.firstSelectionBlock.top =
-          this.firstSelectionTopBlock.top - this.commonSelectionBlocks.height;
-      } else if (this.firstSelectionTopBlock.bottom >= this.clientHeight) {
+          this.firstSelectController.top - this.commonSelectionBlocks.height;
+      } else if (this.firstSelectController.bottom >= this.clientHeight) {
         this.firstSelectionBlock.top = this.clientHeight - this.commonSelectionBlocks.height;
       }
     },
     getSecondSelectionBlockCoordsTop() {
-      this.secondSelectionBlock.top = this.secondSelectionTopBlock.bottom;
-      if (this.secondSelectionTopBlock.bottom <= 0) {
+      this.secondSelectionBlock.top = this.secondSelectController.bottom;
+      if (this.secondSelectController.bottom <= 0) {
         this.secondSelectionBlock.top = 0;
       } else if (
-        this.secondSelectionTopBlock.top >= this.clientHeight - this.commonSelectionBlocks.height &&
-        this.secondSelectionTopBlock.bottom <= this.clientHeight
+        this.secondSelectController.top >= this.clientHeight - this.commonSelectionBlocks.height &&
+        this.secondSelectController.bottom <= this.clientHeight
       ) {
         this.secondSelectionBlock.top =
-          this.secondSelectionTopBlock.top - this.commonSelectionBlocks.height;
-      } else if (this.secondSelectionTopBlock.bottom >= this.clientHeight) {
+          this.secondSelectController.top - this.commonSelectionBlocks.height;
+      } else if (this.secondSelectController.bottom >= this.clientHeight) {
         this.secondSelectionBlock.top = this.clientHeight - this.commonSelectionBlocks.height;
       }
     },
@@ -343,9 +581,8 @@ export default {
     CompositionOfFunds,
     ConvenienceArchives,
     ConvenienceDescription,
-
     Footer,
-    SelectionOptionsBlock,
+    GuiSelectionOptionsBlock,
   },
 };
 </script>

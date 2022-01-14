@@ -3,7 +3,8 @@
     <div class="news__header">
       <h1 class="news__header-heading">{{ data.title }}</h1>
 
-      <p class="news__header-date">{{ data.date }}</p>
+      <!-- <p class="news__header-date">{{ data.date }}</p> -->
+      <p class="news__header-date">{{ formattedDate }}</p>
 
       <p v-for="(paragraph, index) in data.paragraphs" :key="index" class="news__paragraph">
         {{ paragraph }}
@@ -13,10 +14,17 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
+
 export default {
   name: 'NewsArticle',
   props: {
     data: Object,
+  },
+  computed: {
+    formattedDate() {
+      return format(new Date(this.data.date), 'd MMMM Y г.');
+    },
   },
 };
 </script>

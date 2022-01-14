@@ -4,12 +4,33 @@
     <TopMenu />
     <section class="news-page__news">
       <div class="news-page__container">
+        <div class="news-page__flex-container">
+          <div class="news-page__select">
+            <GuiSelect
+              :value="selectedYear"
+              :isSelectionOptionsBlock="ifSelectionOptionsBlock"
+              :selectionElements="radioYearsDuplicate"
+              @onClickSelectionController="onClickSelectionController"
+              @onChangeSelectionBlock="onChangeSelectionBlock"
+              @onClickSelectionBlock="onClickSelectionBlock"
+            />
+          </div>
+
+          <div class="news-page__adaptive-radio">
+            <GuiAdaptiveRadio
+              :value="selectedYear"
+              :radioElements="radioYearsDuplicate"
+              @onChangeRadio="onChangeRadio"
+            />
+          </div>
+        </div>
+
         <!-- Разделить на 2 компоненты И НЕ СМЕШИВАТЬ ИХ -->
-        <RadioSwitching
-          :switchItems="radioYears"
+        <!-- <RadioSwitching
           :value="selectedYear"
+          :switchItems="radioYears"
           @onChangeRadioSwitching="onChangeRadioSwitching"
-        />
+        /> -->
 
         <div class="news-page__row">
           <div class="news-page__list">
@@ -27,7 +48,7 @@
           <div class="news-page__contact">
             <p class="news-page__contact-header">Контакты пресс-службы</p>
 
-            <p class="newnews-page__contact-adress">
+            <p class="news-page__contact-adress">
               115114, Россия, Москва, Дербеневская набережная, 7, стр. 22, подъезд B, 3 этаж
             </p>
 
@@ -42,9 +63,13 @@
 </template>
 
 <script>
+// import { format } from 'date-fns';
+
 import TopBlock from '@/components/general/TopBlock.vue';
-// import newsImage from '/public/images/news/news.jpg';
 import TopMenu from '@/components/topMenu/TopMenu.vue';
+import GuiSelect from '@/components/gui/guiSelect/GuiSelect.vue';
+import GuiAdaptiveRadio from '@/components/gui/guiRadio/GuiAdaptiveRadio.vue';
+
 import RadioSwitching from '@/components/gui/RadioSwitching.vue';
 import NewsLink from '@/components/news/NewsLink.vue';
 import Footer from '@/components/Footer.vue';
@@ -54,10 +79,7 @@ export default {
 
   data() {
     return {
-      // topBlock: {
-      //   image: newsImage,
-      //   heading: 'Новости',
-      // },
+      ifSelectionOptionsBlock: false,
       selectedYear: 2021,
     };
   },
@@ -65,12 +87,21 @@ export default {
     news() {
       return this.$store.getters['news/sortedByDateNews'];
     },
+    radioYearsDuplicate() {
+      return this.news
+        .map(item => new Date(item.date).getFullYear())
+        .filter((item, index, self) => index === self.indexOf(item))
+        .map(item => ({ date: String(item), value: item }));
+    },
+
     radioYears() {
       return this.news
         .map(item => new Date(item.date).getFullYear())
         .filter((item, index, self) => index === self.indexOf(item))
         .map(item => ({ name: String(item), value: item }));
+      /* name => date */
     },
+
     filteredByYearNews() {
       return this.news.filter(item => {
         return new Date(item.date).getFullYear() === this.selectedYear;
@@ -80,13 +111,34 @@ export default {
   methods: {
     onChangeRadioSwitching(value) {
       this.selectedYear = value;
+      console.log('selectedYear: ' + this.selectedYear);
+    },
+
+    //
+    //
+    onChangeRadio(selectedYear) {
+      this.selectedYear = selectedYear;
+      // console.log('OK, selectedYear: ' + this.selectedYear);
+    },
+    onClickSelectionController() {
+      this.ifSelectionOptionsBlock = !this.ifSelectionOptionsBlock;
+      // console.log('ifSelectionOptionsBlock: ' + this.ifSelectionOptionsBlock);
+    },
+    onChangeSelectionBlock(selectedYear) {
+      this.selectedYear = selectedYear;
       // console.log('selectedYear: ' + this.selectedYear);
+    },
+    onClickSelectionBlock() {
+      this.ifSelectionOptionsBlock = false;
     },
   },
 
   components: {
     TopBlock,
     TopMenu,
+    GuiSelect,
+    GuiAdaptiveRadio,
+    //
     RadioSwitching,
     NewsLink,
     Footer,
@@ -134,13 +186,44 @@ export default {
     margin: 0 auto;
   }
 
+  &__flex-container {
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: 576px) {
+      margin-bottom: 48px;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    position: relative;
+    display: block;
+
+    @media screen and (min-width: 576px) {
+      display: none;
+    }
+  }
+
+  &__adaptive-radio {
+    position: relative;
+    display: none;
+
+    @media screen and (min-width: 576px) {
+      display: block;
+    }
+  }
+
   &__row {
     display: flex;
     flex-wrap: wrap;
   }
 
   &__list {
-    position: relative;
     width: 100%;
     padding-right: 12px;
 

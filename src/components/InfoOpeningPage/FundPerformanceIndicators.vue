@@ -1,13 +1,13 @@
 <template>
-  <div v-if="ifInicatorsVisible">
+  <div v-if="isVisible">
     <div>
-      <div class="block-header">
-        <p class="block-header__heading-13">{{ heading }}</p>
+      <div class="fund-indicators">
+        <p class="fund-indicators__heading">{{ heading }}</p>
 
-        <p class="block-header__date">{{ subheading }}</p>
+        <p class="fund-indicators__date">{{ subheading }}</p>
       </div>
 
-      <FundIndicatorRow
+      <FundPerformanceIndicatorsRow
         v-for="(indicatorRow, index) in indicatorRows"
         :key="index"
         :title="indicatorRow.title"
@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import FundIndicatorRow from '@/components/InfoOpeningPage/FundIndicatorRow.vue';
+import FundPerformanceIndicatorsRow from '@/components/InfoOpeningPage/FundPerformanceIndicatorsRow.vue';
 import ArchiveLink from '@/components/general/ArchiveLink.vue';
 
 export default {
-  name: 'FundIndicators',
+  name: 'FundPerformanceIndicators',
 
   props: {
-    ifInicatorsVisible: { type: Boolean, default: false },
+    isVisible: { type: Boolean, default: false },
     heading: { type: String },
     subheading: { type: String },
 
@@ -46,14 +46,14 @@ export default {
   },
 
   components: {
-    FundIndicatorRow,
+    FundPerformanceIndicatorsRow,
     ArchiveLink,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.block-header {
+.fund-indicators {
   width: 100%;
   padding: 24px 0;
   display: flex;
@@ -65,7 +65,7 @@ export default {
     padding-top: 0;
   }
 
-  &__heading-13 {
+  &__heading {
     display: block;
     width: 100%;
     max-width: 560px;

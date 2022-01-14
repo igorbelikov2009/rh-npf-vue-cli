@@ -1,24 +1,24 @@
 <template>
-  <section class="block-of-paragraphs">
-    <div class="block-of-paragraphs__container">
-      <h2 class="block-of-paragraphs__heading">
+  <section class="income-change-regulation">
+    <div class="income-change-regulation__container">
+      <h2 class="income-change-regulation__heading">
         <br />
         Положение о возможности увеличения или уменьшения дохода
       </h2>
 
-      <p class="block-of-paragraphs__paragraph">
+      <p class="income-change-regulation__paragraph">
         Просим вас обратить внимание на следующее:
       </p>
 
-      <p class="block-of-paragraphs__paragraph-before">
+      <p class="income-change-regulation__paragraph-before">
         доход от размещения пенсионных резервов может увеличиваться или уменьшаться;
       </p>
 
-      <p class="block-of-paragraphs__paragraph-before">
+      <p class="income-change-regulation__paragraph-before">
         результаты инвестирования в прошлом не определяют доходов в будущем;
       </p>
 
-      <p class="block-of-paragraphs__paragraph-before">
+      <p class="income-change-regulation__paragraph-before">
         государство не гарантирует доходности размещения средств пенсионных резервов.
       </p>
     </div>
@@ -32,8 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// block-of-paragraphs
-.block-of-paragraphs {
+.income-change-regulation {
   width: 100%;
   padding-right: 24px;
   padding-left: 24px;
@@ -62,9 +61,8 @@ export default {
     flex-wrap: wrap;
   }
 
-  // block-of-paragraphs__paragraph-before
+  // income-change-regulation__paragraph-before
   &__paragraph-before {
-    // width: 100%;
     width: calc(100% - 32px);
     display: block;
     margin: 12px 0;
@@ -107,5 +105,5 @@ export default {
     letter-spacing: normal;
     margin: 24px 0;
   }
-} // block-of-paragraphs
+}
 </style>

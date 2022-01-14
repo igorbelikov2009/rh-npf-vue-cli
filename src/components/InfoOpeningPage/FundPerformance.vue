@@ -1,23 +1,38 @@
 <template>
-  <section class="index index__background-white">
-    <div class="index__container">
-      <h1 class="index__heading">Показатели деятельности фонда</h1>
+  <section class="fund-performance fund-performance__background-white">
+    <div class="fund-performance__container">
+      <h1 class="fund-performance__heading">Показатели деятельности фонда</h1>
 
-      <RadioSwitching
-        :isHidingBlockVisible="radioSwitching.ifHidingBlockVisible"
-        :switchItems="switchItems"
-        @onChangeRadioSwitching="onChangeRadioSwitching"
-      />
+      <div class="fund-performance__flex-container">
+        <div class="fund-performance__select">
+          <GuiSelect
+            :value="radioValue"
+            :isSelectionOptionsBlock="ifSelectionOptionsBlock"
+            :selectionElements="selectionElements"
+            @onClickSelectionController="onClickSelectionController"
+            @onChangeSelectionBlock="onChangeSelectionBlock"
+            @onClickSelectionBlock="onClickSelectionBlock"
+          />
+        </div>
 
-      <div class="index__list">
-        <FundIndicators
+        <div class="fund-performance__adaptive-radio">
+          <GuiAdaptiveRadio
+            :value="radioValue"
+            :radioElements="selectionElements"
+            @onChangeRadio="onChangeRadio"
+          />
+        </div>
+      </div>
+
+      <div class="fund-performance__list">
+        <FundPerformanceIndicators
           v-for="(fundIndicator, index) in fundIndicators"
           :key="index"
           :heading="fundIndicator.heading"
           :subheading="fundIndicator.subheading"
           :indicatorRows="fundIndicator.indicatorRows"
           :links="fundIndicator.links"
-          :ifInicatorsVisible="radioValue === index"
+          :isVisible="radioValue === index"
         />
       </div>
     </div>
@@ -25,41 +40,39 @@
 </template>
 
 <script>
-import RadioSwitching from '@/components/gui/RadioSwitching.vue';
-import FundIndicators from '@/components/InfoOpeningPage/FundIndicators.vue';
+import GuiSelect from '@/components/gui/guiSelect/GuiSelect.vue';
+import GuiAdaptiveRadio from '@/components/gui/guiRadio/GuiAdaptiveRadio.vue';
+import FundPerformanceIndicators from '@/components/InfoOpeningPage/FundPerformanceIndicators.vue';
 
 export default {
   name: 'FundPerformance',
 
   data() {
     return {
-      radioSwitching: {
-        ifHidingBlockVisible: false,
-      },
       radioValue: 0,
-      switchItems: [
+      ifSelectionOptionsBlock: false,
+      selectionElements: [
         {
-          name: '2021',
+          date: '2021',
           value: 0,
         },
         {
-          name: '2020',
+          date: '2020',
           value: 1,
         },
         {
-          name: '2019',
+          date: '2019',
           value: 2,
         },
         {
-          name: '2018',
+          date: '2018',
           value: 3,
         },
         {
-          name: 'Архив',
+          date: 'Архив',
           value: 4,
         },
       ],
-      //
       fundIndicators: [
         {
           heading: 'Показатели деятельности',
@@ -326,21 +339,33 @@ export default {
   },
 
   methods: {
-    onChangeRadioSwitching(radioValue) {
+    onChangeRadio(radioValue) {
+      this.radioValue = radioValue;
+      // console.log('OK, radioValue: ' + this.radioValue);
+    },
+    onClickSelectionController() {
+      this.ifSelectionOptionsBlock = !this.ifSelectionOptionsBlock;
+      // console.log('ifSelectionOptionsBlock: ' + this.ifSelectionOptionsBlock);
+    },
+    onChangeSelectionBlock(radioValue) {
       this.radioValue = radioValue;
       // console.log('radioValue: ' + this.radioValue);
+    },
+    onClickSelectionBlock() {
+      this.ifSelectionOptionsBlock = false;
     },
   },
 
   components: {
-    RadioSwitching,
-    FundIndicators,
+    GuiSelect,
+    GuiAdaptiveRadio,
+    FundPerformanceIndicators,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.index {
+.fund-performance {
   width: 100%;
   background-color: #fff;
   padding: 24px;
@@ -349,13 +374,13 @@ export default {
     padding: 48px 24px;
   }
 
-  // index__background-white
+  // fund-performance__background-white
   &__background-white {
     background-color: #fff;
     transition: all 0.28s ease;
   }
 
-  // index__background-gray
+  // fund-performance__background-gray
   &__background-gray {
     background-color: rgba(0, 0, 0, 0.4);
     transition: all 0.28s ease;
@@ -378,6 +403,38 @@ export default {
       font-size: 34px;
       line-height: 48px;
       margin-bottom: 48px;
+    }
+  }
+
+  &__flex-container {
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: 576px) {
+      margin-bottom: 48px;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    position: relative;
+    display: block;
+
+    @media screen and (min-width: 576px) {
+      display: none;
+    }
+  }
+
+  &__adaptive-radio {
+    position: relative;
+    display: none;
+
+    @media screen and (min-width: 576px) {
+      display: block;
     }
   }
 

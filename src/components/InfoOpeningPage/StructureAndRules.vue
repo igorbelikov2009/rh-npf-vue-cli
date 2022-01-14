@@ -17,7 +17,7 @@
         </a>
 
         <div class="structure-and-rules__container-button" @click="onClickArchiveShareholders">
-          <ButtonToArchive />
+          <GuiButtonToArchive />
         </div>
       </div>
 
@@ -33,7 +33,7 @@
         </a>
 
         <div class="structure-and-rules__container-button" @click="onClickArchivePension">
-          <ButtonToArchive />
+          <GuiButtonToArchive />
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import ButtonToArchive from '../../components/gui/ButtonToArchive.vue';
+import GuiButtonToArchive from '@/components/gui/guiButton/GuiButtonToArchive.vue';
 
 export default {
   name: 'StructureAndRules',
@@ -57,7 +57,7 @@ export default {
     },
   },
   components: {
-    ButtonToArchive,
+    GuiButtonToArchive,
   },
 };
 </script>

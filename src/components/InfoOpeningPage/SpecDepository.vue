@@ -1,31 +1,46 @@
 <template>
-  <section class="spec-depository">
-    <div class="spec-depository__container">
-      <h2 class="spec-depository__heading">
-        Специализированный депозитарий
-      </h2>
+  <div>
+    <section class="spec-depository">
+      <div class="spec-depository__container">
+        <h2 class="spec-depository__heading">
+          Специализированный депозитарий
+        </h2>
 
-      <div class="spec-depository__param-switch">
-        <ParamSwitch :switchItems="switchItems" @onChangeRadio="onChangeRadio" />
+        <div class="spec-depository__param-switch">
+          <ParamSwitch :switchItems="switchItems" @onChangeRadio="onChangeRadio" />
+        </div>
+
+        <div class="spec-depository__content">
+          <SpecDepositoryBlock
+            v-if="ifFirstContentVisible"
+            :subheading="depository1.subheading"
+            :title="depository1.title"
+            :subtitle="depository1.subtitle"
+          />
+
+          <SpecDepositoryBlock
+            v-if="!ifFirstContentVisible"
+            :subheading="depository2.subheading"
+            :title="depository2.title"
+            :subtitle="depository2.subtitle"
+          />
+        </div>
       </div>
+    </section>
 
-      <div class="spec-depository__content">
-        <SpecDepositoryBlock
-          v-if="ifFirstContentVisible"
-          :subheading="depository1.subheading"
-          :title="depository1.title"
-          :subtitle="depository1.subtitle"
-        />
-
-        <SpecDepositoryBlock
-          v-if="!ifFirstContentVisible"
-          :subheading="depository2.subheading"
-          :title="depository2.title"
-          :subtitle="depository2.subtitle"
-        />
+    <section class="spec-depository__interactions">
+      <div class="spec-depository__container">
+        <p class="spec-depository__description">
+          Для информационного взаимодействия АО НПФ «Ренессанс пенсии», являясь участником системы
+          электронного документооборота, использует обмен электронными документами в системе
+          электронного документооборота
+          <a class="spec-depository__link" href="">
+            АО ВТБ Специализированный депозитарий.
+          </a>
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -129,6 +144,33 @@ export default {
     @media screen and (min-width: 576px) {
       margin-bottom: 48px;
     }
+  }
+
+  &__interactions {
+    width: 100%;
+    padding-right: 24px;
+    padding-left: 24px;
+
+    @media screen and (min-width: 576px) {
+      padding-right: 28px;
+      padding-left: 28px;
+    }
+  }
+
+  &__description {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    color: #5a646e;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: inherit;
+    line-height: inherit;
+    color: #50287d;
+    cursor: pointer;
   }
 }
 </style>
