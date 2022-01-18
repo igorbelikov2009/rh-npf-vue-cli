@@ -1,19 +1,19 @@
 <template>
-  <label class="switch-item" :class="{ 'switch-item_active': isActive }">
+  <label class="radio-primary-label" :class="{ 'radio-primary-label_active': isActive }">
     <input
-      class="switch-item__field"
+      class="radio-primary-label__field"
       type="radio"
       :name="name"
       :value="value"
       @change="emitValue"
     />
-    <p class="switch-item__title">{{ title }}</p>
+    <p class="radio-primary-label__title">{{ title }}</p>
   </label>
 </template>
 
 <script>
 export default {
-  name: 'ParamSwichItem',
+  name: 'GuiRadioPrimaryLabel',
 
   props: {
     name: { type: String },
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.switch-item {
+.radio-primary-label {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -57,17 +57,17 @@ export default {
     opacity: 0.8;
   }
 
-  &:hover .switch-item__title {
+  &:hover .radio-primary-label__title {
     color: #010;
     font-weight: 400;
     opacity: 1;
   }
 
-  // switch-item_active
+  // radio-primary-label_active
   &_active {
     background: #50287d;
 
-    &:hover .switch-item__title {
+    &:hover .radio-primary-label__title {
       color: #fff;
       font-weight: 400;
     }

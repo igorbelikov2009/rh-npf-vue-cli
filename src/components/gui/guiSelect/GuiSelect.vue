@@ -33,23 +33,26 @@ export default {
   data() {
     return {
       selectionValue: this.value,
+      idOptions: this.id,
     };
   },
 
   props: {
-    value: { type: Number },
+    date: { type: String },
+    value: { type: String },
+    id: { type: Number, required: true },
     isSelectionOptionsBlock: { type: Boolean, default: false },
     selectionElements: { type: Array },
-    date: { type: String },
   },
   methods: {
     onClickSelectionController() {
       this.$emit('onClickSelectionController');
     },
-    onChangeSelectionBlock(value) {
+    onChangeSelectionBlock(value, id) {
       this.selectionValue = value;
-      // console.log('selectionValue: ' + this.selectionValue);
-      this.$emit('onChangeSelectionBlock', this.selectionValue);
+      this.idOptions = id;
+      // console.log('selectionValue: ' + this.selectionValue, 'id: ' + this.idOptions);
+      this.$emit('onChangeSelectionBlock', this.selectionValue, this.idOptions);
     },
     onClickSelectionBlock() {
       this.$emit('onClickSelectionBlock');

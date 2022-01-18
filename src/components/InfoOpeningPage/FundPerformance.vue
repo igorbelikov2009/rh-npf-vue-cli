@@ -5,21 +5,23 @@
 
       <div class="fund-performance__flex-container">
         <div class="fund-performance__select">
-          <GuiSelect
+          <GuiRadioList
             :value="radioValue"
-            :isSelectionOptionsBlock="ifSelectionOptionsBlock"
-            :selectionElements="selectionElements"
-            @onClickSelectionController="onClickSelectionController"
-            @onChangeSelectionBlock="onChangeSelectionBlock"
-            @onClickSelectionBlock="onClickSelectionBlock"
+            :id="idOptions"
+            :isRadioListVisible="ifRadioListVisible"
+            :radioListElements="radioElements"
+            @onClickRadioListController="onClickRadioListController"
+            @onChangeRadioListBlock="onChangeRadioListBlock"
+            @onClickRadioListBlock="onClickRadioListBlock"
           />
         </div>
 
         <div class="fund-performance__adaptive-radio">
           <GuiAdaptiveRadio
             :value="radioValue"
-            :radioElements="selectionElements"
-            @onChangeRadio="onChangeRadio"
+            :id="idOptions"
+            :radioElements="radioElements"
+            @onChangeAdaptiveRadio="onChangeAdaptiveRadio"
           />
         </div>
       </div>
@@ -32,7 +34,7 @@
           :subheading="fundIndicator.subheading"
           :indicatorRows="fundIndicator.indicatorRows"
           :links="fundIndicator.links"
-          :isVisible="radioValue === index"
+          :isVisible="idOptions === index"
         />
       </div>
     </div>
@@ -40,7 +42,7 @@
 </template>
 
 <script>
-import GuiSelect from '@/components/gui/guiSelect/GuiSelect.vue';
+import GuiRadioList from '@/components/gui/guiRadio/GuiRadioList.vue';
 import GuiAdaptiveRadio from '@/components/gui/guiRadio/GuiAdaptiveRadio.vue';
 import FundPerformanceIndicators from '@/components/InfoOpeningPage/FundPerformanceIndicators.vue';
 
@@ -49,28 +51,34 @@ export default {
 
   data() {
     return {
-      radioValue: 0,
-      ifSelectionOptionsBlock: false,
-      selectionElements: [
+      radioValue: 2021,
+      idOptions: 0,
+      ifRadioListVisible: false,
+      radioElements: [
         {
           date: '2021',
-          value: 0,
+          value: 2021,
+          id: 0,
         },
         {
           date: '2020',
-          value: 1,
+          value: 2020,
+          id: 1,
         },
         {
           date: '2019',
-          value: 2,
+          value: 2019,
+          id: 2,
         },
         {
           date: '2018',
-          value: 3,
+          value: 2018,
+          id: 3,
         },
         {
-          date: 'Архив',
-          value: 4,
+          date: '2017',
+          value: 2017,
+          id: 4,
         },
       ],
       fundIndicators: [
@@ -339,25 +347,27 @@ export default {
   },
 
   methods: {
-    onChangeRadio(radioValue) {
+    onChangeAdaptiveRadio(radioValue, id) {
       this.radioValue = radioValue;
-      // console.log('OK, radioValue: ' + this.radioValue);
+      this.idOptions = id;
+      // console.log('radioValue: ' + this.radioValue, 'this.idOptions: ' + this.idOptions);
     },
-    onClickSelectionController() {
-      this.ifSelectionOptionsBlock = !this.ifSelectionOptionsBlock;
-      // console.log('ifSelectionOptionsBlock: ' + this.ifSelectionOptionsBlock);
+    onClickRadioListController() {
+      this.ifRadioListVisible = !this.ifRadioListVisible;
+      // console.log('ifRadioListVisible: ' + this.ifRadioListVisible);
     },
-    onChangeSelectionBlock(radioValue) {
+    onChangeRadioListBlock(radioValue, id) {
       this.radioValue = radioValue;
-      // console.log('radioValue: ' + this.radioValue);
+      this.idOptions = id;
+      // console.log('radioValue: ' + this.radioValue, 'this.idOptions: ' + this.idOptions);
     },
-    onClickSelectionBlock() {
-      this.ifSelectionOptionsBlock = false;
+    onClickRadioListBlock() {
+      this.ifRadioListVisible = false;
     },
   },
 
   components: {
-    GuiSelect,
+    GuiRadioList,
     GuiAdaptiveRadio,
     FundPerformanceIndicators,
   },

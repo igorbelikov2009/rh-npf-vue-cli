@@ -4,11 +4,11 @@
       <h2 class="management-companies__heading">Управляющие компании</h2>
 
       <div class="management-companies__param-switch">
-        <ParamSwitch :switchItems="switchItems" @onChangeRadio="onChangeRadio" />
+        <GuiRadioPrimary :radioItems="radioItems" @onChangePrimaryRadio="onChangePrimaryRadio" />
       </div>
 
       <div class="management-companies__content">
-        <div v-if="ifFirstContentVisible">
+        <div v-if="isVisible">
           <p class="management-companies__paragraph">
             <span class="management-companies__paragraph-bold"
               >Акционерное общество «Сбер Управление Активами»</span
@@ -100,7 +100,7 @@
           </p>
         </div>
 
-        <div v-if="!ifFirstContentVisible">
+        <div v-if="!isVisible">
           <p class="management-companies__paragraph">
             <span class="management-companies__paragraph-bold"
               >Акционерное общество «Сбербанк Управление Активами» (до переименования в ноябре 2012
@@ -155,50 +155,42 @@
 </template>
 
 <script>
-import ParamSwitch from '@/components/gui/ParamSwitch.vue';
+import GuiRadioPrimary from '@/components/gui/guiRadio/GuiRadioPrimary.vue';
 
 export default {
   name: 'ManagementCompanies',
 
   data() {
     return {
-      ifFirstContentVisible: true,
+      isVisible: true,
       radioValue: 0,
-      switchItems: [
+      radioItems: [
         {
           name: 'information',
-          value: 1,
+          value: 0,
           title: 'Действующие',
-          isActive: false,
         },
         {
           name: 'information',
-          value: 2,
+          value: 1,
           title: 'Договоры прекращены',
-          isActive: false,
         },
       ],
     };
   },
   methods: {
-    onChangeRadio(value) {
+    onChangePrimaryRadio(value) {
       this.radioValue = value;
       // console.log('radioValue:' + this.radioValue);
-      this.changeVisibilityFirstContent();
+      this.changeVisibility();
     },
-    changeVisibilityFirstContent() {
-      if (this.radioValue === 1) {
-        this.ifFirstContentVisible = true;
-        // console.log(this.ifFirstContentVisible);
-      } else {
-        this.ifFirstContentVisible = false;
-        // console.log(this.ifFirstContentVisible);
-      }
+    changeVisibility() {
+      this.isVisible = !this.isVisible;
     },
   },
 
   components: {
-    ParamSwitch,
+    GuiRadioPrimary,
   },
 };
 </script>

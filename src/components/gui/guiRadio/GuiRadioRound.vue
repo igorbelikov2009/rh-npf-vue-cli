@@ -1,13 +1,12 @@
 <template>
-  <div class="param-switch">
-    <div class="param-switch__flex-container">
-      <ParamSwichItem
+  <div class="radio-round">
+    <div class="radio-round__label-container">
+      <GuiRadioRoundLabel
         v-for="(switchItem, index) in switchItems"
         :key="index"
-        :name="switchItem.name"
         :value="switchItem.value"
-        :isActive="switchItem.value === switchValue"
         :title="switchItem.title"
+        :isActive="switchItem.value === switchValue"
         @change="onChangeRadio"
       />
     </div>
@@ -15,16 +14,18 @@
 </template>
 
 <script>
-import ParamSwichItem from '@/components/gui/ParamSwichItem.vue';
+import GuiRadioRoundLabel from '@/components/gui/guiRadio/GuiRadioRoundLabel.vue';
+
 export default {
-  name: 'ParamSwitch',
+  name: 'GuiRadioRound',
   data() {
     return {
-      switchValue: 1,
+      switchValue: 0,
     };
   },
   props: {
     switchItems: { type: Array },
+    value: { type: Boolean },
   },
   methods: {
     onChangeRadio(value) {
@@ -36,16 +37,16 @@ export default {
   },
 
   components: {
-    ParamSwichItem,
+    GuiRadioRoundLabel,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.param-switch {
+.radio-round {
   display: flex;
 
-  &__flex-container {
+  &__label-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;

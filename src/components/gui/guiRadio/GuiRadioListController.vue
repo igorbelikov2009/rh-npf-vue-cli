@@ -1,33 +1,33 @@
 <template>
-  <div class="select-controller">
-    <div class="select-controller__changing-title">
+  <div class="radio-list-controller">
+    <div class="radio-list-controller__changing-title">
       <div
-        class="select-controller__border "
+        class="radio-list-controller__border "
         :class="{
-          'select-controller__border_gray': ifSelectionOptionsBlock,
-          'select-controller__border_white': !ifSelectionOptionsBlock,
+          'radio-list-controller__border_gray': ifRadioListVisible,
+          'radio-list-controller__border_white': !ifRadioListVisible,
         }"
       >
         <div
-          class="select-controller__container "
+          class="radio-list-controller__container "
           :class="{
-            'select-controller__container_backgr-gray': ifSelectionOptionsBlock,
-            'select-controller__container_backgr-white': !ifSelectionOptionsBlock,
+            'radio-list-controller__container_backgr-gray': ifRadioListVisible,
+            'radio-list-controller__container_backgr-white': !ifRadioListVisible,
           }"
-          @click="onClickSelectionController"
+          @click="onClickRadioListController"
         >
-          <div class="select-controller__controller-date">
+          <div class="radio-list-controller__controller-date">
             <div>
-              <p class="select-controller-date">{{ value }}</p>
+              <p class="radio-list-controller-date">{{ value }}</p>
             </div>
           </div>
 
-          <div class="select-controller__icon">
+          <div class="radio-list-controller__icon">
             <img
-              class="select-controller__image "
+              class="radio-list-controller__image "
               :class="{
-                'select-controller__image_rotate-180': ifSelectionOptionsBlock,
-                'select-controller__image_rotate-0': !ifSelectionOptionsBlock,
+                'radio-list-controller__image_rotate-180': ifRadioListVisible,
+                'radio-list-controller__image_rotate-0': !ifRadioListVisible,
               }"
               src="/icons/triple/Arrow Down/Dark.svg"
               alt=""
@@ -36,25 +36,25 @@
         </div>
 
         <div
-          class="select-controller__white-line "
+          class="radio-list-controller__white-line "
           :class="{
-            'select-controller__white-line_height-2': ifSelectionOptionsBlock,
-            'select-controller__white-line_height-1': !ifSelectionOptionsBlock,
+            'radio-list-controller__white-line_height-2': ifRadioListVisible,
+            'radio-list-controller__white-line_height-1': !ifRadioListVisible,
           }"
         >
           <div
-            class="select-controller__black-line"
+            class="radio-list-controller__black-line"
             :class="{
-              'select-controller__black-line_width-0': ifSelectionOptionsBlock,
-              'select-controller__black-line_width-50': !ifSelectionOptionsBlock,
+              'radio-list-controller__black-line_width-0': ifRadioListVisible,
+              'radio-list-controller__black-line_width-50': !ifRadioListVisible,
             }"
           ></div>
 
           <div
-            class="select-controller__black-line "
+            class="radio-list-controller__black-line "
             :class="{
-              'select-controller__black-line_width-0': ifSelectionOptionsBlock,
-              'select-controller__black-line_width-50': !ifSelectionOptionsBlock,
+              'radio-list-controller__black-line_width-0': ifRadioListVisible,
+              'radio-list-controller__black-line_width-50': !ifRadioListVisible,
             }"
           ></div>
         </div>
@@ -65,23 +65,24 @@
 
 <script>
 export default {
-  name: 'GuiSelectController',
+  name: 'GuiRadioListController',
 
   props: {
-    value: { type: String },
-    ifSelectionOptionsBlock: { type: Boolean, default: false },
-    selectionElements: { type: Array },
+    value: { type: Number },
+    ifRadioListVisible: { type: Boolean, default: false },
+    radioListElements: { type: Array },
   },
   methods: {
-    onClickSelectionController() {
-      this.$emit('onClickSelectionController');
+    onClickRadioListController() {
+      this.$emit('onClickRadioListController');
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.select-controller {
+// radio-list-controller
+.radio-list-controller {
   display: block;
   position: relative;
   margin-bottom: 24px;
@@ -100,12 +101,12 @@ export default {
     border-radius: 5px;
     position: relative;
 
-    // select-controller__border_white
+    // radio-list-controller__border_white
     &_white {
       border: 1px solid #fff;
     }
 
-    // select-controller__border_gray
+    // radio-list-controller__border_gray
     &_gray {
       border: 1px solid #e4e4e4;
     }
@@ -117,13 +118,13 @@ export default {
     justify-content: space-between;
     align-items: center;
 
-    // select-controller__container_backgr-white
+    // radio-list-controller__container_backgr-white
     &__backgr-white {
       background-color: #fff;
       transition: all 0.36s ease;
     }
 
-    // select-controller__container_backgr-gray
+    // radio-list-controller__container_backgr-gray
     &_backgr-gray {
       background-color: #d0f0f6d1;
       transition: all 0.36s ease;
@@ -156,12 +157,12 @@ export default {
     transition-timing-function: ease;
     transition-delay: 0s;
 
-    // select-controller__image_rotate-0
+    // radio-list-controller__image_rotate-0
     &_rotate-0 {
       transform: scaleY(0.7) rotate(0deg);
     }
 
-    // select-controller__image_rotate-180
+    // radio-list-controller__image_rotate-180
     &_rotate-180 {
       transform: scaleY(0.7) rotate(180deg);
     }
@@ -177,13 +178,13 @@ export default {
     justify-content: space-between;
     align-items: center;
 
-    // select-controller__white-line_height-1
+    // radio-list-controller__white-line_height-1
     &_height-1 {
       height: 1px;
       transition: width 0.7s ease-out;
     }
 
-    // select-controller__white-line_height-2
+    // radio-list-controller__white-line_height-2
     &_height-2 {
       height: 2px;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -193,14 +194,14 @@ export default {
   &__black-line {
     background-color: black;
 
-    // select-controller__black-line_width-50
+    // radio-list-controller__black-line_width-50
     &_width-50 {
       height: 1px;
       width: 50%;
       transition: width 0.7s ease-out;
     }
 
-    // select-controller__black-line_width-0
+    // radio-list-controller__black-line_width-0
     &_width-0 {
       width: 0;
       height: 2px;
@@ -209,7 +210,7 @@ export default {
   }
 }
 
-.select-controller-date {
+.radio-list-controller-date {
   display: block;
   padding: 18px 12px;
   font-size: 14px;

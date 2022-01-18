@@ -12,7 +12,8 @@
     <PortfolioStructure
       id="portfolioStructure"
       :isSelectionBlockVisible="firstSelectionBlock.isVisible"
-      :controllerValue="firstSelectionBlock.selectionValue"
+      :controllerValue="firstSelectionValue"
+      :idOptions="firstSelectionBlock.idOptions"
       :selectionElements="firstSelectionElements"
       @onClickSelectionController="onClickFirstSelectController"
       @handleScroll="onScrollPortfolioStructure"
@@ -20,7 +21,8 @@
 
     <CompositionOfFunds
       :isSelectionBlockVisible="secondSelectionBlock.isVisible"
-      :controllerValue="secondSelectionBlock.selectionValue"
+      :controllerValue="secondSelectionValue"
+      :idOptions="secondSelectionBlock.idOptions"
       :selectionElements="secondSelectionElements"
       @onClickSelectionController="onClickSecondSelectController"
       @handleScroll="onScrollCompositionOfFunds"
@@ -37,10 +39,10 @@
     <div
       ref="firstSelectionBlock"
       :style="firstSelectionBlockStyle"
-      class="selection-options-block"
+      class="invest-page__selection-options-block"
       :class="{
-        'selection-options-block_show': firstSelectionBlock.isVisible,
-        'selection-options-block_hide': !firstSelectionBlock.isVisible,
+        'invest-page__selection-options-block_show': firstSelectionBlock.isVisible,
+        'invest-page__selection-options-block_hide': !firstSelectionBlock.isVisible,
       }"
     >
       <GuiSelectionOptionsBlock
@@ -52,10 +54,10 @@
 
     <div
       :style="secondSelectionBlockStyle"
-      class="selection-options-block"
+      class="invest-page__selection-options-block"
       :class="{
-        'selection-options-block_show': secondSelectionBlock.isVisible,
-        'selection-options-block_hide': !secondSelectionBlock.isVisible,
+        'invest-page__selection-options-block_show': secondSelectionBlock.isVisible,
+        'invest-page__selection-options-block_hide': !secondSelectionBlock.isVisible,
       }"
     >
       <GuiSelectionOptionsBlock
@@ -86,6 +88,10 @@ export default {
   data() {
     return {
       clientHeight: 0,
+      //
+      firstSelectionValue: '30 November 2021 г.',
+      secondSelectionValue: '30 November 2021 г.',
+      //
 
       firstSelectController: {
         top: 0,
@@ -93,239 +99,137 @@ export default {
         height: 0,
         width: 0,
         left: 0,
+
         selectionElements: [
           {
             date: '2021-11-30T09:00:00.000Z',
-            value: 0,
+            value: '2021-11-30T09:00:00.000Z',
+            id: 0,
           },
           {
             date: '2021-10-31T09:00:00.000Z',
-            value: 1,
+            value: '2021-10-31T09:00:00.000Z',
+            id: 1,
           },
           {
             date: '2021-09-30T09:00:00.000Z',
-            value: 2,
+            value: '2021-09-30T09:00:00.000Z',
+            id: 2,
           },
           {
             date: '2021-08-31T09:00:00.000Z',
-            value: 3,
+            value: '2021-08-31T09:00:00.000Z',
+            id: 3,
           },
           {
             date: '2021-07-31T09:00:00.000Z',
-            value: 4,
+            value: '2021-07-31T09:00:00.000Z',
+            id: 4,
           },
           {
             date: '2021-06-30T09:00:00.000Z',
-            value: 5,
+            value: '2021-06-30T09:00:00.000Z',
+            id: 5,
           },
           {
             date: '2021-05-31T09:00:00.000Z',
-            value: 6,
+            value: '2021-05-31T09:00:00.000Z',
+            id: 6,
           },
           {
             date: '2021-04-30T09:00:00.000Z',
-            value: 7,
+            value: '2021-04-30T09:00:00.000Z',
+            id: 7,
           },
           {
             date: '2021-03-31T09:00:00.000Z',
-            value: 8,
+            value: '2021-03-31T09:00:00.000Z',
+            id: 8,
           },
           {
             date: '2021-02-28T09:00:00.000Z',
-            value: 9,
+            value: '2021-02-28T09:00:00.000Z',
+            id: 9,
           },
           {
             date: '2021-01-31T09:00:00.000Z',
-            value: 10,
+            value: '2021-01-31T09:00:00.000Z',
+            id: 10,
           },
           {
             date: '2020-12-31T09:00:00.000Z',
-            value: 11,
+            value: '2020-12-31T09:00:00.000Z',
+            id: 11,
           },
           {
             date: '2020-11-30T09:00:00.000Z',
-            value: 12,
+            value: '2020-11-30T09:00:00.000Z',
+            id: 12,
           },
           {
             date: '2020-10-31T09:00:00.000Z',
-            value: 13,
+            value: '2020-10-31T09:00:00.000Z',
+            id: 13,
           },
           {
             date: '2020-09-30T09:00:00.000Z',
-            value: 14,
+            value: '2020-09-30T09:00:00.000Z',
+            id: 14,
           },
           {
             date: '2020-08-31T09:00:00.000Z',
-            value: 15,
+            value: '2020-08-31T09:00:00.000Z',
+            id: 15,
           },
           {
             date: '2020-07-31T09:00:00.000Z',
-            value: 16,
+            value: '2020-07-31T09:00:00.000Z',
+            id: 16,
           },
           {
             date: '2020-06-30T09:00:00.000Z',
-            value: 17,
+            value: '2020-06-30T09:00:00.000Z',
+            id: 17,
           },
           {
             date: '2020-05-31T09:00:00.000Z',
-            value: 18,
+            value: '2020-05-31T09:00:00.000Z',
+            id: 18,
           },
           {
             date: '2020-04-30T09:00:00.000Z',
-            value: 19,
+            value: '2020-04-30T09:00:00.000Z',
+            id: 19,
           },
           {
             date: '2020-03-31T09:00:00.000Z',
-            value: 20,
+            value: '2020-03-31T09:00:00.000Z',
+            id: 20,
           },
           {
             date: '2020-02-29T09:00:00.000Z',
-            value: 21,
+            value: '2020-02-29T09:00:00.000Z',
+            id: 21,
           },
           {
             date: '2020-01-31T09:00:00.000Z',
-            value: 22,
+            value: '2020-01-31T09:00:00.000Z',
+            id: 22,
           },
           {
             date: '2019-12-31T09:00:00.000Z',
-            value: 23,
+            value: '2019-12-31T09:00:00.000Z',
+            id: 23,
           },
           {
             date: '2019-11-30T09:00:00.000Z',
-            value: 24,
+            value: '2019-11-30T09:00:00.000Z',
+            id: 24,
           },
         ],
-
-        // selectionElements: [
-        //   {
-        //     date: '2021-11-30T09:00:00.000Z',
-        //     value: '2021-11-30T09:00:00.000Z',
-        //     id: 0,
-        //   },
-        //   {
-        //     date: '2021-10-31T09:00:00.000Z',
-        //     value: '2021-10-31T09:00:00.000Z',
-        //     id: 1,
-        //   },
-        //   {
-        //     date: '2021-09-30T09:00:00.000Z',
-        //     value: 2,
-        //     id: 0,
-        //   },
-        //   {
-        //     date: '2021-08-31T09:00:00.000Z',
-        //     value: '2021-08-31T09:00:00.000Z',
-        //     id: 3,
-        //   },
-        //   {
-        //     date: '2021-07-31T09:00:00.000Z',
-        //     value: '2021-07-31T09:00:00.000Z',
-        //     id: 4,
-        //   },
-        //   {
-        //     date: '2021-06-30T09:00:00.000Z',
-        //     value: '2021-06-30T09:00:00.000Z',
-        //     id: 5,
-        //   },
-        //   {
-        //     date: '2021-05-31T09:00:00.000Z',
-        //     value: '2021-05-31T09:00:00.000Z',
-        //     id: 6,
-        //   },
-        //   {
-        //     date: '2021-04-30T09:00:00.000Z',
-        //     value: '2021-04-30T09:00:00.000Z',
-        //     id: 7,
-        //   },
-        //   {
-        //     date: '2021-03-31T09:00:00.000Z',
-        //     value: '2021-03-31T09:00:00.000Z',
-        //     id: 8,
-        //   },
-        //   {
-        //     date: '2021-02-28T09:00:00.000Z',
-        //     value: '2021-02-28T09:00:00.000Z',
-        //     id: 9,
-        //   },
-        //   {
-        //     date: '2021-01-31T09:00:00.000Z',
-        //     value: '2021-01-31T09:00:00.000Z',
-        //     id: 10,
-        //   },
-        //   {
-        //     date: '2020-12-31T09:00:00.000Z',
-        //     value: '2020-12-31T09:00:00.000Z',
-        //     id: 11,
-        //   },
-        //   {
-        //     date: '2020-11-30T09:00:00.000Z',
-        //     value: '2020-11-30T09:00:00.000Z',
-        //     id: 12,
-        //   },
-        //   {
-        //     date: '2020-10-31T09:00:00.000Z',
-        //     value: '2020-10-31T09:00:00.000Z',
-        //     id: 13,
-        //   },
-        //   {
-        //     date: '2020-09-30T09:00:00.000Z',
-        //     value: '2020-09-30T09:00:00.000Z',
-        //     id: 14,
-        //   },
-        //   {
-        //     date: '2020-08-31T09:00:00.000Z',
-        //     value: '2020-08-31T09:00:00.000Z',
-        //     id: 15,
-        //   },
-        //   {
-        //     date: '2020-07-31T09:00:00.000Z',
-        //     value: '2020-07-31T09:00:00.000Z',
-        //     id: 16,
-        //   },
-        //   {
-        //     date: '2020-06-30T09:00:00.000Z',
-        //     value: '2020-06-30T09:00:00.000Z',
-        //     id: 17,
-        //   },
-        //   {
-        //     date: '2020-05-31T09:00:00.000Z',
-        //     value: '2020-05-31T09:00:00.000Z',
-        //     id: 18,
-        //   },
-        //   {
-        //     date: '2020-04-30T09:00:00.000Z',
-        //     value: '2020-04-30T09:00:00.000Z',
-        //     id: 19,
-        //   },
-        //   {
-        //     date: '2020-03-31T09:00:00.000Z',
-        //     value: '2020-03-31T09:00:00.000Z',
-        //     id: 20,
-        //   },
-        //   {
-        //     date: '2020-02-29T09:00:00.000Z',
-        //     value: '2020-02-29T09:00:00.000Z',
-        //     id: 21,
-        //   },
-        //   {
-        //     date: '2020-01-31T09:00:00.000Z',
-        //     value: '2020-01-31T09:00:00.000Z',
-        //     id: 22,
-        //   },
-        //   {
-        //     date: '2019-12-31T09:00:00.000Z',
-        //     value: '2019-12-31T09:00:00.000Z',
-        //     id: 23,
-        //   },
-        //   {
-        //     date: '2019-11-30T09:00:00.000Z',
-        //     value: '2019-11-30T09:00:00.000Z',
-        //     id: 24,
-        //   },
-        // ],
       },
       firstSelectionBlock: {
-        selectionValue: 0,
+        idOptions: 0,
         height: 0,
         top: 0,
         isVisible: false,
@@ -337,111 +241,137 @@ export default {
         height: 0,
         width: 0,
         left: 0,
+
         selectionElements: [
           {
             date: '2021-11-30T09:00:00.000Z',
-            value: 0,
+            value: '2021-11-30T09:00:00.000Z',
+            id: 0,
           },
           {
             date: '2021-10-31T09:00:00.000Z',
-            value: 1,
+            value: '2021-10-31T09:00:00.000Z',
+            id: 1,
           },
           {
             date: '2021-09-30T09:00:00.000Z',
-            value: 2,
+            value: '2021-09-30T09:00:00.000Z',
+            id: 2,
           },
           {
             date: '2021-08-31T09:00:00.000Z',
-            value: 3,
+            value: '2021-08-31T09:00:00.000Z',
+            id: 3,
           },
           {
             date: '2021-07-31T09:00:00.000Z',
-            value: 4,
+            value: '2021-07-31T09:00:00.000Z',
+            id: 4,
           },
           {
             date: '2021-06-30T09:00:00.000Z',
-            value: 5,
+            value: '2021-06-30T09:00:00.000Z',
+            id: 5,
           },
           {
             date: '2021-05-31T09:00:00.000Z',
-            value: 6,
+            value: '2021-05-31T09:00:00.000Z',
+            id: 6,
           },
           {
             date: '2021-04-30T09:00:00.000Z',
-            value: 7,
+            value: '2021-04-30T09:00:00.000Z',
+            id: 7,
           },
           {
             date: '2021-03-31T09:00:00.000Z',
-            value: 8,
+            value: '2021-03-31T09:00:00.000Z',
+            id: 8,
           },
           {
             date: '2021-02-28T09:00:00.000Z',
-            value: 9,
+            value: '2021-02-28T09:00:00.000Z',
+            id: 9,
           },
           {
             date: '2021-01-31T09:00:00.000Z',
-            value: 10,
+            value: '2021-01-31T09:00:00.000Z',
+            id: 10,
           },
           {
             date: '2020-12-31T09:00:00.000Z',
-            value: 11,
+            value: '2020-12-31T09:00:00.000Z',
+            id: 11,
           },
           {
             date: '2020-11-30T09:00:00.000Z',
-            value: 12,
+            value: '2020-11-30T09:00:00.000Z',
+            id: 12,
           },
           {
             date: '2020-10-31T09:00:00.000Z',
-            value: 13,
+            value: '2020-10-31T09:00:00.000Z',
+            id: 13,
           },
           {
             date: '2020-09-30T09:00:00.000Z',
-            value: 14,
+            value: '2020-09-30T09:00:00.000Z',
+            id: 14,
           },
           {
             date: '2020-08-31T09:00:00.000Z',
-            value: 15,
+            value: '2020-08-31T09:00:00.000Z',
+            id: 15,
           },
           {
             date: '2020-07-31T09:00:00.000Z',
-            value: 16,
+            value: '2020-07-31T09:00:00.000Z',
+            id: 16,
           },
           {
             date: '2020-06-30T09:00:00.000Z',
-            value: 17,
+            value: '2020-06-30T09:00:00.000Z',
+            id: 17,
           },
           {
             date: '2020-05-31T09:00:00.000Z',
-            value: 18,
+            value: '2020-05-31T09:00:00.000Z',
+            id: 18,
           },
           {
             date: '2020-04-30T09:00:00.000Z',
-            value: 19,
+            value: '2020-04-30T09:00:00.000Z',
+            id: 19,
           },
           {
             date: '2020-03-31T09:00:00.000Z',
-            value: 20,
+            value: '2020-03-31T09:00:00.000Z',
+            id: 20,
           },
           {
             date: '2020-02-29T09:00:00.000Z',
-            value: 21,
+            value: '2020-02-29T09:00:00.000Z',
+            id: 21,
           },
           {
             date: '2020-01-31T09:00:00.000Z',
-            value: 22,
+            value: '2020-01-31T09:00:00.000Z',
+            id: 22,
           },
           {
             date: '2019-12-31T09:00:00.000Z',
-            value: 23,
+            value: '2019-12-31T09:00:00.000Z',
+            id: 23,
           },
           {
             date: '2019-11-30T09:00:00.000Z',
-            value: 24,
+            value: '2019-11-30T09:00:00.000Z',
+            id: 24,
           },
         ],
       },
       secondSelectionBlock: {
-        selectionValue: 0,
+        idOptions: 0,
         height: 0,
         top: 0,
         isVisible: false,
@@ -451,6 +381,14 @@ export default {
         height: 0,
       },
     };
+  },
+
+  created() {
+    window.addEventListener('scroll', this.onScrollInvestPage);
+  },
+
+  destroyed() {
+    window.removeEventListener('scroll', this.onScrollInvestPage);
   },
 
   computed: {
@@ -468,25 +406,29 @@ export default {
         width: `${this.secondSelectController.width - 12}px`,
       };
     },
-    //
+
     firstSelectionElements() {
       return this.firstSelectController.selectionElements
         .map(item => format(new Date(item.date), 'd MMMM Y г.'))
-        .map((item, index) => ({ date: String(item), value: index }));
+        .map((item, index) => ({ date: String(item), value: String(item), id: index }));
     },
     secondSelectionElements() {
       return this.secondSelectController.selectionElements
         .map(item => format(new Date(item.date), 'd MMMM Y г.'))
-        .map((item, index) => ({ date: String(item), value: index }));
+        .map((item, index) => ({ date: String(item), value: String(item), id: index }));
     },
-    //
-  },
-
-  mounted() {
-    window.addEventListener('load', this.getSelectionBlockHeight);
+    // firstSelectionValue() {
+    //   return this.firstSelectionElements[0].date;
+    // },
+    // secondSelectionValue() {
+    //   return this.secondSelectionElements[0].date;
+    // },
   },
 
   methods: {
+    onScrollInvestPage() {
+      this.getSelectionBlockHeight();
+    },
     onClickFirstSelectController() {
       this.firstSelectionBlock.isVisible = !this.firstSelectionBlock.isVisible;
       this.secondSelectionBlock.isVisible = false;
@@ -505,11 +447,15 @@ export default {
       this.secondSelectionBlock.isVisible = false;
     },
 
-    onChangeFirstSelectionBlock(selectionValue) {
-      this.firstSelectionBlock.selectionValue = selectionValue;
+    onChangeFirstSelectionBlock(selectionValue, idOptions) {
+      this.firstSelectionValue = selectionValue;
+      this.firstSelectionBlock.idOptions = idOptions;
+      // console.log(selectionValue, idOptions);
     },
-    onChangeSecondSelectionBlock(selectionValue) {
-      this.secondSelectionBlock.selectionValue = selectionValue;
+    onChangeSecondSelectionBlock(selectionValue, idOptions) {
+      this.secondSelectionValue = selectionValue;
+      this.secondSelectionBlock.idOptions = idOptions;
+      // console.log(selectionValue, idOptions);
     },
 
     getClientHeight() {
@@ -596,34 +542,34 @@ export default {
   line-height: 24px;
   font-style: normal;
   color: #5a646e;
-}
 
-.selection-options-block {
-  max-width: 382px;
-  border-radius: 6px;
-  position: fixed;
-  // position: absolute;
-  margin: 0 auto;
+  &__selection-options-block {
+    max-width: 382px;
+    border-radius: 6px;
+    position: fixed;
+    // position: absolute;
+    margin: 0 auto;
 
-  @media screen and (min-width: 576px) {
-    max-width: 210px;
-  }
+    @media screen and (min-width: 576px) {
+      max-width: 210px;
+    }
 
-  @media screen and (min-width: 768px) {
-    max-width: 210px;
-    margin: 0;
-  }
+    @media screen and (min-width: 768px) {
+      max-width: 210px;
+      margin: 0;
+    }
 
-  //  selection-options-block_hide
-  &_hide {
-    opacity: 0;
-    transition: opacity 0.28s ease;
-  }
+    //  invest-page__selection-options-block_hide
+    &_hide {
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
 
-  // selection-options-block_show
-  &_show {
-    opacity: 1;
-    transition: opacity 0.28s ease;
+    // invest-page__selection-options-block_show
+    &_show {
+      opacity: 1;
+      transition: opacity 0.28s ease;
+    }
   }
 }
 </style>

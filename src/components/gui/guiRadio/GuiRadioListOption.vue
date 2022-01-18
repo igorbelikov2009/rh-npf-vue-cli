@@ -1,8 +1,8 @@
 <template>
-  <label class="selection-option" :class="{ 'selection-option_active': isActive }">
+  <label class="radio-list-option" :class="{ 'radio-list-option_active': isActive }">
     {{ date }}
     <input
-      class="selection-option__input"
+      class="radio-list-option__input"
       type="radio"
       :value="value"
       :id="id"
@@ -14,26 +14,27 @@
 
 <script>
 export default {
-  name: 'GuiSelectionOption',
+  name: 'GuiRadioListOption',
 
   props: {
     isActive: { type: Boolean, default: false },
     date: { type: String, required: true },
-    value: { type: String, required: true },
-    id: { type: Number, required: true },
+    value: { type: Number, required: true },
+    id: { type: Number },
   },
 
   methods: {
     emitValue(event) {
       // console.log(event.target.value, this.id);
-      this.$emit('change', String(event.target.value), this.id);
+      this.$emit('change', Number(event.target.value), this.id);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.selection-option {
+// radio-list-option
+.radio-list-option {
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -47,7 +48,7 @@ export default {
   font-weight: 400;
   cursor: pointer;
 
-  //  selection-option_active
+  //  radio-list-option_active
   &_active {
     padding: 18px 16px;
     font-size: 16px;

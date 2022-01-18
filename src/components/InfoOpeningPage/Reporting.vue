@@ -5,21 +5,23 @@
 
       <div class="reporting__flex-container">
         <div class="reporting__select">
-          <GuiSelect
+          <GuiRadioList
             :value="radioValue"
-            :isSelectionOptionsBlock="ifSelectionOptionsBlock"
-            :selectionElements="switchItems"
-            @onClickSelectionController="onClickSelectionController"
-            @onChangeSelectionBlock="onChangeSelectionBlock"
-            @onClickSelectionBlock="onClickSelectionBlock"
+            :id="idOptions"
+            :isRadioListVisible="ifRadioListVisible"
+            :radioListElements="switchItems"
+            @onClickRadioListController="onClickRadioListController"
+            @onChangeRadioListBlock="onChangeRadioListBlock"
+            @onClickRadioListBlock="onClickRadioListBlock"
           />
         </div>
 
         <div class="reporting__adaptive-radio">
           <GuiAdaptiveRadio
             :value="radioValue"
+            :id="idOptions"
             :radioElements="switchItems"
-            @onChangeRadio="onChangeRadio"
+            @onChangeAdaptiveRadio="onChangeAdaptiveRadio"
           />
         </div>
 
@@ -33,7 +35,7 @@
           v-for="(reporting, index) in reportings"
           :key="index"
           :reports="reporting"
-          :ifReportVisible="radioValue === index"
+          :ifReportVisible="idOptions === index"
         />
       </div>
     </div>
@@ -41,7 +43,7 @@
 </template>
 
 <script>
-import GuiSelect from '@/components/gui/guiSelect/GuiSelect.vue';
+import GuiRadioList from '@/components/gui/guiRadio/GuiRadioList.vue';
 import GuiAdaptiveRadio from '@/components/gui/guiRadio/GuiAdaptiveRadio.vue';
 import Reports from '@/components/InfoOpeningPage/Reports.vue';
 import GuiButtonToArchive from '@/components/gui/guiButton/GuiButtonToArchive.vue';
@@ -50,37 +52,45 @@ export default {
   name: 'Reporting',
   data() {
     return {
-      radioValue: 0,
-      ifSelectionOptionsBlock: false,
+      radioValue: 2021,
+      idOptions: 0,
+      ifRadioListVisible: false,
 
       switchItems: [
         {
           date: '2021',
-          value: 0,
+          value: 2021,
+          id: 0,
         },
         {
           date: '2020',
-          value: 1,
+          value: 2020,
+          id: 1,
         },
         {
           date: '2019',
-          value: 2,
+          value: 2019,
+          id: 2,
         },
         {
           date: '2018',
-          value: 3,
+          value: 2018,
+          id: 3,
         },
         {
           date: '2017',
-          value: 4,
+          value: 2017,
+          id: 4,
         },
         {
           date: '2016',
-          value: 5,
+          value: 2016,
+          id: 5,
         },
         {
           date: '2015',
-          value: 6,
+          value: 2015,
+          id: 6,
         },
       ],
 
@@ -1029,20 +1039,22 @@ export default {
   },
 
   methods: {
-    onChangeRadio(radioValue) {
+    onChangeAdaptiveRadio(radioValue, id) {
       this.radioValue = radioValue;
-      // console.log('OK, radioValue: ' + this.radioValue);
+      this.idOptions = id;
+      // console.log('radioValue: ' + this.radioValue, 'this.idOptions: ' + this.idOptions);
     },
-    onClickSelectionController() {
-      this.ifSelectionOptionsBlock = !this.ifSelectionOptionsBlock;
-      // console.log('ifSelectionOptionsBlock: ' + this.ifSelectionOptionsBlock);
+    onClickRadioListController() {
+      this.ifRadioListVisible = !this.ifRadioListVisible;
+      // console.log('ifRadioListVisible: ' + this.ifRadioListVisible);
     },
-    onChangeSelectionBlock(radioValue) {
+    onChangeRadioListBlock(radioValue, id) {
       this.radioValue = radioValue;
-      // console.log('radioValue: ' + this.radioValue);
+      this.idOptions = id;
+      // console.log('radioValue: ' + this.radioValue, 'this.idOptions: ' + this.idOptions);
     },
-    onClickSelectionBlock() {
-      this.ifSelectionOptionsBlock = false;
+    onClickRadioListBlock() {
+      this.ifRadioListVisible = false;
     },
 
     onClickArchiveReporting() {
@@ -1050,9 +1062,8 @@ export default {
     },
   },
   components: {
-    GuiSelect,
+    GuiRadioList,
     GuiAdaptiveRadio,
-    // RadioSwitching,
     GuiButtonToArchive,
     Reports,
   },

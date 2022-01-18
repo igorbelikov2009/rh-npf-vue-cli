@@ -3,11 +3,14 @@
     <div class="overall-info__container">
       <h1 class="overall-info__heading">Общие сведения</h1>
       <div class="overall-info__param-switch">
-        <ParamSwitch :switchItems="switchItems" @onChangeRadio="onChangeRadio" />
+        <GuiRadioPrimaryLabel
+          :radioItems="radioItems"
+          @onChangePrimaryRadio="onChangePrimaryRadio"
+        />
       </div>
 
       <div class="overall-info__content">
-        <div v-if="ifFirstContentVisible">
+        <div v-if="isVisible">
           <p class="overall-info__paragraph">
             <span class="overall-info__paragraph_span"
               >Полное фирменное наименование Фонда на русском языке</span
@@ -68,7 +71,7 @@
           </p>
         </div>
 
-        <div v-else-if="!ifFirstContentVisible">
+        <div v-else-if="!isVisible">
           <p class="overall-info__paragraph">
             <span class="overall-info__paragraph_span"
               >Полное наименование Фонда на русском языке</span
@@ -132,50 +135,42 @@
 </template>
 
 <script>
-import ParamSwitch from '@/components/gui/ParamSwitch.vue';
+import GuiRadioPrimaryLabel from '@/components/gui/guiRadio/GuiRadioPrimary.vue';
 
 export default {
   name: 'OverallInfo',
   data() {
     return {
-      ifFirstContentVisible: true,
+      isVisible: true,
       radioValue: 0,
-      switchItems: [
+      radioItems: [
         {
           name: 'information',
-          value: 1,
+          value: 0,
           title: 'Сведения',
-          isActive: false,
         },
         {
           name: 'information',
-          value: 2,
+          value: 1,
           title: 'Реквизиты',
-          isActive: false,
         },
       ],
     };
   },
 
   methods: {
-    onChangeRadio(value) {
+    onChangePrimaryRadio(value) {
       this.radioValue = value;
       // console.log('radioValue:' + this.radioValue);
-      this.changeVisibilityFirstContent();
+      this.changeVisibility();
     },
-    changeVisibilityFirstContent() {
-      if (this.radioValue === 1) {
-        this.ifFirstContentVisible = true;
-        // console.log(this.ifFirstContentVisible);
-      } else {
-        this.ifFirstContentVisible = false;
-        // console.log(this.ifFirstContentVisible);
-      }
+    changeVisibility() {
+      this.isVisible = !this.isVisible;
     },
   },
 
   components: {
-    ParamSwitch,
+    GuiRadioPrimaryLabel,
   },
 };
 </script>

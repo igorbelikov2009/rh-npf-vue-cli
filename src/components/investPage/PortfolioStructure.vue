@@ -17,9 +17,10 @@
       <PortfolioStructureAsPercentag
         v-for="(percentBlock, index) in percentBlocks"
         :key="index"
-        :isContainerVisible="controllerValue === index"
         :percent="percentBlock"
+        :isContainerVisible="idOptions === index"
       />
+      <!--   -->
     </div>
   </section>
 </template>
@@ -247,7 +248,9 @@ export default {
 
   props: {
     isSelectionBlockVisible: { type: Boolean, default: false },
-    controllerValue: { type: Number, required: true },
+    // controllerValue: { type: Number, required: true },
+    controllerValue: { type: String, required: true },
+    idOptions: { type: Number, required: true },
     selectionElements: { type: Array },
     date: { type: String },
   },

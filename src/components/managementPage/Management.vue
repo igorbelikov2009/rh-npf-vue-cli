@@ -200,8 +200,8 @@ export default {
         scrollY < 552 + this.h01 + this.h02 + this.h03 + this.h04 + this.h05 + this.h06 - 21
       ) {
         // console.log('06');
-        console.log(552 + this.h01 + this.h02 + this.h03 + this.h04 + this.h05);
-        console.log(552 + this.h01 + this.h02 + this.h03 + this.h04 + this.h05 + this.h06 - 19);
+        // console.log(552 + this.h01 + this.h02 + this.h03 + this.h04 + this.h05);
+        // console.log(552 + this.h01 + this.h02 + this.h03 + this.h04 + this.h05 + this.h06 - 19);
         this.iconTop = 5;
       } else if (
         scrollY >= 552 + this.h01 + this.h02 + this.h03 + this.h04 + this.h05 + this.h06 - 21 &&

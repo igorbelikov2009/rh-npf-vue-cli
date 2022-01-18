@@ -6,31 +6,23 @@
       <div class="news-page__container">
         <div class="news-page__flex-container">
           <div class="news-page__select">
-            <GuiSelect
+            <GuiRadioList
               :value="selectedYear"
-              :isSelectionOptionsBlock="ifSelectionOptionsBlock"
-              :selectionElements="radioYearsDuplicate"
-              @onClickSelectionController="onClickSelectionController"
-              @onChangeSelectionBlock="onChangeSelectionBlock"
-              @onClickSelectionBlock="onClickSelectionBlock"
-            />
-          </div>
-
-          <div class="news-page__adaptive-radio">
-            <GuiAdaptiveRadio
-              :value="selectedYear"
-              :radioElements="radioYearsDuplicate"
-              @onChangeRadio="onChangeRadio"
+              :isRadioListVisible="ifRadioListVisible"
+              :radioListElements="radioYearsDuplicate"
+              @onClickRadioListController="onClickRadioListController"
+              @onChangeRadioListBlock="onChangeRadioListBlock"
+              @onClickRadioListBlock="onClickRadioListBlock"
             />
           </div>
         </div>
-
-        <!-- Разделить на 2 компоненты И НЕ СМЕШИВАТЬ ИХ -->
-        <!-- <RadioSwitching
-          :value="selectedYear"
-          :switchItems="radioYears"
-          @onChangeRadioSwitching="onChangeRadioSwitching"
-        /> -->
+        <div class="news-page__adaptive-radio">
+          <GuiAdaptiveRadio
+            :value="selectedYear"
+            :radioElements="radioYearsDuplicate"
+            @onChangeAdaptiveRadio="onChangeAdaptiveRadio"
+          />
+        </div>
 
         <div class="news-page__row">
           <div class="news-page__list">
@@ -67,10 +59,8 @@
 
 import TopBlock from '@/components/general/TopBlock.vue';
 import TopMenu from '@/components/topMenu/TopMenu.vue';
-import GuiSelect from '@/components/gui/guiSelect/GuiSelect.vue';
+import GuiRadioList from '@/components/gui/guiRadio/GuiRadioList.vue';
 import GuiAdaptiveRadio from '@/components/gui/guiRadio/GuiAdaptiveRadio.vue';
-
-import RadioSwitching from '@/components/gui/RadioSwitching.vue';
 import NewsLink from '@/components/news/NewsLink.vue';
 import Footer from '@/components/Footer.vue';
 
@@ -79,19 +69,13 @@ export default {
 
   data() {
     return {
-      ifSelectionOptionsBlock: false,
+      ifRadioListVisible: false,
       selectedYear: 2021,
     };
   },
   computed: {
     news() {
       return this.$store.getters['news/sortedByDateNews'];
-    },
-    radioYearsDuplicate() {
-      return this.news
-        .map(item => new Date(item.date).getFullYear())
-        .filter((item, index, self) => index === self.indexOf(item))
-        .map(item => ({ date: String(item), value: item }));
     },
 
     radioYears() {
@@ -100,6 +84,14 @@ export default {
         .filter((item, index, self) => index === self.indexOf(item))
         .map(item => ({ name: String(item), value: item }));
       /* name => date */
+    },
+
+    //  this duplicate for GuiRadioList and for GuiAdaptiveRadio
+    radioYearsDuplicate() {
+      return this.news
+        .map(item => new Date(item.date).getFullYear())
+        .filter((item, index, self) => index === self.indexOf(item))
+        .map((item, index) => ({ date: String(item), value: item, id: index }));
     },
 
     filteredByYearNews() {
@@ -116,30 +108,28 @@ export default {
 
     //
     //
-    onChangeRadio(selectedYear) {
+    onChangeAdaptiveRadio(selectedYear) {
       this.selectedYear = selectedYear;
       // console.log('OK, selectedYear: ' + this.selectedYear);
     },
-    onClickSelectionController() {
-      this.ifSelectionOptionsBlock = !this.ifSelectionOptionsBlock;
-      // console.log('ifSelectionOptionsBlock: ' + this.ifSelectionOptionsBlock);
+    onClickRadioListController() {
+      this.ifRadioListVisible = !this.ifRadioListVisible;
+      // console.log('ifRadioListVisible: ' + this.ifRadioListVisible);
     },
-    onChangeSelectionBlock(selectedYear) {
+    onChangeRadioListBlock(selectedYear) {
       this.selectedYear = selectedYear;
       // console.log('selectedYear: ' + this.selectedYear);
     },
-    onClickSelectionBlock() {
-      this.ifSelectionOptionsBlock = false;
+    onClickRadioListBlock() {
+      this.ifRadioListVisible = false;
     },
   },
 
   components: {
     TopBlock,
     TopMenu,
-    GuiSelect,
+    GuiRadioList,
     GuiAdaptiveRadio,
-    //
-    RadioSwitching,
     NewsLink,
     Footer,
   },
@@ -215,6 +205,7 @@ export default {
 
     @media screen and (min-width: 576px) {
       display: block;
+      margin-bottom: 48px;
     }
   }
 

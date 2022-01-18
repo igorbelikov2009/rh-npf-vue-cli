@@ -5,8 +5,9 @@
       :key="index"
       :date="radioElement.date"
       :value="radioElement.value"
+      :id="radioElement.id"
       :isActive="radioElement.value === radioValue"
-      @change="onChangeRadio"
+      @change="onChangeAdaptiveRadio"
     />
   </div>
   <!-- radioElements -->
@@ -21,18 +22,21 @@ export default {
   data() {
     return {
       radioValue: this.value,
+      idRadio: this.id,
     };
   },
   props: {
     radioElements: { type: Array },
     date: { type: String },
     value: { type: Number },
+    id: { type: Number },
   },
   methods: {
-    onChangeRadio(value) {
+    onChangeAdaptiveRadio(value, id) {
       this.radioValue = value;
-      // console.log('radioValue: ' + this.radioValue);
-      this.$emit('onChangeRadio', this.radioValue);
+      this.idRadio = id;
+      // console.log('radioValue: ' + this.radioValue, 'idRadio: ' + this.idRadio);
+      this.$emit('onChangeAdaptiveRadio', this.radioValue, this.idRadio);
     },
   },
   components: {

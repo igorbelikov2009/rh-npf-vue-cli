@@ -7,19 +7,19 @@
         </h2>
 
         <div class="spec-depository__param-switch">
-          <ParamSwitch :switchItems="switchItems" @onChangeRadio="onChangeRadio" />
+          <GuiRadioPrimary :radioItems="radioItems" @onChangePrimaryRadio="onChangePrimaryRadio" />
         </div>
 
         <div class="spec-depository__content">
           <SpecDepositoryBlock
-            v-if="ifFirstContentVisible"
+            v-if="isVisible"
             :subheading="depository1.subheading"
             :title="depository1.title"
             :subtitle="depository1.subtitle"
           />
 
           <SpecDepositoryBlock
-            v-if="!ifFirstContentVisible"
+            v-if="!isVisible"
             :subheading="depository2.subheading"
             :title="depository2.title"
             :subtitle="depository2.subtitle"
@@ -45,27 +45,25 @@
 
 <script>
 import SpecDepositoryBlock from '@/components/InfoOpeningPage/SpecDepositoryBlock.vue';
-import ParamSwitch from '@/components/gui/ParamSwitch.vue';
+import GuiRadioPrimary from '@/components/gui/guiRadio/GuiRadioPrimary.vue';
 
 export default {
   name: 'SpecDepository',
 
   data() {
     return {
-      ifFirstContentVisible: true,
+      isVisible: true,
       radioValue: 0,
-      switchItems: [
+      radioItems: [
         {
           name: 'information',
-          value: 1,
+          value: 0,
           title: 'Действующие',
-          isActive: false,
         },
         {
           name: 'information',
-          value: 2,
+          value: 1,
           title: 'Договоры прекращены',
-          isActive: false,
         },
       ],
 
@@ -86,25 +84,19 @@ export default {
     };
   },
   methods: {
-    onChangeRadio(value) {
+    onChangePrimaryRadio(value) {
       this.radioValue = value;
       // console.log('radioValue:' + this.radioValue);
-      this.changeVisibilityFirstContent();
+      this.changeVisibility();
     },
-    changeVisibilityFirstContent() {
-      if (this.radioValue === 1) {
-        this.ifFirstContentVisible = true;
-        // console.log(this.ifFirstContentVisible);
-      } else {
-        this.ifFirstContentVisible = false;
-        // console.log(this.ifFirstContentVisible);
-      }
+    changeVisibility() {
+      this.isVisible = !this.isVisible;
     },
   },
 
   components: {
     SpecDepositoryBlock,
-    ParamSwitch,
+    GuiRadioPrimary,
   },
 };
 </script>

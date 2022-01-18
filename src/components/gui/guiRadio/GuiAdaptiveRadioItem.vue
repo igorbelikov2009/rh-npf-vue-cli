@@ -5,6 +5,7 @@
       class="adaptive-radio-item__input"
       type="radio"
       :value="value"
+      :id="id"
       :name="date"
       @click="emitValue"
     />
@@ -19,11 +20,12 @@ export default {
     isActive: { type: Boolean, default: false },
     date: { type: String, required: true },
     value: { type: Number, required: true },
+    id: { type: Number },
   },
   methods: {
     emitValue(event) {
-      // console.log(Number(event.target.value));
-      this.$emit('change', Number(event.target.value));
+      // console.log(String(event.target.value), this.id);
+      this.$emit('change', Number(event.target.value), this.id);
     },
   },
 };

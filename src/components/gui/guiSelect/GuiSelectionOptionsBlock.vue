@@ -6,6 +6,7 @@
         :key="index"
         :date="selectionElement.date"
         :value="selectionElement.value"
+        :id="selectionElement.id"
         :isActive="selectionElement.value === selectionValue"
         @change="onChangeSelectionBlock"
       />
@@ -21,21 +22,24 @@ export default {
 
   data() {
     return {
-      selectionValue: 0,
+      selectionValue: '2021-11-30T09:00:00.000Z',
+      idOptions: 0,
     };
   },
 
   props: {
-    selectionElements: { type: Array },
     date: { type: String },
-    value: { type: Number },
+    value: { type: String },
+    id: { type: Number },
+    selectionElements: { type: Array },
   },
 
   methods: {
-    onChangeSelectionBlock(value) {
+    onChangeSelectionBlock(value, id) {
       this.selectionValue = value;
-      // console.log('selectionValue: ' + this.selectionValue);
-      this.$emit('onChangeSelectionBlock', this.selectionValue);
+      this.idOptions = id;
+      // console.log('selectionValue: ' + this.selectionValue, 'id: ' + id);
+      this.$emit('onChangeSelectionBlock', this.selectionValue, this.idOptions);
     },
     onClickSelectionBlock() {
       this.$emit('onClickSelectionBlock');
@@ -49,7 +53,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// selection-options-block
 .selection-options-block {
   margin: 0 auto;
   box-shadow: 1px 3px 5px 2px #d7d7d7;
