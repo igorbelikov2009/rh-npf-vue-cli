@@ -1,10 +1,10 @@
 <template>
   <label class="my-input__label">
     <div>
-      <InputTitle :title="title" :isActive="isActive" />
+      <GuiInputTitle :title="title" :isActive="isActive" />
     </div>
 
-    <InputField
+    <GuiInputField
       :type="type"
       :name="name"
       :value="valueInput"
@@ -18,14 +18,7 @@
       {{ topError }}
     </p>
 
-    <p
-      class="my-input__error"
-      v-if="
-        ($v.valueInput.$dirty && !$v.valueInput.minLength) ||
-          !$v.valueInput.maxLength ||
-          !$v.valueInput.numeric
-      "
-    >
+    <p class="my-input__error" v-if="$v.valueInput.$dirty && !$v.valueInput.minLength">
       {{ buttomError }}
     </p>
   </label>
@@ -33,14 +26,16 @@
 
 <script>
 import { validationMixin } from 'vuelidate';
-import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators';
+import { required, minLength } from 'vuelidate/lib/validators';
 
-import InputTitle from '../gui/InputTitle.vue';
-import InputField from '../gui/InputField.vue';
+import GuiInputTitle from '@/components/gui/guiInput/GuiInputTitle.vue';
+import GuiInputField from '@/components/gui/guiInput/GuiInputField.vue';
 
 export default {
   mixins: [validationMixin],
-  name: 'InputPhone',
+
+  name: 'GuiCompanyInput',
+  //   import GuiCompanyInput from '@/components/gui/guiInput/GuiCompanyInput.vue';
 
   data() {
     return {
@@ -48,16 +43,16 @@ export default {
       hasError: false,
       type: 'text',
       valueInput: '',
-      name: 'valueInput',
-      title: 'Ваш телефон',
+      name: 'companyName',
+      title: 'Название компании',
       topError: 'Обязательное поле',
-      buttomError: 'Некорректный номер',
+      buttomError: 'Некорректное имя',
       classError: 'my-input__field_invalid',
     };
   },
 
   validations: {
-    valueInput: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
+    valueInput: { required, minLength: minLength(2) },
   },
   methods: {
     onFocus() {
@@ -72,24 +67,23 @@ export default {
         this.isActive = false;
       }
     },
+
     onInput(event) {
       this.value = event;
       this.valueInput = this.value;
       this.hasError = this.$v.valueInput.$invalid;
-      // console.log(this.valueInput, this.value)
 
       this.$emit('emitInputValues', this.valueInput);
     },
   },
   components: {
-    InputTitle,
-    InputField,
+    GuiInputTitle,
+    GuiInputField,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// my-input
 .my-input {
   width: 100%;
 
@@ -97,43 +91,6 @@ export default {
     width: 100%;
     padding-bottom: 20px;
     position: relative;
-  }
-
-  &__title {
-    position: absolute;
-    top: 24px;
-    left: 0px;
-    font-size: 16px;
-    color: #78828c;
-  }
-
-  // transition name="my-input__title"
-  &__title-leave-active,
-  &__title-enter-active {
-    transition: all 0.5s;
-  }
-
-  &__title-leave-to,
-  &__title-enter {
-    top: 0px;
-    font-size: 11px;
-  }
-
-  // transition name="my-input__title-else"
-  &__title-else {
-    position: absolute;
-    top: 0;
-    left: 0px;
-    font-size: 11px;
-    color: #78828c;
-  }
-
-  &__title-else-enter-active {
-    transition: all 0.01s 0.49s;
-  }
-
-  &__title-else-enter {
-    opacity: 0;
   }
 
   &__field {
@@ -165,6 +122,7 @@ export default {
   &__error {
     display: block;
     position: absolute;
+    top: 67px;
     top: 56px;
     left: 0;
     font-size: 12px;
@@ -172,5 +130,4 @@ export default {
     color: red;
   }
 }
-// my-input
 </style>

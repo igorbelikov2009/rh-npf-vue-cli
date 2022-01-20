@@ -3,20 +3,19 @@
     <CarouselHeader
       :headerSubtitle="carouselHeaderSubtitle"
       :ifHasHeaderSubtitle="isHasHeaderSubtitle"
-      :NoCursorLeft="isNoCursorLeft"
-      :BlurredLeft="isBlurredLeft"
-      :NoCursorRight="isNoCursorRight"
-      :BlurredRight="isBlurredRight"
+      :noCursorLeft="isNoCursorLeft"
+      :blurredLeft="isBlurredLeft"
+      :noCursorRight="isNoCursorRight"
+      :blurredRight="isBlurredRight"
       @onClickLeft="onClickLeft"
       @onClickRight="onClickRight"
     />
 
     <div class="carousel">
       <div class="carousel__tape" :style="scrollableElementStyle" ref="scrollableElement">
-        <CarouselTape
+        <FundCarouselTape
           :qq="q"
           :jj="j"
-          :ifHasLine="isHasLine"
           :carouselColumns="columns"
           @getWidthColumn="getWidthColumn"
           @getAmountChildren="getAmountChildren"
@@ -28,7 +27,7 @@
 
 <script>
 import CarouselHeader from '@/components/general/carousel/CarouselHeader.vue';
-import CarouselTape from '@/components/general/carousel/CarouselTape.vue';
+import FundCarouselTape from '@/components/aboutFundPage/FundCarouselTape.vue';
 
 export default {
   name: 'AboutFundBlock',
@@ -57,65 +56,37 @@ export default {
 
       columns: [
         {
-          titleYear: '2002',
-          linkHref: '',
-          linkTitle: '',
+          title: '2002',
           description:
             'Дата основания Фонда как части финансовой группы ING в России. Уже в 2003 году в Фонд приходят первые крупные клиенты, что дало Фонду существенный толчок к развитию и сделало его привлекательным в глазах будущих партнеров.',
-          date: '',
-          isClear: false,
         },
         {
-          titleYear: '2003',
-          linkHref: '',
-          linkTitle: '',
+          title: '2003',
           description: 'В Фонд приходят первые крупные клиенты.',
-          date: '',
-          isClear: false,
         },
         {
-          titleYear: '2008',
-          linkHref: '',
-          linkTitle: '',
+          title: '2008',
           description: 'Клиентами Фонда стали более 70 наших текущих партнеров.',
-          date: '',
-          isClear: false,
         },
         {
-          titleYear: '2009',
-          linkHref: '',
-          linkTitle: '',
+          title: '2009',
           description:
             'В связи с изменением бизнес стратегии компании ING в России, Фонд был выкуплен крупнейшей Британской страховой компанией AVIVA, что только лишь усилило позиции Фонда.',
-          date: '',
-          isClear: false,
         },
         {
-          titleYear: '2013',
-          linkHref: '',
-          linkTitle: '',
+          title: '2013',
           description:
             'Фонд перешел под управление компании WELBI на 100% контролировавшейся НПФ “Благосостояние”.',
-          date: '',
-          isClear: false,
         },
         {
-          titleYear: '2017',
-          linkHref: '',
-          linkTitle: '',
+          title: '2017',
           description:
             'В результате сделки Фонд вошел в объединенную группу компаний под управлением ООО “Группа Ренессанс Страхование”, одного из крупнейших провайдеров добровольного страхования в России.',
-          date: '',
-          isClear: false,
         },
         {
-          titleYear: '2018',
-          linkHref: '',
-          linkTitle: '',
+          title: '2018',
           description:
             'Состоялась реорганизация в акционерное общество с одновременным переименованием Фонда в АО НПФ «Ренессанс пенсии».',
-          date: '',
-          isClear: false,
         },
       ],
     };
@@ -158,7 +129,6 @@ export default {
       if (this.q < 0) this.q = 0;
       // console.log('q: ' + this.q);
     },
-
     getValueQOnClickArrowRight() {
       if (this.screenWidth < 855) {
         if (this.q < this.amountChildren - 1) {
@@ -259,7 +229,7 @@ export default {
 
   components: {
     CarouselHeader,
-    CarouselTape,
+    FundCarouselTape,
   },
 };
 </script>

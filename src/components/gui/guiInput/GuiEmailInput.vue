@@ -1,10 +1,10 @@
 <template>
   <label class="my-input__label">
     <div>
-      <InputTitle :title="title" :isActive="isActive" />
+      <GuiInputTitle :title="title" :isActive="isActive" />
     </div>
 
-    <InputField
+    <GuiInputField
       :type="type"
       :name="name"
       :value="valueInput"
@@ -18,7 +18,7 @@
       {{ topError }}
     </p>
 
-    <p class="my-input__error" v-if="$v.valueInput.$dirty && !$v.valueInput.minLength">
+    <p class="my-input__error" v-if="$v.valueInput.$dirty && !$v.valueInput.email">
       {{ buttomError }}
     </p>
   </label>
@@ -26,31 +26,33 @@
 
 <script>
 import { validationMixin } from 'vuelidate';
-import { required, minLength } from 'vuelidate/lib/validators';
+import { required, email } from 'vuelidate/lib/validators';
 
-import InputTitle from '../gui/InputTitle';
-import InputField from '../gui/InputField';
+import GuiInputTitle from '@/components/gui/guiInput/GuiInputTitle.vue';
+import GuiInputField from '@/components/gui/guiInput/GuiInputField.vue';
 
 export default {
   mixins: [validationMixin],
 
-  name: 'FirstNameInput',
+  name: 'GuiEmailInput',
+  //   import GuiEmailInput from '@/components/gui/guiInput/GuiEmailInput.vue';
+
   data() {
     return {
       isActive: false,
       hasError: false,
       type: 'text',
       valueInput: '',
-      name: 'firstName',
-      title: 'Ваше имя',
+      name: 'email',
+      title: 'Электронная почта',
       topError: 'Обязательное поле',
-      buttomError: 'Некорректное имя',
+      buttomError: 'Некорректный email',
       classError: 'my-input__field_invalid',
     };
   },
 
   validations: {
-    valueInput: { required, minLength: minLength(2) },
+    valueInput: { required, email },
   },
   methods: {
     onFocus() {
@@ -75,14 +77,13 @@ export default {
     },
   },
   components: {
-    InputTitle,
-    InputField,
+    GuiInputTitle,
+    GuiInputField,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// my-input
 .my-input {
   width: 100%;
 
@@ -121,7 +122,6 @@ export default {
   &__error {
     display: block;
     position: absolute;
-    top: 67px;
     top: 56px;
     left: 0;
     font-size: 12px;
@@ -129,5 +129,4 @@ export default {
     color: red;
   }
 }
-// my-input
 </style>

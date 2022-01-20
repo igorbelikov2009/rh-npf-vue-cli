@@ -8,7 +8,7 @@
       :title="square.title"
       :isOuterHovered="index === q"
       :isActived="index === q"
-      @emitValueRadio="emitValueRadio"
+      @onClickCarouselSquare="onClickCarouselSquare"
     />
   </div>
 </template>
@@ -75,14 +75,14 @@ export default {
       // console.log('amountChildrenContainer: ' + this.amountChildrenContainer);
       this.$emit('getAmountChildren', this.amountChildrenContainer);
     },
-    emitValueRadio(currentValue) {
+    onClickCarouselSquare(currentValue) {
       this.carouselValue = currentValue;
-      this.$emit('emitValueRadio', this.carouselValue);
+      this.$emit('onClickCarouselSquare', this.carouselValue);
       // console.log('carouselValue: ' + this.carouselValue);
     },
-    // emitValueRadio(event) {
+    // onClickCarouselSquare(event) {
     //   this.carouselValue = event;
-    //   this.$emit('emitValueRadio', this.carouselValue);
+    //   this.$emit('onClickCarouselSquare', this.carouselValue);
     //   // console.log('carouselValue: ' + this.carouselValue);
     // },
   },

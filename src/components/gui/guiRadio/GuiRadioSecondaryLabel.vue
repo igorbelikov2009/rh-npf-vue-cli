@@ -1,22 +1,16 @@
 <template>
-  <label class="switch-item" :class="{ 'switch-item_active': isActive }">
-    <input
-      class="switch-item__field"
-      type="radio"
-      :name="name"
-      :value="value"
-      @change="emitValue"
-    />
-    <p class="switch-item__title">{{ title }}</p>
+  <label class="radio-secondary-label" :class="{ 'radio-secondary-label_active': isActive }">
+    <input class="radio-secondary-label__field" type="radio" :value="value" @click="emitValue" />
+
+    <p class="radio-secondary-label__title">{{ title }}</p>
   </label>
 </template>
 
 <script>
 export default {
-  name: 'RadioSwitchItem',
+  name: 'GuiRadioSecondaryLabel',
 
   props: {
-    name: { type: String },
     value: { type: Number, required: true },
     title: { type: String },
     isActive: { type: Boolean, default: false },
@@ -32,8 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// * switch-item  переключатель *
-.switch-item {
+.radio-secondary-label {
   cursor: pointer;
   width: 64px;
   height: 48px;
@@ -55,7 +48,7 @@ export default {
     opacity: 0.8;
   }
 
-  &:hover .switch-item__title {
+  &:hover .radio-secondary-label__title {
     opacity: 1;
   }
 
@@ -70,5 +63,4 @@ export default {
     margin: auto;
   }
 }
-// * switch-item  переключатель *
 </style>

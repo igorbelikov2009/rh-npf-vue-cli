@@ -21,7 +21,8 @@
 
 <script>
 export default {
-  name: 'BicolorSlider',
+  name: 'GuiSlider',
+
   props: {
     title: { type: String },
     name: { type: String },
@@ -34,15 +35,14 @@ export default {
   methods: {
     emitValue(event) {
       // console.log(event)
-      this.$emit('input', event.target.valueAsNumber)
+      this.$emit('input', event.target.valueAsNumber);
       // console.log(this.value)
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-// slider
 .slider {
   position: relative;
   width: 100%;
@@ -76,9 +76,7 @@ export default {
     color: #b5bdc8;
   }
 }
-// slider
 
-// стилизация ползунка slider-bicolor *
 .slider-bicolor {
   width: 100%;
   appearance: none;
@@ -116,5 +114,4 @@ export default {
     box-shadow: -500px 0 0 500px #cedc01;
   }
 }
-// стилизация ползунка slider-bicolor *
 </style>

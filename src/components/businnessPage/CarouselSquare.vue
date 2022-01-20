@@ -1,6 +1,6 @@
 <template>
   <label class="carousel__square" :class="{ 'carousel__square-actived': isActived }">
-    <InputRadio :radioValue="valueRadio" @emitValueRadio="emitValueRadio" />
+    <CarouselSquareRadio :radioValue="valueRadio" @emitValue="onClickCarouselSquare" />
     <div class="carousel__icons">
       <TripleIcon :hovered="isOuterHovered" :light="isLight" :icon="icon" />
     </div>
@@ -13,7 +13,7 @@
 
 <script>
 import TripleIcon from '@/components/general/TripleIcon.vue';
-import InputRadio from '../gui/InputRadio.vue';
+import CarouselSquareRadio from '@/components/businnessPage/CarouselSquareRadio.vue';
 export default {
   name: 'CarouselSquare',
 
@@ -35,19 +35,19 @@ export default {
   methods: {
     // emitValue(event) {
     //   this.currentValue = Number(event.target.value);
-    //   this.$emit('emitValueRadio', this.currentValue);
+    //   this.$emit('onClickCarouselSquare', this.currentValue);
     //   console.log('currentValue: ' + this.currentValue);
-    //   // this.$emit('emitValueRadio', Number(event.target.value));
+    //   // this.$emit('onClickCarouselSquare', Number(event.target.value));
     // },
-    emitValueRadio(valueRadio) {
+    onClickCarouselSquare(valueRadio) {
       this.currentValue = valueRadio;
       // console.log('currentValue: ' + this.currentValue);
-      this.$emit('emitValueRadio', Number(event.target.value));
+      this.$emit('onClickCarouselSquare', this.currentValue);
     },
   },
   components: {
     TripleIcon,
-    InputRadio,
+    CarouselSquareRadio,
   },
 };
 </script>

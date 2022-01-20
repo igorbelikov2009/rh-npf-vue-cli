@@ -12,7 +12,8 @@
 
 <script>
 export default {
-  name: 'InputTitle',
+  name: 'GuiInputTitle',
+  //   import GuiInputTitle from '@/components/gui/guiInput/GuiInputTitle.vue';
 
   props: {
     title: { type: String },

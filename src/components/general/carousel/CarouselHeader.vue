@@ -4,10 +4,10 @@
       <h1 v-if="ifHasHeaderTitle" class="carousel-header__title">{{ headerTitle }}</h1>
       <p v-if="ifHasHeaderSubtitle" class="carousel-header__subtitle">{{ headerSubtitle }}</p>
       <Arrows
-        :isNoCursorLeft="NoCursorLeft"
-        :isBlurredLeft="BlurredLeft"
-        :isNoCursorRight="NoCursorRight"
-        :isBlurredRight="BlurredRight"
+        :isNoCursorLeft="noCursorLeft"
+        :isBlurredLeft="blurredLeft"
+        :isNoCursorRight="noCursorRight"
+        :isBlurredRight="blurredRight"
         @onClickLeft="onClickLeft"
         @onClickRight="onClickRight"
       />
@@ -20,23 +20,16 @@ import Arrows from '@/components/general/carousel/Arrows.vue';
 
 export default {
   name: 'CarouselHeader',
-  data() {
-    return {
-      isNoCursorLeft: this.NoCursorLeft,
-      isBlurredLeft: this.BlurredLeft,
-      isNoCursorRight: this.NoCursorRight,
-      isBlurredRight: this.BlurredRight,
-    };
-  },
+
   props: {
     headerTitle: { type: String },
     headerSubtitle: { type: String },
     ifHasHeaderTitle: { type: Boolean, default: false },
     ifHasHeaderSubtitle: { type: Boolean, default: false },
-    NoCursorLeft: { type: Boolean },
-    BlurredLeft: { type: Boolean },
-    NoCursorRight: { type: Boolean },
-    BlurredRight: { type: Boolean },
+    noCursorLeft: { type: Boolean },
+    blurredLeft: { type: Boolean },
+    noCursorRight: { type: Boolean },
+    blurredRight: { type: Boolean },
   },
   methods: {
     onClickLeft() {

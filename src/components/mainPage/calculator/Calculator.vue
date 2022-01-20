@@ -9,18 +9,13 @@
             <form class="slider-block">
               <div class="slider-block__age">
                 <div class="slider-block__switch">
-                  <RadioSwitch
-                    :defaultValue="genderSwitch.firstValue"
-                    :switchName="genderSwitch.switchName"
-                    :firstValue="genderSwitch.firstValue"
-                    :firstTitle="genderSwitch.firstTitle"
-                    :secondValue="genderSwitch.secondValue"
-                    :secondTitle="genderSwitch.secondTitle"
+                  <GuiRadioSecondary
+                    :radioItems="radioItems"
                     @onChangeRadio="onChangeGenderRadio"
                   />
                 </div>
 
-                <BicolorSlider
+                <GuiSlider
                   :title="ageSlider.title"
                   :name="ageSlider.name"
                   :min="ageSlider.min"
@@ -33,7 +28,7 @@
                      @input="ageSlider.currentValue = $event"-->
               </div>
 
-              <BicolorSlider
+              <GuiSlider
                 v-for="(slider, index) in sliders"
                 :key="index"
                 :title="slider.title"
@@ -83,10 +78,10 @@
 import { validationMixin } from 'vuelidate';
 import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators';
 
-import Graph from '../calculator/Graph.vue';
-import PensionInfo from '../calculator/PensionInfo.vue';
-import BicolorSlider from '../../gui/BicolorSlider.vue';
-import RadioSwitch from '../../gui/RadioSwitch.vue';
+import Graph from '@/components/mainPage/calculator/Graph.vue';
+import PensionInfo from '@/components/mainPage/calculator/PensionInfo.vue';
+import GuiSlider from '@/components/gui/guiSlider/GuiSlider.vue';
+import GuiRadioSecondary from '@/components/gui/guiRadio/GuiRadioSecondary.vue';
 
 export default {
   mixins: [validationMixin],
@@ -104,13 +99,10 @@ export default {
       generalAccumValue: 5143933, // общие накопления
       pensionValue: 28577, // размер выплаты пенсии
 
-      genderSwitch: {
-        switchName: 'gender',
-        firstValue: 65,
-        firstTitle: 'М',
-        secondValue: 60,
-        secondTitle: 'Ж',
-      },
+      radioItems: [
+        { value: 65, title: 'М' },
+        { value: 60, title: 'Ж' },
+      ],
 
       ageSlider: {
         title: 'Возраст, лет',
@@ -153,17 +145,12 @@ export default {
     sliders: { required, numeric },
     ageSlider: { required, numeric },
   },
-  components: {
-    PensionInfo,
-    Graph,
-    BicolorSlider,
-    RadioSwitch,
-  },
+
   methods: {
     onChangeGenderRadio(valueRadio) {
       this.genderValue = valueRadio;
       this.changeAttrAgeSlider();
-      // console.log(this.genderValue)
+      // console.log(this.genderValue);
       this.countOnCalculator();
     },
 
@@ -250,6 +237,12 @@ export default {
       // console.log('pensionValue:', this.pensionValue)
       // console.log('finish')
     },
+  },
+  components: {
+    PensionInfo,
+    Graph,
+    GuiSlider,
+    GuiRadioSecondary,
   },
 };
 </script>

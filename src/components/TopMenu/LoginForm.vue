@@ -5,15 +5,15 @@
 
     <div class="login-form__block-of-forms">
       <div class="login-form__input-container">
-        <PhoneInput @emitInputValues="onInputPhone" />
+        <GuiPhoneInput @emitInputValues="onInputPhone" />
       </div>
 
       <div class="login-form__input-container">
-        <EmailInpit @emitInputValues="onInputEmail" />
+        <GuiEmailInput @emitInputValues="onInputEmail" />
       </div>
 
       <div class="login-form__input-container">
-        <PasswordInput @emitInputValues="onInputPassword" />
+        <GuiPasswordInput @emitInputValues="onInputPassword" />
       </div>
 
       <div class="login-form__button-container">
@@ -43,9 +43,9 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators';
 
-import PhoneInput from '@/components/gui/PhoneInput.vue';
-import EmailInpit from '@/components/gui/EmailInpit.vue';
-import PasswordInput from '@/components/gui/PasswordInput.vue';
+import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+import GuiEmailInput from '@/components/gui/guiInput/GuiEmailInput.vue';
+import GuiPasswordInput from '@/components/gui/guiInput/GuiPasswordInput.vue';
 
 export default {
   mixins: [validationMixin],
@@ -94,9 +94,9 @@ export default {
     },
   },
   components: {
-    PhoneInput,
-    EmailInpit,
-    PasswordInput,
+    GuiPhoneInput,
+    GuiEmailInput,
+    GuiPasswordInput,
   },
 };
 </script>

@@ -1,10 +1,10 @@
 <template>
   <label class="my-input__label">
     <div>
-      <InputTitle :title="title" :isActive="isActive" />
+      <GuiInputTitle :title="title" :isActive="isActive" />
     </div>
 
-    <InputField
+    <GuiInputField
       :type="type"
       :name="name"
       :value="valueInput"
@@ -28,29 +28,31 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength } from 'vuelidate/lib/validators';
 
-import InputTitle from '../gui/InputTitle';
-import InputField from '../gui/InputField';
+import GuiInputTitle from '@/components/gui/guiInput/GuiInputTitle.vue';
+import GuiInputField from '@/components/gui/guiInput/GuiInputField.vue';
 
 export default {
   mixins: [validationMixin],
 
-  name: 'CompanyNameInput',
+  name: 'GuiPasswordInput',
+  //   import GuiPasswordInput from '@/components/gui/guiInput/GuiPasswordInput.vue';
+
   data() {
     return {
       isActive: false,
       hasError: false,
       type: 'text',
       valueInput: '',
-      name: 'companyName',
-      title: 'Название компании',
+      name: 'password',
+      title: 'Ваше пароль',
       topError: 'Обязательное поле',
-      buttomError: 'Некорректное имя',
+      buttomError: 'Минимальное количество символов 12',
       classError: 'my-input__field_invalid',
     };
   },
 
   validations: {
-    valueInput: { required, minLength: minLength(2) },
+    valueInput: { required, minLength: minLength(12) },
   },
   methods: {
     onFocus() {
@@ -75,14 +77,13 @@ export default {
     },
   },
   components: {
-    InputTitle,
-    InputField,
+    GuiInputTitle,
+    GuiInputField,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// my-input
 .my-input {
   width: 100%;
 
@@ -121,7 +122,6 @@ export default {
   &__error {
     display: block;
     position: absolute;
-    top: 67px;
     top: 56px;
     left: 0;
     font-size: 12px;
@@ -129,5 +129,4 @@ export default {
     color: red;
   }
 }
-// my-input
 </style>

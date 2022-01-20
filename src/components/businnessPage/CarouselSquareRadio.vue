@@ -4,7 +4,8 @@
 
 <script>
 export default {
-  name: 'InputRadio',
+  name: 'CarouselSquareInput',
+
   data() {
     return {
       valueRadio: this.radioValue,
@@ -18,7 +19,7 @@ export default {
   methods: {
     emitValue(event) {
       this.valueRadio = Number(event.target.value);
-      this.$emit('emitValueRadio', this.valueRadio);
+      this.$emit('emitValue', this.valueRadio);
       // console.log('radioValue: ' + this.valueRadio);
     },
   },

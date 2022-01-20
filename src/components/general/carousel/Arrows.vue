@@ -48,10 +48,10 @@
 export default {
   name: 'OffsetArrows',
   props: {
-    isNoCursorLeft: { type: Boolean },
-    isBlurredLeft: { type: Boolean },
-    isNoCursorRight: { type: Boolean },
-    isBlurredRight: { type: Boolean },
+    isNoCursorLeft: { type: Boolean, default: true },
+    isBlurredLeft: { type: Boolean, default: true },
+    isNoCursorRight: { type: Boolean, default: false },
+    isBlurredRight: { type: Boolean, default: false },
   },
 
   methods: {

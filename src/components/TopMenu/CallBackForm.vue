@@ -1,11 +1,11 @@
 <template>
   <form class="call-back" @submit.prevent="checkForm">
     <div class="call-back__input-container">
-      <FirstNameInput @emitInputValues="onInputFirstName" />
+      <GuiNameInput @emitInputValues="onInputFirstName" />
     </div>
 
     <div class="call-back__input-container">
-      <PhoneInput @emitInputValues="onInputPhone" />
+      <GuiPhoneInput @emitInputValues="onInputPhone" />
     </div>
 
     <div class="call-back__button-container">
@@ -24,8 +24,8 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators';
 
-import PhoneInput from '@/components/gui/PhoneInput.vue';
-import FirstNameInput from '@/components/gui/FirstNameInput.vue';
+import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+import GuiNameInput from '@/components/gui/guiInput/GuiNameInput.vue';
 
 export default {
   mixins: [validationMixin],
@@ -76,8 +76,8 @@ export default {
   },
 
   components: {
-    FirstNameInput,
-    PhoneInput,
+    GuiNameInput,
+    GuiPhoneInput,
   },
 };
 </script>

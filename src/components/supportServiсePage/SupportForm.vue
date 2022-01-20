@@ -11,15 +11,15 @@
         </div>
 
         <form class="support-form__form" @submit.prevent="checkForm">
-          <FirstNameInput @emitInputValues="onInputFirstName" />
+          <GuiNameInput @emitInputValues="onInputFirstName" />
 
-          <PhoneInput @emitInputValues="onInputPhone" />
+          <GuiPhoneInput @emitInputValues="onInputPhone" />
 
-          <EmailInpit @emitInputValues="onInputEmail" />
+          <GuiEmailInput @emitInputValues="onInputEmail" />
 
-          <CompanyNameInput @emitInputValues="onInputCompanyName" />
+          <GuiCompanyInput @emitInputValues="onInputCompanyName" />
 
-          <MessageInput @emitInputValues="onInputMessageInput" />
+          <GuiMessageInput @emitInputValues="onInputMessageInput" />
 
           <div class="support-form__button-container">
             <button class="support-form__button primary-button">
@@ -36,11 +36,11 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength, maxLength, numeric, email } from 'vuelidate/lib/validators';
 
-import FirstNameInput from '@/components/gui/FirstNameInput.vue';
-import PhoneInput from '@/components/gui/PhoneInput.vue';
-import EmailInpit from '@/components/gui/EmailInpit.vue';
-import CompanyNameInput from '@/components/gui/CompanyNameInput.vue';
-import MessageInput from '../gui/MessageInput.vue';
+import GuiNameInput from '@/components/gui/guiInput/GuiNameInput.vue';
+import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+import GuiEmailInput from '@/components/gui/guiInput/GuiEmailInput.vue';
+import GuiCompanyInput from '@/components/gui/guiInput/GuiCompanyInput.vue';
+import GuiMessageInput from '@/components/gui/guiInput/GuiMessageInput.vue';
 
 export default {
   mixins: [validationMixin],
@@ -97,11 +97,11 @@ export default {
     },
   },
   components: {
-    FirstNameInput,
-    PhoneInput,
-    EmailInpit,
-    CompanyNameInput,
-    MessageInput,
+    GuiNameInput,
+    GuiPhoneInput,
+    GuiEmailInput,
+    GuiCompanyInput,
+    GuiMessageInput,
   },
 };
 </script>

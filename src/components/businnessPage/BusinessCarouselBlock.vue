@@ -4,10 +4,10 @@
       <CarouselHeader
         :headerSubtitle="carouselHeaderSubtitle"
         :ifHasHeaderSubtitle="isHasHeaderSubtitle"
-        :NoCursorLeft="isNoCursorLeft"
-        :BlurredLeft="isBlurredLeft"
-        :NoCursorRight="isNoCursorRight"
-        :BlurredRight="isBlurredRight"
+        :noCursorLeft="isNoCursorLeft"
+        :blurredLeft="isBlurredLeft"
+        :noCursorRight="isNoCursorRight"
+        :blurredRight="isBlurredRight"
         @onClickLeft="onClickLeft"
         @onClickRight="onClickRight"
       />
@@ -17,7 +17,7 @@
           <BusinessCarousel
             :q="carouselValue"
             @getAmountChildren="getAmountChildren"
-            @emitValueRadio="onClickRadio"
+            @onClickCarouselSquare="onClickCarouselSquare"
           />
         </div>
       </div>
@@ -57,7 +57,7 @@ export default {
       right: 0, // значение прокрутки scrollableElement, записываемое в его атрибут style
       stepScrolling: 224, // шаг прокрутки
       subheadings: [
-        { text: 'Сохранение статуса и образа жизни после выхода на пенсию.' },
+        { text: 'Сохранение статуса и образа жизни после выхода на пенсию.' },
         { text: 'Увеличение лояльности работников к работодателю.' },
         { text: 'Комфортное увольнение на пенсию без существенной потери доходов.' },
         {
@@ -148,7 +148,7 @@ export default {
     },
 
     // получаем значения радио и запускаем функции
-    onClickRadio(carouselValue) {
+    onClickCarouselSquare(carouselValue) {
       this.carouselValue = carouselValue;
       this.changeColorArrowOnClickRadio();
       this.scrollingBusinessCarousel();

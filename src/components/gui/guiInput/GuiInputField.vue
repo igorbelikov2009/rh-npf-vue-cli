@@ -15,7 +15,8 @@
 
 <script>
 export default {
-  name: 'InputField',
+  name: 'GuiInputField',
+  //   import GuiInputField from '@/components/gui/guiInput/GuiInputField.vue';
 
   props: {
     type: { type: String },

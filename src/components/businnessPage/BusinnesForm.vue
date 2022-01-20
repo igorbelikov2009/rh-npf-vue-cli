@@ -11,19 +11,19 @@
       <form class="businnes-callback__form" @submit.prevent="checkForm">
         <div class="my-form my-form-business">
           <div class="my-form__label-container my-form-business__label-container">
-            <FirstNameInput @emitInputValues="onInputFirstName" />
+            <GuiNameInput @emitInputValues="onInputFirstName" />
           </div>
 
           <div class="my-form__label-container my-form-business__label-container">
-            <PhoneInput @emitInputValues="onInputPhone" />
+            <GuiPhoneInput @emitInputValues="onInputPhone" />
           </div>
 
           <div class="my-form__label-container my-form-business__label-container">
-            <EmailInpit @emitInputValues="onInputEmail" />
+            <GuiEmailInput @emitInputValues="onInputEmail" />
           </div>
 
           <div class="my-form__label-container my-form-business__label-container">
-            <CompanyNameInput @emitInputValues="onInputCompanyName" />
+            <GuiCompanyInput @emitInputValues="onInputCompanyName" />
           </div>
         </div>
 
@@ -41,10 +41,10 @@
 import { validationMixin } from 'vuelidate';
 import { required, minLength, maxLength, numeric, email } from 'vuelidate/lib/validators';
 
-import FirstNameInput from '@/components/gui/FirstNameInput.vue';
-import PhoneInput from '@/components/gui/PhoneInput.vue';
-import EmailInpit from '@/components/gui/EmailInpit.vue';
-import CompanyNameInput from '@/components/gui/CompanyNameInput.vue';
+import GuiNameInput from '@/components/gui/guiInput/GuiNameInput.vue';
+import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+import GuiEmailInput from '@/components/gui/guiInput/GuiEmailInput.vue';
+import GuiCompanyInput from '@/components/gui/guiInput/GuiCompanyInput.vue';
 
 export default {
   mixins: [validationMixin],
@@ -96,10 +96,10 @@ export default {
     },
   },
   components: {
-    FirstNameInput,
-    PhoneInput,
-    EmailInpit,
-    CompanyNameInput,
+    GuiNameInput,
+    GuiPhoneInput,
+    GuiEmailInput,
+    GuiCompanyInput,
   },
 };
 </script>
