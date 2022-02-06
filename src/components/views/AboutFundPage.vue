@@ -35,16 +35,13 @@ import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'AboutFundPage',
-  // data() {
-  //   return {
-  //     topBlock: {
-  //       // image: aboutFundImage,
-  //       // heading: 'О фонде',
-  //       subheading:
-  //         'На сегодняшний день АО НПФ "Ренессанс пенсии" – один из крупнейших и надежных негосударственных пенсионных фондов на рынке негосударственного пенсионного обеспечения (НПО).',
-  //     },
-  //   };
-  // },
+  data() {
+    return {
+      str: 'How can mirrors be real if our eyes aren',
+
+      // cities: ['МанЧЕСТёр', 'БиРминГЕМ', 'лиВЕРпуЛЬ'],
+    };
+  },
 
   components: {
     TopMenu,
@@ -85,6 +82,11 @@ export default {
     @media screen and (min-width: 1440px) {
       padding-top: 72px;
     }
+  }
+
+  &__test {
+    padding: 48px 0;
+    color: red;
   }
 
   &__description {
