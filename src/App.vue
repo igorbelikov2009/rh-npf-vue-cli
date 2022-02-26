@@ -1,24 +1,19 @@
 <template>
   <div id="app">
-    <MainPage />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import MainPage from '../src/components/mainPage/MainPage'
-
 export default {
   name: 'app',
-
-  components: {
-    MainPage,
-  },
-}
+};
 </script>
 
 <style scoped>
 #app {
   width: 100%;
   margin: 0 auto;
+  scroll-behavior: smooth;
 }
 </style>

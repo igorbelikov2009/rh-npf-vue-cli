@@ -1,11 +1,11 @@
 <template>
   <form class="call-back" @submit.prevent="checkForm">
     <div class="call-back__input-container">
-      <FirstNameInput @emitInputValues="onInputFirstName" />
+      <GuiNameInput @emitInputValues="onInputFirstName" />
     </div>
 
     <div class="call-back__input-container">
-      <PhoneInput @emitInputValues="onInputPhone" />
+      <GuiPhoneInput @emitInputValues="onInputPhone" />
     </div>
 
     <div class="call-back__button-container">
@@ -15,17 +15,17 @@
     </div>
 
     <button class="call-back__cross-switch" @click="closeCallBack">
-      <img class="call-back__cross-image" src="@/assets/icons/triple/Cross/Dark.svg" alt="cross" />
+      <img class="call-back__cross-image" src="/icons/triple/Cross/Dark.svg" alt="cross" />
     </button>
   </form>
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate';
+import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators';
 
-import PhoneInput from '../gui/PhoneInput'
-import FirstNameInput from '../gui/FirstNameInput'
+import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+import GuiNameInput from '@/components/gui/guiInput/GuiNameInput.vue';
 
 export default {
   mixins: [validationMixin],
@@ -39,7 +39,7 @@ export default {
         firstName: '',
         phone: '',
       },
-    }
+    };
   },
   validations: {
     form: {
@@ -49,34 +49,37 @@ export default {
   },
   methods: {
     closeCallBack() {
-      this.$emit('closeCallBack')
+      this.$emit('closeCallBack');
     },
 
     checkForm() {
-      this.$v.form.$touch()
+      if (!this.$v || !this.$v.form) return;
+
+      this.$v.form.$touch();
 
       if (!this.$v.form.$error) {
-        this.registrationPassed = true
-        console.log('Валидация прошла успешно', this.form)
-        this.$emit('closeCallBack')
+        this.registrationPassed = true;
+        console.log('Валидация прошла успешно', this.form);
+        this.$emit('closeCallBack');
       }
     },
 
     onInputFirstName(valueInput) {
-      this.form.firstName = valueInput
+      this.form.firstName = valueInput;
+      // console.log('Ok', valueInput, this.form.firstName);
     },
 
     onInputPhone(valueInput) {
-      this.form.phone = valueInput
-      // console.log('Ok', valueInput, this.form.phone)
+      this.form.phone = valueInput;
+      // console.log('Ok', valueInput, this.form.phone);
     },
   },
 
   components: {
-    FirstNameInput,
-    PhoneInput,
+    GuiNameInput,
+    GuiPhoneInput,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

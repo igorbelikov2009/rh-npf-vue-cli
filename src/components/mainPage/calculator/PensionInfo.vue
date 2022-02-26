@@ -41,7 +41,7 @@ export default {
     pensionValue: { type: Number },
     generalAccumValue: { type: Number },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

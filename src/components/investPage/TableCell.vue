@@ -1,0 +1,31 @@
+<template>
+  <td>{{ titleCell }}</td>
+</template>
+
+<script>
+export default {
+  name: 'TableCell',
+
+  props: {
+    titleCell: { type: String },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+td {
+  vertical-align: baseline;
+  box-sizing: border-box;
+  border-top: 1px solid #e6f0fa;
+  color: #28323c;
+  padding: 8px 12px;
+
+  &:first-of-type {
+    padding: 8px 12px 8px 0;
+  }
+
+  &:last-of-type {
+    padding: 8px 0 8px 12px;
+  }
+}
+</style>

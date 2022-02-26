@@ -2,31 +2,40 @@
   <section class="menu-mobil">
     <div>
       <div class="menu-mobil__logos">
-        <img class="menu-mobil__logo-small" src="@/assets/logotype/logoColoredSmall.svg" alt="" />
-
-        <img class="menu-mobil__logo-big" src="@/assets/logotype/logoColored.svg" alt="" />
+        <Logotypes
+          :isBackgroundWhite="ifBackgroundWhite"
+          @click.native="$router.push({ name: 'main' })"
+        />
       </div>
 
-      <p class="menu-mobil__title">О Фонде</p>
+      <router-link class="menu-mobil__link" :to="{ name: 'aboutFund' }">О Фонде</router-link>
 
-      <a class="menu-mobil__link" href="../templates/fundManagement.html">Руководство Фондом</a>
+      <router-link class="menu-mobil__link" :to="{ name: 'management' }"
+        >Руководство Фондом</router-link
+      >
 
-      <a class="menu-mobil__link" href="../templates/infoOpening.html">Раскрытие информации</a>
+      <router-link class="menu-mobil__link" :to="{ name: 'infoOpening' }"
+        >Раскрытие информации</router-link
+      >
 
-      <a class="menu-mobil__link" href="../templates/invest.html">Инвестиционная деятельность</a>
+      <router-link class="menu-mobil__link " :to="{ name: 'invest' }"
+        >Инвестиционная деятельность</router-link
+      >
 
       <p class="menu-mobil__title">Клиентам</p>
 
-      <a class="menu-mobil__link" href="../templates/forBusiness.html">Для бизнеса</a>
+      <router-link class="menu-mobil__link" :to="{ name: 'business' }">Для бизнеса</router-link>
 
-      <a class="menu-mobil__link" href="../templates/main.html#calculator">Калькулятор</a>
-
-      <a class="menu-mobil__link" href="../templates/supportService.html#write-to-us"
-        >Написать нам</a
+      <router-link class="menu-mobil__link" :to="{ path: '/main#calculator' }"
+        >Калькулятор</router-link
       >
 
-      <a class="menu-mobil__link" href="../templates/supportService.html#questions-and-answers"
-        >Вопросы и ответы</a
+      <router-link class="menu-mobil__link" :to="{ path: '/support#form' }"
+        >Написать нам</router-link
+      >
+
+      <router-link class="menu-mobil__link" :to="{ path: 'support#questionsAnswers' }"
+        >Вопросы и ответы</router-link
       >
 
       <div class="menu-mobil__phone">
@@ -37,7 +46,7 @@
     </div>
 
     <div>
-      <p class="menu-mobil__copy-right">© 2009-2019 НПФ Ренессанс. Пенсии</p>
+      <p class="menu-mobil__copy-right">©2009-2019 НПФРенессанс. Пенсии</p>
 
       <p class="menu-mobil__copy-right">
         Лицензия № 383/2 от 16 июня 2009 года
@@ -47,7 +56,7 @@
     <button class="menu-mobil__cross-switch">
       <img
         class="menu-mobil__cross-image"
-        src="@/assets/icons/triple/Cross/Dark.svg"
+        src="/icons/triple/Cross/Dark.svg"
         alt="cross"
         @click="closeMenuMobil"
       />
@@ -56,17 +65,28 @@
 </template>
 
 <script>
+import Logotypes from '@/components/general/Logotypes.vue';
+
 export default {
+  name: 'MenuMobil',
+  data() {
+    return {
+      ifBackgroundWhite: true,
+    };
+  },
+
   methods: {
     closeMenuMobil() {
-      this.$emit('closeMenuMobil')
+      this.$emit('closeMenuMobil');
     },
   },
-}
+  components: {
+    Logotypes,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-// menu-mobil
 .menu-mobil {
   position: absolute;
   top: 0;
@@ -78,30 +98,14 @@ export default {
 
   &__logos {
     height: 24px;
-    margin-bottom: 38px;
-
-    @media screen and (min-width: 576px) {
-      margin-bottom: 56px;
-    }
-  }
-
-  &__logo-small {
-    height: 24px;
     margin-left: 32px;
+    margin-bottom: 38px;
     display: block;
 
     @media screen and (min-width: 576px) {
-      display: none;
-    }
-  }
-
-  &__logo-big {
-    height: 24px;
-    margin-left: 80px;
-    display: none;
-
-    @media screen and (min-width: 576px) {
-      display: block;
+      height: 24px;
+      margin-left: 80px;
+      margin-bottom: 56px;
     }
   }
 
@@ -211,5 +215,4 @@ export default {
   opacity: 0;
   right: 100%;
 }
-// menu-mobil
 </style>
