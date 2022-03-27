@@ -13,6 +13,7 @@ import { format } from 'date-fns';
 
 export default {
   name: 'NewsLink',
+
   props: {
     title: { type: String, required: true },
     date: { type: String, required: true },

@@ -24,43 +24,39 @@
       <div class="footer__menu">
         <div class="footer__nav">
           <div class="footer__column">
-            <router-link class="footer__link " :to="{ path: '/support#form' }"
-              >Написать нам</router-link
+            <router-link
+              class="footer__link"
+              v-for="route in firstBlock"
+              :key="route.path"
+              :to="route.path"
+              exact
             >
-
-            <router-link class="footer__link" :to="{ path: 'support#questionsAnswers' }"
-              >Вопросы и ответы</router-link
-            >
-
-            <router-link class="footer__link" :to="{ name: 'aboutFund' }">О Фонде</router-link>
-
-            <router-link class="footer__link" :to="{ name: 'management' }"
-              >Руководство Фондом</router-link
-            >
+              {{ route.label }}
+            </router-link>
           </div>
 
           <div class="footer__column">
-            <router-link class="footer__link" :to="{ name: 'infoOpening' }"
-              >Раскрытие информации</router-link
+            <router-link
+              class="footer__link"
+              v-for="route in secondBlock"
+              :key="route.path"
+              :to="route.path"
+              exact
             >
-
-            <router-link class="footer__link" :to="{ name: 'invest' }"
-              >Инвестиционная деятельность</router-link
-            >
-
-            <router-link class="footer__link" :to="{ name: 'business' }">Для бизнеса</router-link>
-
-            <router-link class="footer__link" :to="{ path: '/main#calculator' }"
-              >Калькулятор</router-link
-            >
+              {{ route.label }}
+            </router-link>
           </div>
 
           <div class="footer__column">
-            <router-link class="footer__link" :to="{ name: 'newsPage' }">Новости</router-link>
-
-            <router-link class="footer__link" :to="{ name: 'newPage' }"
-              >Новости страница (Налогообложение)</router-link
+            <router-link
+              class="footer__link"
+              v-for="route in thirdBlock"
+              :key="route.path"
+              :to="route.path"
+              exact
             >
+              {{ route.label }}
+            </router-link>
           </div>
         </div>
 
@@ -97,6 +93,48 @@ export default {
   data() {
     return {
       ifBackgroundWhite: true,
+      firstBlock: [
+        {
+          label: 'Написать нам',
+          path: '/support#form',
+        },
+        {
+          label: 'Вопросы и ответы',
+          path: '/support#questionsAnswers',
+        },
+        {
+          label: 'О Фонде',
+          path: '/about',
+        },
+      ],
+      secondBlock: [
+        {
+          label: 'Раскрытие информации',
+          path: '/infoopening',
+        },
+        {
+          label: 'Инвестиционная деятельность',
+          path: '/invest',
+        },
+        {
+          label: 'Для бизнеса',
+          path: '/business',
+        },
+        {
+          label: 'Калькулятор',
+          path: '/main#calculator',
+        },
+      ],
+      thirdBlock: [
+        {
+          label: 'Новости',
+          path: '/newspages',
+        },
+        {
+          label: 'Новости страница (Налогообложение)',
+          path: '/newspage',
+        },
+      ],
     };
   },
   components: {
@@ -284,6 +322,7 @@ export default {
 
   &__copyright-link {
     text-decoration: none;
+    text-align: left;
     display: block;
     font-size: 11px;
     line-height: 15px;

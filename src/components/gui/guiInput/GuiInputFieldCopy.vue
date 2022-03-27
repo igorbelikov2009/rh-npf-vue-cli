@@ -1,27 +1,24 @@
 <template>
-  <div>
-    <input
-      class="my-input__field"
-      :type="type"
-      :name="name"
-      :value="value"
-      @focus="$emit('focus')"
-      @blur="$emit('blur')"
-      @input="emitValue"
-      :class="{ 'my-input__field_invalid': hasError }"
-    />
-  </div>
+  <input
+    class="my-input__field"
+    :type="type"
+    :name="name"
+    :value="value"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
+    @input="emitValue"
+    :class="{ 'my-input__field_invalid': hasError }"
+  />
 </template>
 
 <script>
 export default {
-  name: 'GuiInputField',
-  //   import GuiInputField from '@/components/gui/guiInput/GuiInputField.vue';
+  name: 'GuiInputFieldCopy',
 
   props: {
     type: { type: String },
-    value: { type: String },
     name: { type: String },
+    value: { type: String },
     hasError: { type: Boolean },
   },
 

@@ -12,42 +12,19 @@
               :isBackgroundWhite="ifBackgroundWhite"
               @click.native="$router.push({ name: 'main' })"
             />
+            <!--  то же самое   @click.native="$router.push('/')" -->
           </div>
 
           <div class="top-menu__nav">
             <router-link
-              class="top-menu__link"
-              :to="{ name: 'aboutFund' }"
-              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
-              >О фонде</router-link
+              v-for="route in routes"
+              :key="route.path"
+              :to="route.path"
+              exact
+              :class="{ 'top-menu__link': true, 'top-menu__link_news': ifBackgroundWhite }"
             >
-
-            <router-link
-              class="top-menu__link"
-              :to="{ name: 'invest' }"
-              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
-              >Инвестиционная деятельность</router-link
-            >
-
-            <router-link
-              class="top-menu__link"
-              :to="{ name: 'business' }"
-              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
-              >Бизнесу</router-link
-            >
-
-            <router-link
-              class="top-menu__link"
-              :to="{ name: 'supportServiсe' }"
-              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
-              >Поддержка</router-link
-            >
-            <router-link
-              class="top-menu__link"
-              :to="{ name: 'contacts' }"
-              :class="{ 'top-menu__link_news': ifBackgroundWhite }"
-              >Контакты</router-link
-            >
+              {{ route.label }}
+            </router-link>
           </div>
         </div>
 
@@ -121,10 +98,31 @@ export default {
   data() {
     return {
       isMenuMobilVisible: false,
-
       isLKButtonHovered: false,
       isLoginFormVisible: false,
       isCallBackFormVisible: false,
+      routes: [
+        {
+          label: 'О фонде',
+          path: '/about',
+        },
+        {
+          label: 'Инвестиционная деятельность',
+          path: '/invest',
+        },
+        {
+          label: 'Бизнесу',
+          path: '/business',
+        },
+        {
+          label: 'Поддержка',
+          path: '/support',
+        },
+        {
+          label: 'Контакты',
+          path: '/contacts',
+        },
+      ],
     };
   },
   props: {

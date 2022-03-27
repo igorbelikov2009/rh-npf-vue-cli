@@ -66,19 +66,19 @@ const routes = [
     component: ManagementPage,
   },
   {
-    path: '/info',
+    path: '/infoopening',
     name: 'infoOpening',
     component: InfoOpeningPage,
   },
   {
-    path: '/news',
-    name: 'newsPage',
+    path: '/newspages',
+    name: 'newsPages',
     component: NewsPage,
   },
   {
     // path: '/new/:id',
-    path: '/new',
-    name: 'newPage',
+    path: '/newspage',
+    name: 'newsPage',
     component: NewPage,
   },
 

@@ -8,85 +8,76 @@
       </div>
 
       <div class="business-programm__block">
-        <BusinnesProgrammColumn
-          v-for="(column, index) in columns"
-          :key="index"
-          :imgSrc="column.imgSrc"
-          :imgAlt="column.imgAlt"
-          :title="column.title"
-          :descriptions="column.descriptions"
-        />
+        <div class="column" v-for="(column, index) in columns" :key="index">
+          <div class="column__top-block">
+            <DarkIcon :icon="column.icon" class="column__icon" />
+
+            <h2 class="column__title">{{ column.title }}</h2>
+          </div>
+
+          <div class="column__description-block">
+            <p class="description" v-for="(phrase, index) in column.descriptions" :key="index">
+              {{ phrase }}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import BusinnesProgrammColumn from '@/components/businnessPage/BusinnesProgrammColumn';
+import DarkIcon from '@/components/general/DarkIcon.vue';
+
 export default {
   name: 'BusinessProgramm',
   data() {
     return {
       columns: [
         {
-          imgSrc: '/icons/triple/Case/Dark.svg',
-          imgAlt: 'Case',
+          icon: 'Case',
           title: 'Работодатель (Вкладчик)',
-          descriptions: [
-            { text: 'Определяет условия программы', isHasText: true },
-            { text: 'Уплачивает взносы в фонд', isHasText: true },
-            { text: '', isHasText: false },
-            { text: '', isHasText: false },
-          ],
+          descriptions: ['Определяет условия программы', 'Уплачивает взносы в фонд'],
         },
         {
-          imgSrc: '/icons/triple/Man/Dark.svg',
-          imgAlt: 'Man',
+          icon: 'Man',
           title: 'Сотрудник (Участник)',
           descriptions: [
-            { text: 'Заключает личный договор', isHasText: true },
-            { text: 'Уплачивает взносы в фонд', isHasText: true },
-            { text: 'Выполняет условия программы', isHasText: true },
-            { text: 'Получает пенсию или выкупную сумму', isHasText: true },
+            'Заключает личный договор',
+            'Уплачивает взносы в фонд',
+            'Выполняет условия программы',
+            'Получает пенсию или выкупную сумму',
           ],
         },
         {
-          imgSrc: '/icons/triple/Bank/Dark.svg',
-          imgAlt: 'Bank',
+          icon: 'Bank',
           title: 'Фонд',
           descriptions: [
-            {
-              text:
-                'Аккумулирует взносы вкладчика (Участника) ведет учет, распределяет нвестиционный доход',
-              isHasText: true,
-            },
-            { text: 'Выплачивает негосударственные пенсии участникам', isHasText: true },
-            { text: '', isHasText: false },
-            { text: '', isHasText: false },
+            'Аккумулирует взносы вкладчика (Участника) ведет учет, распределяет нвестиционный доход',
+
+            'Выплачивает негосударственные пенсии участникам',
           ],
         },
         {
-          imgSrc: '/icons/triple/Candle/Dark.svg',
-          imgAlt: 'Settings',
+          icon: 'Settings',
           title: 'Управляющая компания',
           descriptions: [
-            { text: 'Определяет условия программы', isHasText: true },
-            { text: 'Уплачивает взносы в фонд', isHasText: true },
-            { text: 'Управляет портфелем ценных бумаг', isHasText: true },
-            { text: 'Инвестирует с целью получения дохода', isHasText: true },
+            'Определяет условия программы',
+            'Уплачивает взносы в фонд',
+            'Управляет портфелем ценных бумаг',
+            'Инвестирует с целью получения дохода',
           ],
         },
       ],
     };
   },
   components: {
-    BusinnesProgrammColumn,
+    DarkIcon,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// business-programm
 .business-programm {
   width: 100%;
   background-color: #f3f5f7;
@@ -196,7 +187,68 @@ export default {
       left: 9px;
     }
   }
+}
 
-  //
-} // business-programm
+.column {
+  width: 100%;
+  margin-bottom: 48px;
+
+  @media screen and (min-width: 576px) {
+    width: calc(50% - 24px);
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  &__top-block {
+    width: 100%;
+    display: flex;
+    margin-bottom: 24px;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+
+    @media screen and (min-width: 576px) {
+      margin-right: 24px;
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #28323c;
+  }
+
+  &__description-block {
+    margin-left: 0;
+
+    @media screen and (min-width: 576px) {
+      margin-left: 40px;
+    }
+  }
+}
+
+.description {
+  font-size: 16px;
+  line-height: 24px;
+  color: #5a646e;
+  position: relative;
+  padding-left: 24px;
+  margin-top: 8px;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    line-height: 24px;
+    background-color: #50287d;
+    position: absolute;
+    top: 10px;
+    left: 9px;
+  }
+}
 </style>

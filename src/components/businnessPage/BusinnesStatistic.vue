@@ -10,19 +10,20 @@
     <h2 class="businnes-statistic__subheading">Преимущества Фонда</h2>
 
     <div class="businnes-statistic__wrapper">
-      <BusinnesStatisticBlock
-        v-for="(block, index) in blocks"
-        :key="index"
-        :imgSrc="block.imgSrc"
-        :imgAlt="block.imgAlt"
-        :description="block.description"
-      />
+      <div class="businnes-statistic__block" v-for="(block, index) in blocks" :key="index">
+        <DarkIcon :icon="block.icon" class="businnes-statistic__icon" />
+
+        <p class="businnes-statistic__description">
+          {{ block.description }}
+        </p>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import BusinnesStatisticBlock from '../businnessPage/BusinnesStatisticBlock.vue';
+import DarkIcon from '@/components/general/DarkIcon.vue';
+
 export default {
   name: 'BusinnesStatistic',
   data() {
@@ -30,23 +31,23 @@ export default {
       blocks: [
         {
           imgSrc: '/icons/triple/Invest/Dark.svg',
-          imgAlt: 'Invest',
+          icon: 'Invest',
           description: 'Полная прозрачность инвестиционного процесса',
         },
         {
           imgSrc: '/icons/triple/Group/Dark.svg',
-          imgAlt: 'Group',
+          icon: 'Group',
           description:
             'Представители крупных международных компаний составляют Попечительский Совет Фонда',
         },
         {
           imgSrc: '/icons/triple/Stock/Dark.svg',
-          imgAlt: 'Stock',
+          icon: 'Stock',
           description: 'Возможность гибкого формирования корпоративной пенсионной программы',
         },
         {
           imgSrc: '/icons/triple/Partner/Dark.svg',
-          imgAlt: 'Partne',
+          icon: 'Partner',
           description:
             'Команда высококлассных специалистов в области управления пенсионными фондами',
         },
@@ -54,13 +55,12 @@ export default {
     };
   },
   components: {
-    BusinnesStatisticBlock,
+    DarkIcon,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// businnes-statistic
 .businnes-statistic {
   width: 100%;
   max-width: 1440px;
@@ -118,6 +118,65 @@ export default {
       margin: 0 auto;
     }
   }
+
+  &__block {
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    min-height: 96px;
+    border-top: 1px solid #e4e4e4;
+
+    &:first-of-type {
+      @media screen and (min-width: 576px) {
+        border-left: 1px solid #e4e4e4;
+      }
+
+      @media screen and (min-width: 768px) {
+        border-bottom: 1px solid #e4e4e4;
+      }
+    }
+
+    &:nth-of-type(2),
+    &:nth-of-type(3) {
+      @media screen and (min-width: 576px) {
+        border-bottom: 1px solid #e4e4e4;
+      }
+    }
+
+    &:last-of-type {
+      border-bottom: 1px solid #e4e4e4;
+
+      @media screen and (min-width: 576px) {
+        border-left: 1px solid #e4e4e4;
+      }
+    }
+
+    @media screen and (min-width: 576px) {
+      width: 33.33%;
+      display: block;
+      border-right: 1px solid #e4e4e4;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 25%;
+    }
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 24px;
+    margin-bottom: 0;
+
+    @media screen and (min-width: 576px) {
+      margin-bottom: 80px;
+    }
+  }
+
+  &__description {
+    font-size: 13px;
+    line-height: 24px;
+    color: #5a646e;
+  }
 }
-// businnes-statistic
 </style>

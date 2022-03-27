@@ -8,35 +8,25 @@
         />
       </div>
 
-      <router-link class="menu-mobil__link" :to="{ name: 'aboutFund' }">О Фонде</router-link>
-
-      <router-link class="menu-mobil__link" :to="{ name: 'management' }"
-        >Руководство Фондом</router-link
+      <router-link
+        class="menu-mobil__link"
+        v-for="route in firstBlock"
+        :key="route.path"
+        :to="route.path"
       >
-
-      <router-link class="menu-mobil__link" :to="{ name: 'infoOpening' }"
-        >Раскрытие информации</router-link
-      >
-
-      <router-link class="menu-mobil__link " :to="{ name: 'invest' }"
-        >Инвестиционная деятельность</router-link
-      >
+        {{ route.label }}
+      </router-link>
 
       <p class="menu-mobil__title">Клиентам</p>
 
-      <router-link class="menu-mobil__link" :to="{ name: 'business' }">Для бизнеса</router-link>
-
-      <router-link class="menu-mobil__link" :to="{ path: '/main#calculator' }"
-        >Калькулятор</router-link
+      <router-link
+        class="menu-mobil__link"
+        v-for="route in secondBlock"
+        :key="route.path"
+        :to="route.path"
       >
-
-      <router-link class="menu-mobil__link" :to="{ path: '/support#form' }"
-        >Написать нам</router-link
-      >
-
-      <router-link class="menu-mobil__link" :to="{ path: 'support#questionsAnswers' }"
-        >Вопросы и ответы</router-link
-      >
+        {{ route.label }}
+      </router-link>
 
       <div class="menu-mobil__phone">
         <a class="menu-mobil__phone-link" href="tel:+78002004766">
@@ -72,6 +62,43 @@ export default {
   data() {
     return {
       ifBackgroundWhite: true,
+
+      firstBlock: [
+        {
+          label: 'О Фонде',
+          path: '/about',
+        },
+        {
+          label: 'Руководство Фондом',
+          path: '/management',
+        },
+        {
+          label: 'Раскрытие информации',
+          path: '/infoopening',
+        },
+        {
+          label: 'Инвестиционная деятельность',
+          path: '/invest',
+        },
+      ],
+      secondBlock: [
+        {
+          label: 'Для бизнеса',
+          path: '/business',
+        },
+        {
+          label: 'Калькулятор',
+          path: '/main#calculator',
+        },
+        {
+          label: 'Написать нам',
+          path: '/support#form',
+        },
+        {
+          label: 'Вопросы и ответы',
+          path: '/support#questionsAnswers',
+        },
+      ],
     };
   },
 

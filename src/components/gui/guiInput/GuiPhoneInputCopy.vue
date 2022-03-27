@@ -4,7 +4,7 @@
       <GuiInputTitle :title="title" :isActive="isActive" />
     </div>
 
-    <GuiInputField
+    <GuiInputFieldCopy
       :type="type"
       :name="name"
       :value="valueInput"
@@ -37,36 +37,39 @@ import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validator
 
 import GuiInputTitle from '@/components/gui/guiInput/GuiInputTitle.vue';
 import GuiInputField from '@/components/gui/guiInput/GuiInputField.vue';
+import GuiInputFieldCopy from '../../../components/gui/guiInput/GuiInputFieldCopy.vue';
 
 export default {
   mixins: [validationMixin],
-  name: 'GuiPhoneInput',
-  //   import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+  name: 'GuiPhoneInputCopy',
 
   data() {
     return {
-      isActive: false,
-      hasError: false,
-      type: 'text',
-      valueInput: '',
-      name: 'valueInput',
       title: 'Ваш телефон',
+      isActive: false,
+      type: 'text',
+      name: 'phone',
+      valueInput: '',
+      hasError: false,
       topError: 'Обязательное поле',
       buttomError: 'Некорректный номер',
-      classError: 'my-input__field_invalid',
     };
   },
 
   validations: {
     valueInput: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
   },
+
   methods: {
     onFocus() {
       this.isActive = true;
     },
 
     onBlur() {
-      this.$v.valueInput.$touch();
+      //  Метод $touch() выставит флагу $v.valueInput.$dirty значение true.
+      // Смотри в консоль Vue, computed, $v: object.... $dirty
+      // после того, как $dirty примет значение true, будет происходить дальнейшая проверка
+      this.$v.valueInput.$touch(); // Метод $touch()
       if (this.$v.valueInput.required) {
         this.isActive = true;
       } else {
@@ -74,17 +77,19 @@ export default {
       }
     },
     onInput(event) {
-      this.value = event;
-      this.valueInput = this.value;
+      this.valueInput = event;
       this.hasError = this.$v.valueInput.$invalid;
-      // console.log(this.valueInput, this.value)
+      // console.log(this.valueInput)
 
       this.$emit('emitInputValues', this.valueInput);
     },
   },
+
   components: {
     GuiInputTitle,
     GuiInputField,
+    //
+    GuiInputFieldCopy,
   },
 };
 </script>

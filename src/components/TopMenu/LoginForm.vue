@@ -5,7 +5,8 @@
 
     <div class="login-form__block-of-forms">
       <div class="login-form__input-container">
-        <GuiPhoneInput @emitInputValues="onInputPhone" />
+        <!-- <GuiPhoneInput @emitInputValues="onInputPhone" /> -->
+        <GuiPhoneInputCopy @emitInputValues="onInputPhone" />
       </div>
 
       <div class="login-form__input-container">
@@ -44,6 +45,9 @@ import { validationMixin } from 'vuelidate';
 import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators';
 
 import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+//
+import GuiPhoneInputCopy from '../../components/gui/guiInput/GuiPhoneInputCopy.vue';
+//
 import GuiEmailInput from '@/components/gui/guiInput/GuiEmailInput.vue';
 import GuiPasswordInput from '@/components/gui/guiInput/GuiPasswordInput.vue';
 
@@ -97,6 +101,8 @@ export default {
     GuiPhoneInput,
     GuiEmailInput,
     GuiPasswordInput,
+    //
+    GuiPhoneInputCopy,
   },
 };
 </script>

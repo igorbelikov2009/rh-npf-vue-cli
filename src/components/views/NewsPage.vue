@@ -50,13 +50,21 @@
       </div>
     </section>
 
+    <!-- <div class="news-page__container-test">{{ idNews }}</div> -->
+    <!-- <div class="news-page__container-test">{{ allNews }}</div> -->
+    <div class="news-page__container-test">{{ usersStore }}</div>
+    <div class="news-page__container-test">usersAge{{ usersAge }}</div>
+    <div class="news-page__container-test">{{ age }}</div>
+    <div class="news-page__container-test"></div>
+    <div class="news-page__container-test">{{ news }}</div>
+    <div class="news-page__container-test"></div>
+    <div class="news-page__container-test"></div>
+
     <Footer />
   </div>
 </template>
 
 <script>
-// import { format } from 'date-fns';
-
 import TopBlock from '@/components/general/TopBlock.vue';
 import TopMenu from '@/components/topMenu/TopMenu.vue';
 import GuiRadioList from '@/components/gui/guiRadio/GuiRadioList.vue';
@@ -71,9 +79,35 @@ export default {
     return {
       ifRadioListVisible: false,
       selectedYear: 2021,
+      //
+      // users: [5, 2, 1, -10, 8, 15],
     };
   },
+
   computed: {
+    usersStore() {
+      return this.$store.state.users.users;
+    },
+    usersAge() {
+      // return this.$store.getters['users/sortedByAge'];
+      // return this.$store.state.users.users.slice().sort((a, b) => (a.age < b.age ? -1 : 1));
+      return this.$store.getters['users/sortedByAge'];
+    },
+    age() {
+      return this.$store.state.users.users.slice().map(item => item.age);
+    },
+    //
+    // allNews() {
+    //   return this.$store.state.news.news;
+    // },
+    // idNews() {
+    //   return this.allNews
+    //     .map(item => new Date(item.date).getFullYear())
+    //     .sort((a, b) => (a.date < b.date ? 1 : -1))
+    //     .filter((item, index, self) => index === self.indexOf(item))
+    //     .map((item, index) => ({ id: index, date: item }));
+    // },
+    //
     news() {
       return this.$store.getters['news/sortedByDateNews'];
     },
@@ -174,6 +208,14 @@ export default {
     width: 100%;
     max-width: 960px;
     margin: 0 auto;
+  }
+
+  &__container-test {
+    display: block;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 0;
   }
 
   &__flex-container {

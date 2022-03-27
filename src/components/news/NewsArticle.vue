@@ -18,6 +18,7 @@ import { format } from 'date-fns';
 
 export default {
   name: 'NewsArticle',
+
   props: {
     data: Object,
   },
