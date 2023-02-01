@@ -77,7 +77,7 @@ export default {
       this.value = event;
       this.valueInput = this.value;
       this.hasError = this.$v.valueInput.$invalid;
-      // console.log(this.valueInput, this.value)
+      // console.log(this.valueInput, this.value);
 
       this.$emit('emitInputValues', this.valueInput);
     },

@@ -106,6 +106,10 @@ export default {
           label: 'О Фонде',
           path: '/about',
         },
+        {
+          label: 'Руководство фонда',
+          path: '/management',
+        },
       ],
       secondBlock: [
         {

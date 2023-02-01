@@ -222,7 +222,7 @@ export default {
       left: 36px;
     }
 
-    @media screen and (min-width: 1300px) {
+    @media screen and (min-width: 1160px) {
       display: none;
       // display: block;
     }
@@ -237,7 +237,7 @@ export default {
       margin-left: 54px;
     }
 
-    @media screen and (min-width: 1300px) {
+    @media screen and (min-width: 1160px) {
       margin-left: 0;
     }
   }
@@ -246,7 +246,7 @@ export default {
     display: none;
     justify-content: space-between;
 
-    @media screen and (min-width: 1300px) {
+    @media screen and (min-width: 1160px) {
       display: flex;
       margin-left: 12px;
     }
@@ -261,6 +261,9 @@ export default {
     margin-right: 12px;
 
     &:hover {
+      color: white;
+    }
+    &:active {
       color: white;
     }
 
@@ -379,10 +382,10 @@ export default {
   }
 }
 
-.stop-scrolling {
-  height: 100%;
-  overflow: hidden;
-}
+// .stop-scrolling {
+//   height: 100%;
+//   overflow: hidden;
+// }
 
 .icon-user__icon {
   &:first-of-type {

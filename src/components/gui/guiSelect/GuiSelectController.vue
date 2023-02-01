@@ -70,7 +70,7 @@ export default {
   props: {
     value: { type: String },
     ifSelectionOptionsBlock: { type: Boolean, default: false },
-    selectionElements: { type: Array },
+    // selectionElements: { type: Array },
   },
   methods: {
     onClickSelectionController() {

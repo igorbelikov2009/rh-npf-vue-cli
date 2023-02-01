@@ -93,10 +93,10 @@ export default {
       secondSelectionValue: '30 November 2021 г.',
       //
 
+      // firstSelectController.height
       firstSelectController: {
         top: 0,
         bottom: 0,
-        height: 0,
         width: 0,
         left: 0,
 
@@ -417,12 +417,6 @@ export default {
         .map(item => format(new Date(item.date), 'd MMMM Y г.'))
         .map((item, index) => ({ date: String(item), value: String(item), id: index }));
     },
-    // firstSelectionValue() {
-    //   return this.firstSelectionElements[0].date;
-    // },
-    // secondSelectionValue() {
-    //   return this.secondSelectionElements[0].date;
-    // },
   },
 
   methods: {
@@ -476,7 +470,7 @@ export default {
       this.firstSelectController.bottom = bottom;
       this.firstSelectController.left = left;
       this.firstSelectController.width = width;
-      this.firstSelectController.height = height;
+      // this.firstSelectController.height = height;
       this.getClientHeight();
     },
     onScrollCompositionOfFunds(top, bottom, left, width, height) {
@@ -563,12 +557,16 @@ export default {
     &_hide {
       opacity: 0;
       transition: opacity 0.28s ease;
+      // если сделать transition: all 0.28s ease;,
+      // то этот блок будет дёргаться при скроле
     }
 
     // invest-page__selection-options-block_show
     &_show {
       opacity: 1;
       transition: opacity 0.28s ease;
+      // если сделать transition: all 0.28s ease;,
+      // то этот блок будет дёргаться при скроле
     }
   }
 }

@@ -33,10 +33,6 @@ export default {
   border-top: 1px solid #e4e4e4;
   width: 100%;
 
-  &__input {
-    display: none;
-  }
-
   &__link {
     display: block;
     font-size: 18px;

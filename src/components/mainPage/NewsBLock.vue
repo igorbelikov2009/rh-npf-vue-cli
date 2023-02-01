@@ -73,19 +73,19 @@ export default {
     // ширина контейнера ссылок
     getLinkContainerWidth(widthLink) {
       this.widthLink = widthLink;
-      // console.log('getLinkContainerWidth', this.widthLink);
+      console.log('getLinkContainerWidth', this.widthLink);
     },
 
     // количество детей массива columns
     getAmountChildren() {
       this.amountChildren = this.news.length;
-      // console.log('amountChildren: ' + this.amountChildren);
+      console.log('amountChildren: ' + this.amountChildren);
     },
 
     // общая длина carousel-tape
     getOverallWidth() {
       this.overallWidth = this.widthLink * this.amountChildren;
-      // console.log('overallWidth:' + this.overallWidth);
+      console.log('overallWidth:' + this.overallWidth);
     },
 
     // get value q
@@ -114,11 +114,11 @@ export default {
       if (this.screenWidth < 855) {
         this.j = this.q;
 
-        // console.log('q: ' + this.q, 'j: ' + this.j);
+        console.log('q: ' + this.q, 'j: ' + this.j);
       } else {
         this.j = this.q + 1;
 
-        // console.log('q: ' + this.q, 'j: ' + this.j);
+        console.log('q: ' + this.q, 'j: ' + this.j);
       }
     },
 

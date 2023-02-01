@@ -20,7 +20,6 @@
         :percent="percentBlock"
         :isContainerVisible="idOptions === index"
       />
-      <!--   -->
     </div>
   </section>
 </template>
@@ -264,6 +263,7 @@ export default {
   },
 
   methods: {
+    // onClickSelectionController
     onClickSelectionController() {
       this.$emit('onClickSelectionController');
     },

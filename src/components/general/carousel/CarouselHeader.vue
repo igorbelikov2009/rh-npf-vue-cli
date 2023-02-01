@@ -26,6 +26,7 @@ export default {
     headerSubtitle: { type: String },
     ifHasHeaderTitle: { type: Boolean, default: false },
     ifHasHeaderSubtitle: { type: Boolean, default: false },
+
     noCursorLeft: { type: Boolean },
     blurredLeft: { type: Boolean },
     noCursorRight: { type: Boolean },

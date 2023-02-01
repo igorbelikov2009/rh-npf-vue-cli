@@ -83,31 +83,5 @@ export default {
   &_not-visible {
     display: none;
   }
-
-  &__title {
-    display: block;
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 24px;
-    outline: none;
-    text-decoration: none;
-    cursor: pointer;
-    color: #8967b1;
-
-    &:hover {
-      color: #50287d;
-    }
-  }
-
-  &__date {
-    display: block;
-    font-size: 13px;
-    color: #5a646e;
-    margin-bottom: 48px;
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 0;
-    }
-  }
 }
 </style>
