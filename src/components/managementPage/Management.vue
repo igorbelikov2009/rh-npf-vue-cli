@@ -104,7 +104,7 @@ export default {
     barStyle() {
       return {
         position: `${this.positionBarNav}`,
-        top: 0,
+        // top: 0,
       };
     },
     iconStyle() {
@@ -127,16 +127,19 @@ export default {
       this.changeStyleBarNav();
       this.getTopAllComponents();
       this.getIconTop();
-      // console.log(scrollY);
+      // console.log('scrollY :' + scrollY);
     },
     getTopBarContainer() {
       const barContainer = this.$refs.barContainer;
       this.barContainerTop = barContainer.getBoundingClientRect().top;
     },
+
     changeStyleBarNav() {
       if (this.barContainerTop > 0) {
+        // // management__bar-nav
         this.positionBarNav = 'absolute';
       } else {
+        // // management__bar-nav_fixed
         this.positionBarNav = 'fixed';
       }
     },
@@ -292,7 +295,7 @@ export default {
     height: 72px;
     padding: 24px;
     position: absolute; // delete
-    position: relative; // coordsY = 360px change "position: fixed"
+    //
     top: 0;
     left: 0;
     box-shadow: 0 4px 6px rgb(155, 194, 229);
@@ -302,9 +305,9 @@ export default {
     transition: box-shadow 0.3s;
 
     // management__bar-nav_fixed
-    &_fixed {
-      position: fixed;
-    }
+    // &_fixed {
+    //   position: fixed;
+    // }
 
     &::-webkit-scrollbar {
       height: 8px;
@@ -318,17 +321,14 @@ export default {
     }
 
     @media screen and (min-width: 944px) {
-      box-shadow: none;
-      position: fixed; // delete
-      position: relative; // coordsY = 360px   style="position: fixed"
-      top: 0;
-      margin-top: 48px;
-      left: inherit;
-      display: block;
-      padding: 0 0 0 48px;
-      height: auto;
       width: auto;
-      overflow: auto;
+      height: auto;
+      padding: 0 0 0 48px;
+      //
+      left: inherit;
+      box-shadow: none;
+      display: block;
+      margin-top: 48px;
     }
   }
 

@@ -15,7 +15,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// businnes-images
 .businnes-images {
   width: 100%;
   position: relative;
@@ -91,5 +90,4 @@ export default {
     }
   }
 }
-// businnes-images
 </style>

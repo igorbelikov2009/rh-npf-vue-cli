@@ -19,7 +19,6 @@
       :expandingTables="expandingTables"
       :isCompositionOfFundsBlockVisible="idOptions === index"
     />
-    <!--    -->
   </section>
 </template>
 

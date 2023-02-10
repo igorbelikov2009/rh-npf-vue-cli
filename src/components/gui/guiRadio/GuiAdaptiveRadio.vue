@@ -10,7 +10,6 @@
       @change="onChangeAdaptiveRadio"
     />
   </div>
-  <!-- radioElements -->
 </template>
 
 <script>

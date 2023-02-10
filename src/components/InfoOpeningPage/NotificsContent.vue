@@ -25,8 +25,6 @@ export default {
 <style lang="scss" scoped>
 // notifics-content
 .notifics-content {
-  display: block;
-
   &__paragraph {
     display: block;
     font-size: 18px;

@@ -1,5 +1,5 @@
 <template>
-  <section class="fund-performance fund-performance__background-white">
+  <section class="fund-performance">
     <div class="fund-performance__container">
       <h1 class="fund-performance__heading">Показатели деятельности фонда</h1>
 
@@ -382,18 +382,6 @@ export default {
 
   @media screen and (min-width: 576px) {
     padding: 48px 24px;
-  }
-
-  // fund-performance__background-white
-  &__background-white {
-    background-color: #fff;
-    transition: all 0.28s ease;
-  }
-
-  // fund-performance__background-gray
-  &__background-gray {
-    background-color: rgba(0, 0, 0, 0.4);
-    transition: all 0.28s ease;
   }
 
   &__container {

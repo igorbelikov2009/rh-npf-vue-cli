@@ -2,17 +2,15 @@
   <div class="radio-list-controller">
     <div class="radio-list-controller__changing-title">
       <div
-        class="radio-list-controller__border "
+        class="radio-list-controller__border_white"
         :class="{
           'radio-list-controller__border_gray': ifRadioListVisible,
-          'radio-list-controller__border_white': !ifRadioListVisible,
         }"
       >
         <div
-          class="radio-list-controller__container "
+          class="radio-list-controller__container_backgr-white"
           :class="{
             'radio-list-controller__container_backgr-gray': ifRadioListVisible,
-            'radio-list-controller__container_backgr-white': !ifRadioListVisible,
           }"
           @click="onClickRadioListController"
         >
@@ -24,10 +22,9 @@
 
           <div class="radio-list-controller__icon">
             <img
-              class="radio-list-controller__image "
+              class="radio-list-controller__image_rotate-0"
               :class="{
                 'radio-list-controller__image_rotate-180': ifRadioListVisible,
-                'radio-list-controller__image_rotate-0': !ifRadioListVisible,
               }"
               src="/icons/triple/Arrow Down/Dark.svg"
               alt=""
@@ -36,25 +33,22 @@
         </div>
 
         <div
-          class="radio-list-controller__white-line "
+          class="radio-list-controller__white-line_height-1"
           :class="{
             'radio-list-controller__white-line_height-2': ifRadioListVisible,
-            'radio-list-controller__white-line_height-1': !ifRadioListVisible,
           }"
         >
           <div
-            class="radio-list-controller__black-line"
+            class="radio-list-controller__black-line_width-50"
             :class="{
               'radio-list-controller__black-line_width-0': ifRadioListVisible,
-              'radio-list-controller__black-line_width-50': !ifRadioListVisible,
             }"
           ></div>
 
           <div
-            class="radio-list-controller__black-line "
+            class="radio-list-controller__black-line_width-50"
             :class="{
               'radio-list-controller__black-line_width-0': ifRadioListVisible,
-              'radio-list-controller__black-line_width-50': !ifRadioListVisible,
             }"
           ></div>
         </div>
@@ -96,39 +90,40 @@ export default {
     position: relative;
   }
 
-  &__border {
+  // radio-list-controller__border_white
+  &__border_white {
     width: 100%;
     border-radius: 5px;
     position: relative;
-
-    // radio-list-controller__border_white
-    &_white {
-      border: 1px solid #fff;
-    }
-
-    // radio-list-controller__border_gray
-    &_gray {
-      border: 1px solid #e4e4e4;
-    }
+    border: 1px solid #fff;
   }
 
-  &__container {
+  // radio-list-controller__border_gray
+  &__border_gray {
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid #e4e4e4;
+  }
+
+  // radio-list-controller__container_backgr-white
+  &__container_backgr-white {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #fff;
+    transition: all 0.36s ease;
+  }
 
-    // radio-list-controller__container_backgr-white
-    &__backgr-white {
-      background-color: #fff;
-      transition: all 0.36s ease;
-    }
-
-    // radio-list-controller__container_backgr-gray
-    &_backgr-gray {
-      background-color: #d0f0f6d1;
-      transition: all 0.36s ease;
-    }
+  // radio-list-controller__container_backgr-gray
+  &__container_backgr-gray {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d0f0f6d1;
+    transition: all 0.36s ease;
   }
 
   &__controller-date {
@@ -146,7 +141,8 @@ export default {
     padding-right: 8px;
   }
 
-  &__image {
+  // radio-list-controller__image_rotate-0
+  &__image_rotate-0 {
     width: 18px;
     height: 18px;
     flex: none;
@@ -156,19 +152,25 @@ export default {
     transition-duration: 0.28s;
     transition-timing-function: ease;
     transition-delay: 0s;
-
-    // radio-list-controller__image_rotate-0
-    &_rotate-0 {
-      transform: scaleY(0.7) rotate(0deg);
-    }
-
-    // radio-list-controller__image_rotate-180
-    &_rotate-180 {
-      transform: scaleY(0.7) rotate(180deg);
-    }
+    transform: scaleY(0.7) rotate(0deg);
   }
 
-  &__white-line {
+  // radio-list-controller__image_rotate-180
+  &__image_rotate-180 {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    cursor: pointer;
+    transition: transform 0.28s;
+    transition-property: transform;
+    transition-duration: 0.28s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    transform: scaleY(0.7) rotate(180deg);
+  }
+
+  // radio-list-controller__white-line_height-1
+  &__white-line_height-1 {
     width: calc(100% - 16px);
     background-color: #fff;
     position: absolute;
@@ -177,36 +179,38 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    // radio-list-controller__white-line_height-1
-    &_height-1 {
-      height: 1px;
-      transition: width 0.7s ease-out;
-    }
-
-    // radio-list-controller__white-line_height-2
-    &_height-2 {
-      height: 2px;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    height: 1px;
+    transition: width 0.7s ease-out;
   }
 
-  &__black-line {
+  // radio-list-controller__white-line_height-2
+  &__white-line_height-2 {
+    width: calc(100% - 16px);
+    background-color: #fff;
+    position: absolute;
+    bottom: 6px;
+    left: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  // radio-list-controller__black-line_width-50
+  &__black-line_width-50 {
     background-color: black;
+    height: 1px;
+    width: 50%;
+    transition: width 0.7s ease-out;
+  }
 
-    // radio-list-controller__black-line_width-50
-    &_width-50 {
-      height: 1px;
-      width: 50%;
-      transition: width 0.7s ease-out;
-    }
-
-    // radio-list-controller__black-line_width-0
-    &_width-0 {
-      width: 0;
-      height: 2px;
-      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  // radio-list-controller__black-line_width-0
+  &__black-line_width-0 {
+    background-color: black;
+    width: 0;
+    height: 2px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 

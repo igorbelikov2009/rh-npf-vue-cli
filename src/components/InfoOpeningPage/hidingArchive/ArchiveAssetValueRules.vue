@@ -44,43 +44,6 @@ export default {
 
 <style lang="scss" scoped>
 .hiding-archive {
-  //   display: none;
-  //
-  width: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  z-index: 2;
-
-  // hiding-archive__background-blur
-  &__background-blur {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
-    background-color: #000;
-    opacity: 0.16;
-  }
-
-  // hiding-archive__background-clear
-  &__background-clear {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
-    background-color: #000;
-    opacity: 0;
-  }
-
   &__subheading {
     font-size: 16px;
     line-height: 24px;
@@ -88,5 +51,4 @@ export default {
     margin-bottom: 48px;
   }
 }
-// hiding-archive
 </style>

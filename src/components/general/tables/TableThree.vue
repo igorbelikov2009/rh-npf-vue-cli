@@ -1,18 +1,16 @@
 <template>
-  <div class="tables__table-block">
-    <div class="tables__table-container">
-      <table class="tables__table-common">
-        <TableThreeHeaderRow
-          :text1="tableHeaderRow.text1"
-          :text2="tableHeaderRow.text2"
-          :text3="tableHeaderRow.text3"
-        />
+  <div class="tables__table-container">
+    <table class="tables__table">
+      <TableThreeHeaderRow
+        :text1="tableHeaderRow.text1"
+        :text2="tableHeaderRow.text2"
+        :text3="tableHeaderRow.text3"
+      />
 
-        <TableThreeRow :text1="tableRow1.text1" :text2="tableRow1.text2" :text3="tableRow1.text3" />
+      <TableThreeRow :text1="tableRow1.text1" :text2="tableRow1.text2" :text3="tableRow1.text3" />
 
-        <TableThreeRow :text1="tableRow2.text1" :text2="tableRow2.text2" :text3="tableRow2.text3" />
-      </table>
-    </div>
+      <TableThreeRow :text1="tableRow2.text1" :text2="tableRow2.text2" :text3="tableRow2.text3" />
+    </table>
   </div>
 </template>
 
@@ -38,34 +36,8 @@ export default {
 <style lang="scss" scoped>
 // tables
 .tables {
-  width: 100%;
-  margin: 0 auto;
-  border-color: #ffffff;
-  padding: 24px;
-
-  @media screen and (min-width: 576px) {
-    padding: 48px 28px 48px;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding: 48px 28px 48px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  @media screen and (min-width: 1160px) {
-    padding-top: 72px;
-  }
-
-  &__table-block {
-    overflow-x: hidden;
-    position: relative;
-  }
-
   &__table-container {
+    position: relative;
     overflow-x: auto;
 
     @media screen and (min-width: 1024px) {
@@ -73,7 +45,7 @@ export default {
     }
   }
 
-  &__table-common {
+  &__table {
     color: #001100;
     border-collapse: collapse;
     width: 100%;
@@ -81,8 +53,7 @@ export default {
     margin: 10px 0;
     position: relative;
 
-    // tables__table-common_gradient-left
-    &_gradient-left {
+    @media screen and (max-width: 576px) {
       &::before {
         position: absolute;
         display: block;
@@ -94,10 +65,7 @@ export default {
         right: auto;
         left: -12px;
       }
-    }
 
-    // tables__table-common_gradient-right
-    &_gradient-right {
       &::after {
         position: absolute;
         display: block;
