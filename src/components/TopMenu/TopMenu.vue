@@ -1,26 +1,30 @@
 <template>
-  <header class="top-menu">
+  <header class="top-menu" :class="{ 'top-menu_news': ifBackgroundWhite }">
     <div class="top-menu__container">
       <div class="top-menu__row">
         <div class="top-menu__left-block">
           <button class="top-menu__button-lines" @click="openMenuMobil">
-            <div class="top-menu__line"></div>
-            <div class="top-menu__line"></div>
-            <div class="top-menu__line"></div>
+            <TripleIcon :light="!ifBackgroundWhite" icon="Hamburger" />
           </button>
 
           <div class="top-menu__logotype">
-            <Logotypes />
+            <Logotypes
+              :isBackgroundWhite="ifBackgroundWhite"
+              @click.native="$router.push({ name: 'main' })"
+            />
+            <!--  то же самое   @click.native="$router.push('/')" -->
           </div>
 
           <div class="top-menu__nav">
-            <a class="top-menu__link" href="../templates/aboutFund.html">О фонде</a>
-            <a class="top-menu__link" href="../templates/invest.html"
-              >Инвестиционная деятельность</a
+            <router-link
+              v-for="route in routes"
+              :key="route.path"
+              :to="route.path"
+              exact
+              :class="{ 'top-menu__link': true, 'top-menu__link_news': ifBackgroundWhite }"
             >
-            <a class="top-menu__link" href="../templates/forBusiness.html">Бизнесу</a>
-            <a class="top-menu__link" href="../templates/supportService.html">Поддержка</a>
-            <a class="top-menu__link" href="../templates/contacts.html">Контакты</a>
+              {{ route.label }}
+            </router-link>
           </div>
         </div>
 
@@ -28,93 +32,142 @@
           <div class="top-menu__contacts">
             <div class="top-menu__phone">
               <a class="top-menu__phone-link" href="tel:+78002004766">
-                <p class="top-menu__phone-number">8 800 200-47-66</p>
+                <p
+                  class="top-menu__phone-number"
+                  :class="{ 'top-menu__button-title_news': ifBackgroundWhite }"
+                >
+                  8 800 200-47-66
+                </p>
               </a>
 
-              <button class="top-menu__call-back" @click="openCallBack">
+              <button
+                class="top-menu__call-back"
+                @click="openCallBack"
+                :class="{ 'top-menu__call-back_news': ifBackgroundWhite }"
+              >
                 Обратный звонок
               </button>
             </div>
           </div>
 
-          <div class="top-menu__button-switch" @click="openLoginForm">
+          <div
+            class="top-menu__button-switch"
+            @click="openLoginForm"
+            @mouseover="isLKButtonHovered = true"
+            @mouseout="isLKButtonHovered = false"
+          >
             <button class="top-menu__button-icons">
-              <IconUser
-                v-for="(icon, index) in icons"
-                v-bind:key="index"
-                :isIconVisible="icon.isIconVisible"
-                :imgUrl="icon.imgUrl"
-              />
+              <TripleIcon :hovered="isLKButtonHovered" :light="!ifBackgroundWhite" icon="User" />
             </button>
 
-            <p class="top-menu__button-title">Личный кабинет</p>
+            <p
+              class="top-menu__button-title"
+              :class="{ 'top-menu__button-title_news': ifBackgroundWhite }"
+            >
+              Личный кабинет
+            </p>
           </div>
         </div>
       </div>
     </div>
 
     <transition name="call-back">
-      <CallBackForm v-if="isHideCallBackForm" @closeCallBack="openCallBack" />
+      <CallBackForm v-if="isCallBackFormVisible" @closeCallBack="closeCallBack" />
     </transition>
 
     <transition name="login-form">
-      <LoginForm v-show="isHideLoginForm" @closeLoginForm="openLoginForm" />
+      <LoginForm v-show="isLoginFormVisible" @closeLoginForm="closeLoginForm" />
     </transition>
 
     <transition name="menu-mobil">
-      <MenuMobil v-if="isHideMenuMobil" @closeMenuMobil="openMenuMobil" />
+      <MenuMobil v-if="isMenuMobilVisible" @closeMenuMobil="closeMenuMobil" />
     </transition>
   </header>
 </template>
 
 <script>
-import Logotypes from '../general/Logotypes'
-import IconUser from '../general/IconUser'
-import LoginForm from './LoginForm'
-import CallBackForm from './CallBackForm'
-import MenuMobil from './MenuMobil'
-import userColored from '@/assets/icons/triple/User/colored.svg'
-import userLight from '@/assets/icons/triple/User/light.svg'
-import userDark from '@/assets/icons/triple/User/dark.svg'
+import Logotypes from '../general/Logotypes.vue';
+import LoginForm from './LoginForm.vue';
+import CallBackForm from './CallBackForm.vue';
+import MenuMobil from './MenuMobil.vue';
+import TripleIcon from '@/components/general/TripleIcon.vue';
 
 export default {
   name: 'TopMenu',
 
   data() {
     return {
-      userColored: userColored,
-      userLight: userLight,
-      userDark: userDark,
-      isHideLoginForm: false,
-      isHideCallBackForm: false,
-      isHideMenuMobil: false,
-
-      icons: [
-        { isIconVisible: false, imgUrl: userColored },
-        { isIconVisible: false, imgUrl: userLight },
-        { isIconVisible: true, imgUrl: userDark },
+      isMenuMobilVisible: false,
+      isLKButtonHovered: false,
+      isLoginFormVisible: false,
+      isCallBackFormVisible: false,
+      routes: [
+        {
+          label: 'О фонде',
+          path: '/about',
+        },
+        {
+          label: 'Инвестиционная деятельность',
+          path: '/invest',
+        },
+        {
+          label: 'Бизнесу',
+          path: '/business',
+        },
+        {
+          label: 'Поддержка',
+          path: '/support',
+        },
+        {
+          label: 'Контакты',
+          path: '/contacts',
+        },
       ],
-    }
+    };
+  },
+  props: {
+    ifBackgroundWhite: { type: Boolean, default: false },
   },
   components: {
     Logotypes,
     LoginForm,
     CallBackForm,
     MenuMobil,
-    IconUser,
+    TripleIcon,
   },
   methods: {
-    openLoginForm() {
-      this.isHideLoginForm = !this.isHideLoginForm
-    },
     openCallBack() {
-      this.isHideCallBackForm = !this.isHideCallBackForm
+      this.isCallBackFormVisible = !this.isCallBackFormVisible;
+      if (this.isCallBackFormVisible === false) {
+        document.body.style.overflow = '';
+      }
+      document.body.style.overflow = 'hidden';
+    },
+    closeCallBack() {
+      this.isCallBackFormVisible = false;
+      document.body.style.overflow = '';
+    },
+    openLoginForm() {
+      this.isLoginFormVisible = !this.isLoginFormVisible;
+      if (this.isLoginFormVisible === false) {
+        document.body.style.overflow = '';
+      }
+      document.body.style.overflow = 'hidden';
+    },
+    closeLoginForm() {
+      this.isLoginFormVisible = false;
+      document.body.style.overflow = '';
     },
     openMenuMobil() {
-      this.isHideMenuMobil = !this.isHideMenuMobil
+      this.isMenuMobilVisible = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeMenuMobil() {
+      this.isMenuMobilVisible = false;
+      document.body.style.overflow = '';
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -124,7 +177,7 @@ export default {
   position: absolute;
   top: 0;
 
-  // top-menu__news
+  // top-menu_news
   &_news {
     position: relative;
     border-bottom: 1px solid #e4e4e4;
@@ -152,16 +205,14 @@ export default {
     flex: content;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
   }
 
   &__button-lines {
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 18px;
-    height: 17px;
+    display: block;
+    width: 24px;
+    height: 24px;
     margin-right: 18px;
     position: absolute;
     top: 27.5px;
@@ -171,35 +222,9 @@ export default {
       left: 36px;
     }
 
-    @media screen and (min-width: 1300px) {
+    @media screen and (min-width: 1160px) {
       display: none;
-    }
-  }
-
-  &__line {
-    width: 18px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.6);
-
-    &:first-of-type {
-      background: #ffffff;
-    }
-
-    &:last-of-type {
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    // top-menu__line_news
-    &_news {
-      background: #6f7479;
-
-      &:first-of-type {
-        background: black;
-      }
-
-      &:last-of-type {
-        background: rgba(27, 27, 27, 0.3);
-      }
+      // display: block;
     }
   }
 
@@ -212,7 +237,7 @@ export default {
       margin-left: 54px;
     }
 
-    @media screen and (min-width: 1300px) {
+    @media screen and (min-width: 1160px) {
       margin-left: 0;
     }
   }
@@ -221,7 +246,7 @@ export default {
     display: none;
     justify-content: space-between;
 
-    @media screen and (min-width: 1300px) {
+    @media screen and (min-width: 1160px) {
       display: flex;
       margin-left: 12px;
     }
@@ -238,13 +263,16 @@ export default {
     &:hover {
       color: white;
     }
+    &:active {
+      color: white;
+    }
 
     @media screen and (min-width: 1440px) {
       font-size: 16px;
       margin-left: 16px;
       margin-right: 16px;
     }
-
+    // top-menu__link_news
     &_news {
       color: #78828c;
 
@@ -280,6 +308,7 @@ export default {
   &__phone-number {
     color: white;
 
+    // top-menu__button-title_news
     &_news {
       color: #000;
     }
@@ -297,6 +326,7 @@ export default {
       color: white;
     }
 
+    // top-menu__call-back_news
     &_news {
       color: #78828c;
 
@@ -341,6 +371,7 @@ export default {
       display: block;
     }
 
+    // top-menu__button-title_news
     &_news {
       color: #78828c;
 
@@ -350,6 +381,11 @@ export default {
     }
   }
 }
+
+// .stop-scrolling {
+//   height: 100%;
+//   overflow: hidden;
+// }
 
 .icon-user__icon {
   &:first-of-type {

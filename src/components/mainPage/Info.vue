@@ -6,14 +6,14 @@
       </h1>
 
       <p class="info__subheading">
-        По состоянию на 31 марта 2019 фонд ведет более 150 корпоративных пенсионных планов, объем
+        По состоянию на 31 марта 2019 фонд ведет более 150 корпоративных пенсионных планов, объем
         резервов которых превышает 18 млрд. рублей.
       </p>
     </div>
 
     <div class="info__row">
       <div class="info__block">
-        <img class="info__image" src="@/assets/images/main/girl.jpg" alt="" />
+        <img class="info__image" src="/images/main/girl.jpg" alt="girl" />
 
         <div class="info__offer">
           <h1 class="info__title">Для себя</h1>
@@ -31,7 +31,7 @@
       </div>
 
       <div class="info__block">
-        <img class="info__image" src="@/assets/images/main/building.jpg" alt="" />
+        <img class="info__image" src="/images/main/building.jpg" alt="building" />
 
         <div class="info__offer">
           <h1 class="info__title">Для бизнеса</h1>
@@ -52,7 +52,6 @@
 </template>
 
 <style lang="scss" scoped>
-// info
 .info {
   width: 100%;
   max-width: 960px;
@@ -68,7 +67,6 @@
 
   @media screen and (min-width: 768px) {
     padding-top: 72px;
-    // padding-bottom: 120px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -239,5 +237,16 @@
     }
   }
 }
-// info
+// $main-dark: #28323c;
+// $white: white;
+// $gray1: #5a646e;
+// $gray2: #78828c;
+// $gray3: #96a0aa;
+// $gray4: #b5bdc8;
+// $gray5: #e4e4e4;
+// $bg-gray: #f3f5f7;
+// $primary: #50287d;
+// $secondary: #cedc01;
+// $accent-pink: #ff025a;
+// $accent-aquamarine: #04999a;
 </style>

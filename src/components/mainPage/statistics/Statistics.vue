@@ -3,78 +3,67 @@
     <div class="statistics__container">
       <h2 class="statistics__heading">Фонд в цифрах</h2>
 
-      <ul class="statistics__block">
-        <li class="statistics__list" v-for="(card, index) in statistics" v-bind:key="index">
-          <StatisticsCard
-            :imgSrc="card.imgSrc"
-            :title="card.title"
-            :span="card.span"
-            :subtitle="card.subtitle"
-          />
-        </li>
-      </ul>
+      <div class="statistics__block">
+        <StatisticsCard
+          v-for="(card, index) in cards"
+          :key="index"
+          :iconName="card.icon"
+          :title="card.title"
+          :span="card.span"
+          :subtitle="card.subtitle"
+        />
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import StatisticsCard from './StatisticsCard'
-import calendarDark from '@/assets/icons/triple/Calendar/Dark.svg'
-import rateDark from '@/assets/icons/triple/High Rate/Dark.svg'
-import usersDark from '@/assets/icons/triple/Users/Dark.svg'
-import partnerDark from '@/assets/icons/triple/Partner/Dark.svg'
-import bankDark from '@/assets/icons/triple/Bank/Dark.svg'
+import StatisticsCard from './StatisticsCard.vue';
 
 export default {
   name: 'Statistics',
 
   data() {
     return {
-      calendarDark: calendarDark,
-      rateDark: rateDark,
-      usersDark: usersDark,
-      partnerDark: partnerDark,
-      bankDark: bankDark,
-
-      statistics: [
+      cards: [
         {
-          imgSrc: calendarDark,
+          icon: 'Calendar',
           title: '17 лет',
           span: 'на рынке',
           subtitle: 'Фонд "Ренессанс пенсии" основан в 2002 году',
         },
         {
-          imgSrc: rateDark,
+          icon: 'High Rate',
           title: 'Высокий ',
           span: 'рейтинг',
           subtitle: 'Надежность ruАА- по оценке Эксперт РА',
         },
         {
-          imgSrc: usersDark,
+          icon: 'Users',
           title: '41 000',
           span: 'человек',
           subtitle: ' участники пенсионной программы',
         },
         {
-          imgSrc: partnerDark,
+          icon: 'Partner',
           title: '150',
           span: 'компаний',
           subtitle: 'заботятся о пенсиях сотрудников',
         },
         {
-          imgSrc: bankDark,
+          icon: 'Bank',
           title: '17 млрд',
           span: 'рублей',
           subtitle: 'пенсионных резервов в Фонде',
         },
       ],
-    }
+    };
   },
 
   components: {
     StatisticsCard,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -126,17 +115,9 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-  }
 
-  &__list {
-    width: 100%;
-
-    @media screen and (min-width: 576px) {
-      width: 227px;
-    }
-
-    @media screen and (min-width: 1440px) {
-      width: 192px;
+    @media screen and (min-width: 1160px) {
+      flex-wrap: nowrap;
     }
   }
 }

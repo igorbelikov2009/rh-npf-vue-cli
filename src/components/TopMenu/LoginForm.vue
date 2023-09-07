@@ -5,15 +5,16 @@
 
     <div class="login-form__block-of-forms">
       <div class="login-form__input-container">
-        <PhoneInput @emitInputValues="onInputPhone" />
+        <!-- <GuiPhoneInput @emitInputValues="onInputPhone" /> -->
+        <GuiPhoneInputCopy @emitInputValues="onInputPhone" />
       </div>
 
       <div class="login-form__input-container">
-        <EmailInpit @emitInputValues="onInputEmail" />
+        <GuiEmailInput @emitInputValues="onInputEmail" />
       </div>
 
       <div class="login-form__input-container">
-        <PasswordInput @emitInputValues="onInputPassword" />
+        <GuiPasswordInput @emitInputValues="onInputPassword" />
       </div>
 
       <div class="login-form__button-container">
@@ -34,20 +35,24 @@
     </p>
 
     <button class="login-form__cross-switch" @click="closeLoginForm">
-      <img class="login-form__cross-image" src="@/assets/icons/triple/Cross/Dark.svg" alt="cross" />
+      <img class="login-form__cross-image" src="/icons/triple/Cross/Dark.svg" alt="cross" />
     </button>
   </form>
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate';
+import { required, minLength, maxLength, email, numeric } from 'vuelidate/lib/validators';
 
-import PhoneInput from '../gui/PhoneInput'
-import EmailInpit from '../gui/EmailInpit'
-import PasswordInput from '../gui/PasswordInput'
+import GuiPhoneInput from '@/components/gui/guiInput/GuiPhoneInput.vue';
+//
+import GuiPhoneInputCopy from '../../components/gui/guiInput/GuiPhoneInputCopy.vue';
+//
+import GuiEmailInput from '@/components/gui/guiInput/GuiEmailInput.vue';
+import GuiPasswordInput from '@/components/gui/guiInput/GuiPasswordInput.vue';
 
 export default {
+  name: 'LoginForm',
   mixins: [validationMixin],
 
   data() {
@@ -58,7 +63,7 @@ export default {
         email: '',
         password: '',
       },
-    }
+    };
   },
 
   validations: {
@@ -71,34 +76,36 @@ export default {
 
   methods: {
     closeLoginForm() {
-      this.$emit('closeLoginForm')
+      this.$emit('closeLoginForm');
     },
     onInputPhone(valueInput) {
-      this.form.phone = valueInput
+      this.form.phone = valueInput;
     },
     onInputPassword(valueInput) {
-      this.form.password = valueInput
+      this.form.password = valueInput;
     },
     onInputEmail(valueInput) {
-      this.form.email = valueInput
+      this.form.email = valueInput;
     },
 
     checkForm() {
-      this.$v.form.$touch()
+      this.$v.form.$touch();
 
       if (!this.$v.form.$error) {
-        this.registrationPassed = true
-        console.log('Валидация прошла успешно', this.form)
-        this.$emit('closeLoginForm')
+        this.registrationPassed = true;
+        console.log('Валидация прошла успешно', this.form);
+        this.$emit('closeLoginForm');
       }
     },
   },
   components: {
-    PhoneInput,
-    EmailInpit,
-    PasswordInput,
+    GuiPhoneInput,
+    GuiEmailInput,
+    GuiPasswordInput,
+    //
+    GuiPhoneInputCopy,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
