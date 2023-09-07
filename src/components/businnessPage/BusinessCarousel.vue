@@ -80,11 +80,6 @@ export default {
       this.$emit('onClickCarouselSquare', this.carouselValue);
       // console.log('carouselValue: ' + this.carouselValue);
     },
-    // onClickCarouselSquare(event) {
-    //   this.carouselValue = event;
-    //   this.$emit('onClickCarouselSquare', this.carouselValue);
-    //   // console.log('carouselValue: ' + this.carouselValue);
-    // },
   },
 
   components: {

@@ -50,9 +50,9 @@ export default {
 
   @media screen and (min-width: 576px) {
     padding-top: 48px;
-    padding-right: 24px;
+    padding-right: 28px;
     padding-bottom: 24px;
-    padding-left: 24px;
+    padding-left: 28px;
   }
 
   &__container {
@@ -70,11 +70,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    @media screen and (min-width: 1160px) {
-      // width: calc(100% - 40px);
-      margin-left: 40px;
-    }
   }
 
   &__heading {

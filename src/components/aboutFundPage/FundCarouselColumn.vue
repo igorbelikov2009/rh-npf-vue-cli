@@ -80,11 +80,6 @@ export default {
     transition-delay: 0s;
   }
 
-  // fund-carousel-column_not-visible
-  &_not-visible {
-    display: none;
-  }
-
   &__title {
     font-size: 34px;
     line-height: 48px;

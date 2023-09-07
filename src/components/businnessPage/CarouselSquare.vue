@@ -56,8 +56,6 @@ export default {
 // carousel
 .carousel {
   &__square {
-    display: inline-block;
-    white-space: normal;
     min-width: 200px;
     padding: 24px;
     margin-right: 24px;
@@ -68,10 +66,8 @@ export default {
     &::before {
       content: '';
       position: absolute;
-      z-index: 0;
       border: 1px solid #e4e4e4;
       box-sizing: border-box;
-      // box-shadow: 0px 4px 6px #d2dce6;
 
       transition: box-shadow 0.3s, width 0.3s, height 0.3s, top 0.3s, left 0.3s;
       width: 100%;
@@ -79,23 +75,23 @@ export default {
       left: 0;
       top: 0;
     }
-
-    &:hover .carousel__image:first-of-type {
-      display: block;
-    }
-
-    &:hover .carousel__image:last-of-type {
-      display: none;
-    }
   }
 
   // "carousel__square-actived"
   &__square-actived {
+    min-width: 200px;
+    padding: 24px;
+    margin-right: 24px;
+    position: relative;
+    box-sizing: border-box;
+    cursor: pointer;
+
     &::before {
       content: '';
       position: absolute;
-      z-index: 0;
       border: 1px solid #e4e4e4;
+      box-sizing: border-box;
+
       box-shadow: 0px 4px 6px #d2dce6;
       transition: box-shadow 0.3s, width 0.3s, height 0.3s, top 0.3s, left 0.3s;
       width: calc(100% + 8px);

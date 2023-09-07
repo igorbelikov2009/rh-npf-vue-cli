@@ -52,6 +52,7 @@ import GuiEmailInput from '@/components/gui/guiInput/GuiEmailInput.vue';
 import GuiPasswordInput from '@/components/gui/guiInput/GuiPasswordInput.vue';
 
 export default {
+  name: 'LoginForm',
   mixins: [validationMixin],
 
   data() {
